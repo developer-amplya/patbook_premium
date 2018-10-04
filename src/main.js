@@ -26,18 +26,24 @@ Vue.use(Framework7Vue, Framework7);
 
 // Init App
 const baseApp = new Vue({
-  el: '#app',
-  template: '<app/>',
-  // Init Framework7 by passing parameters here
-  framework7: {
-    id: 'io.framework7.testapp', // App bundle ID
-    name: 'Framework7', // App name
-    theme: 'auto', // Automatic theme detection
-    // App routes
-    routes: Routes
-  },
-  // Register App Component
-  components: {
-    app: App
-  }
+
+    // App Root Element
+    el: '#app',
+
+    template: '<app/>',
+    // Init Framework7 by passing parameters here
+    framework7: {
+        id: 'com.patbook.app', // App bundle ID
+        name: 'Patbook', // App name
+        theme: 'auto', // Automatic theme detection
+        // App routes
+        routes: Routes
+    },
+    // Register App Component
+    components: {
+        app: App
+    },
+
+    // App root methods
+    methods: {}
 });

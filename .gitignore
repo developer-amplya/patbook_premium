@@ -9,7 +9,6 @@ build/
 config.xml
 config/
 hooks/
-index.html
 node_modules/
 package-lock.json
 package.json

@@ -18,6 +18,5 @@
                 //title: category
             };
         }
-    }
-    ;
+    };
 </script>
