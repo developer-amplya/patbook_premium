@@ -7,16 +7,23 @@
         <f7-block inner>
 
         </f7-block>
+        {{ info }}
     </f7-page>
 </template>
 <script>
+    import axios from 'axios';
     export default {
         name: 'ListView',
         props: ['category'],
         data() {
             return {
-                //title: category
+                info: ''
             };
+        },
+        mounted () {
+            axios
+                .get('http://patbookapi.local/api/allergies')
+                .then(response => (this.info = response));
         }
     }
     ;

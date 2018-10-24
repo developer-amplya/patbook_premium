@@ -5,7 +5,7 @@
         <f7-block inner>
             <f7-link href="/list-view/usuario">Datos del usuario</f7-link>
             <br>
-            <f7-link href="/list-view/alergias">Alergias</f7-link>
+            <f7-link href="/allergies">Alergias</f7-link>
             <br>
             <f7-link href="/list-view/medicacion">Medicación</f7-link>
             <br>
@@ -21,7 +21,7 @@
 </template>
 <script>
     export default {
-        name: 'Inicio',
+        name: 'Home',
         data() {
             return {
                 title: 'Inicio'
