@@ -1,5 +1,7 @@
 import Access from './pages/Access.vue';
 import Register from './pages/Register.vue';
+import UserRegister from './pages/UserRegister.vue';
+import DeviceRegister from './pages/DeviceRegister.vue';
 import LogIn from './pages/LogIn.vue';
 import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -12,11 +14,20 @@ import AllergiesDetails from './pages/allergiesDetails.vue';
 export default [
     {
         path: '/',
-        component: Access
+        //component: Access
+        component: Home
     },
     {
         path: '/register',
         component: Register
+    },
+    {
+        path: '/user-register',
+        component: UserRegister
+    },
+    {
+        path: '/device-register',
+        component: DeviceRegister
     },
     {
         path: '/login',

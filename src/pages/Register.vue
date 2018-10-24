@@ -2,30 +2,23 @@
     <f7-page>
         <f7-navbar title="REGISTRO"></f7-navbar>
         <f7-block inner>
-            <f7-list form>
-                <f7-list-item>
-                    <f7-label>Usuario</f7-label>
-                    <f7-input type="text" :value="register.name"
-                              @input="register.name = $event.target.value"></f7-input>
-                </f7-list-item>
+            <p>Es la primera vez que accede con este dispositivo.</p>
+            <p>Si aún no es usuario:</p>
+            <f7-button href="/user-register">Registrar usuario</f7-button>
+            <p>Si ya es usuario introduzca su email a continuación y le enviaremos un código para registrar este
+                dispositivo</p>
+            <f7-list>
                 <f7-list-item>
                     <f7-label>Email</f7-label>
-                    <f7-input type="text" :value="register.email"
-                              @input="register.email = $event.target.value"></f7-input>
+                    <f7-input type="text" :value="email"
+                              @input="email = $event.target.value"></f7-input>
                 </f7-list-item>
-                <f7-list-item>
-                    <f7-label>Contraseña</f7-label>
-                    <f7-input type="password" :value="register.password"
-                              @input="register.password = $event.target.value"></f7-input>
+                <f7-list-item v-show="msg">
+                    {{ msg }}
                 </f7-list-item>
-                <f7-list-item>
-                    <f7-label>Confirmar contraseña</f7-label>
-                    <f7-input type="password" :value="register.password_confirmation"
-                              @input="register.password_confirmation = $event.target.value"></f7-input>
-                </f7-list-item>
-            </f7-list>
-            <f7-list>
-                <f7-list-button @click="signIn">Enviar</f7-list-button>
+                <f7-list>
+                    <f7-list-button @click="registerDevice">Enviar</f7-list-button>
+                </f7-list>
             </f7-list>
         </f7-block>
     </f7-page>
@@ -39,27 +32,21 @@
         props: [],
         data() {
             return {
-                register: {
-                    name: '',
-                    email: '',
-                    password: '',
-                    password_confirmation: ''
-                }
+                email: '',
+                msg: ''
             };
         },
         methods: {
-            signIn() {
-                console.log(this.register.name + '/' + this.register.email + '/' + this.register.password + '/' + this.register.password_confirmation);
+            registerDevice() {
+                console.log(this.email);
 
-                axios.post('http://patbookapi.local/api/register', {
-                    name: this.register.name,
-                    email: this.register.email,
-                    password: this.register.password,
-                    password_confirmation: this.register.password_confirmation
+                axios.post('http://patbookapi.local/api/register-device', {
+                    email: this.email
                 })
-                    .then( (response) => {
+                    .then((response) => {
                         console.log(response);
-                        if (response.statusText === 'OK') this.$f7router.navigate('/home');
+                        if (response.data.result === 'KO') this.msg = response.data.message;
+                        //if (response.statusText === 'OK') this.$f7router.navigate('/home');
                     })
                     .catch(function (error) {
                         console.log(error);

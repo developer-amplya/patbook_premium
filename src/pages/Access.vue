@@ -1,10 +1,5 @@
 <template>
-    <f7-page>
-        <f7-navbar title="INICIO"></f7-navbar>
-        <f7-block inner>
 
-        </f7-block>
-    </f7-page>
 </template>
 
 <script>
