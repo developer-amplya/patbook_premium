@@ -8,8 +8,8 @@ import NotFoundPage from './pages/not-found.vue';
 import UserData from './pages/user-data';
 import EmergenciesData from './pages/emergencies';
 import ListView from './pages/list-view.vue';
-import Allergies from './pages/allergies.vue';
-import AllergiesDetails from './pages/allergiesDetails.vue';
+import Allergies from './pages/Allergies.vue';
+import AllergiesDetails from './pages/AllergiesDetails.vue';
 
 export default [
     {
