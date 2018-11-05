@@ -17,6 +17,9 @@
             <f7-list>
                 <f7-list-button @click="do_login">Enviar</f7-list-button>
             </f7-list>
+            <f7-list>
+                <f7-button href="/forgot-password">He olvidado mi contraseña</f7-button>
+            </f7-list>
         </f7-block>
     </f7-page>
 </template>

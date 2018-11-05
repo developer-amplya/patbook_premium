@@ -3,6 +3,7 @@ import Register from './pages/Register.vue';
 import UserRegister from './pages/UserRegister.vue';
 import DeviceRegister from './pages/DeviceRegister.vue';
 import LogIn from './pages/LogIn.vue';
+import ForgotPassword from './pages/ForgotPassword.vue';
 import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
 import UserData from './pages/user-data';
@@ -14,8 +15,8 @@ import AllergiesDetails from './pages/AllergiesDetails.vue';
 export default [
     {
         path: '/',
-        //component: Access
-        component: Home
+        component: Access
+        //component: Home
     },
     {
         path: '/register',
@@ -32,6 +33,10 @@ export default [
     {
         path: '/login',
         component: LogIn
+    },
+    {
+        path: '/forgot-password',
+        component: ForgotPassword
     },
     {
         path: '/home',
