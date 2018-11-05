@@ -46,7 +46,7 @@
                     .then((response) => {
                         console.log(response);
                         if (response.data.result === 'KO') this.msg = response.data.message;
-                        //if (response.statusText === 'OK') this.$f7router.navigate('/home');
+                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register');
                     })
                     .catch(function (error) {
                         console.log(error);
