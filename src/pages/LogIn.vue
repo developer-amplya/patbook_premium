@@ -20,6 +20,9 @@
             <f7-list>
                 <f7-button href="/forgot-password">He olvidado mi contraseña</f7-button>
             </f7-list>
+            <f7-list>
+                <f7-button href="/user-register">Registrar nuevo usuario</f7-button>
+            </f7-list>
         </f7-block>
     </f7-page>
 </template>
@@ -34,26 +37,58 @@
             return {
                 log_in: {
                     email: '',
-                    password: ''
+                    password: '',
+                    token: ''
                 }
             };
         },
+        mounted() {
+            console.log('-> LogIn');
+
+            if (!localStorage.allowed_users) {
+                localStorage.allowed_users = JSON.stringify([]);
+            }
+        },
         methods: {
             do_login() {
-                console.log(this.log_in.email + '/' + this.log_in.password);
+
+                if (localStorage.allowed_users !== '') {
+                    var isAllowed = false;
+                    var allowedUsers = JSON.parse(localStorage.allowed_users);
+                    allowedUsers.forEach((item) => {
+                        if (item.email === this.log_in.email) {
+                            isAllowed = true;
+                            this.log_in.token = item.token;
+                        }
+                    });
+
+                    if (isAllowed === false) {
+                        this.$f7router.navigate('new-device');
+                        return;
+                    }
+                } else {
+                    this.$f7router.navigate('new-device');
+                }
 
                 axios.post('http://patbookapi.local/api/login', {
                     email: this.log_in.email,
-                    password: this.log_in.password
+                    password: this.log_in.password,
+                    device_code: this.log_in.token
                 })
-                    .then( (response) => {
+                    .then((response) => {
                         console.log(response);
-                        if (response.statusText === 'OK') this.$f7router.navigate('/home');
+                        if (response.data.result === 'OK') {
+                            sessionStorage.user_id = response.data.user._id;
+                            this.$f7router.navigate('/home');
+                        } else {
+                            alert(response.data.message);
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             }
         }
-    };
+    }
+    ;
 </script>

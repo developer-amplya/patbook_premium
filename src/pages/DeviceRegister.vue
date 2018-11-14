@@ -2,7 +2,7 @@
     <f7-page>
         <f7-navbar title="REGISTRO"></f7-navbar>
         <f7-block inner>
-            <p>Pegue aquí el código que le hemos enviado a su email.</p>
+            <p>Escriba aquí el código que le hemos enviado a su email.</p>
             <f7-list form>
                 <f7-list-item>
                     <f7-label>Código</f7-label>
@@ -18,19 +18,23 @@
 </template>
 
 <script>
-
     export default {
         name: 'DeviceRegister',
-        props: [],
+        props: ['email'],
         data() {
             return {
                 device_code: ''
             };
         },
+        mounted() {
+            console.log('-> DeviceRegister');
+        },
         methods: {
-            setDeviceCode () {
-                localStorage.isRegisteredDevice = true;
-                localStorage.deviceCode = this.device_code;
+            setDeviceCode() {
+                var allowedUsers = JSON.parse(localStorage.allowed_users);
+                allowedUsers.push({email: this.email, token: this.device_code})
+                allowedUsers = JSON.stringify(allowedUsers);
+                localStorage.allowed_users = allowedUsers;
                 this.$f7router.navigate('/home');
             }
         }

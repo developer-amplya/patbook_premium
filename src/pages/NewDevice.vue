@@ -5,7 +5,7 @@
             <p>Es la primera vez que accede con este dispositivo.</p>
             <p>Si aún no es usuario:</p>
             <f7-button href="/user-register">Registrar usuario</f7-button>
-            <p>Si ya es usuario introduzca su email a continuación y le enviaremos un código para registrar este
+            <p>Si ya es usuario introduzca su email a continuación y le enviaremos un código para registrarse en este
                 dispositivo</p>
             <f7-list>
                 <f7-list-item>
@@ -28,13 +28,16 @@
     import axios from 'axios';
 
     export default {
-        name: 'Register',
+        name: 'NewDevice',
         props: [],
         data() {
             return {
                 email: '',
                 msg: ''
             };
+        },
+        mounted() {
+            console.log('-> NewDevice');
         },
         methods: {
             registerDevice() {
@@ -46,7 +49,7 @@
                     .then((response) => {
                         console.log(response);
                         if (response.data.result === 'KO') this.msg = response.data.message;
-                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register');
+                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.email);
                     })
                     .catch(function (error) {
                         console.log(error);

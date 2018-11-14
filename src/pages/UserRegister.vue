@@ -47,6 +47,9 @@
                 }
             };
         },
+        mounted() {
+            console.log('-> UserRegister');
+        },
         methods: {
             signIn() {
                 console.log(this.register.name + '/' + this.register.email + '/' + this.register.password + '/' + this.register.password_confirmation);
@@ -57,9 +60,9 @@
                     password: this.register.password,
                     password_confirmation: this.register.password_confirmation
                 })
-                    .then( (response) => {
+                    .then((response) => {
                         console.log(response);
-                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register');
+                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email);
                     })
                     .catch(function (error) {
                         console.log(error);

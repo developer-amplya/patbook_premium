@@ -1,8 +1,7 @@
-import Access from './pages/Access.vue';
-import Register from './pages/Register.vue';
+import LogIn from './pages/LogIn.vue';
+import NewDevice from './pages/NewDevice.vue';
 import UserRegister from './pages/UserRegister.vue';
 import DeviceRegister from './pages/DeviceRegister.vue';
-import LogIn from './pages/LogIn.vue';
 import ForgotPassword from './pages/ForgotPassword.vue';
 import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -15,24 +14,21 @@ import AllergiesDetails from './pages/AllergiesDetails.vue';
 export default [
     {
         path: '/',
-        component: Access
+        component: LogIn
         //component: Home
     },
     {
-        path: '/register',
-        component: Register
+        path: '/new-device',
+        component: NewDevice
     },
     {
         path: '/user-register',
         component: UserRegister
     },
     {
-        path: '/device-register',
-        component: DeviceRegister
-    },
-    {
-        path: '/login',
-        component: LogIn
+        path: '/device-register/:email',
+        component: DeviceRegister,
+        props: true
     },
     {
         path: '/forgot-password',
