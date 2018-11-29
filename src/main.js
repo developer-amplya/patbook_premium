@@ -2,6 +2,9 @@
 // Import Vue
 import Vue from 'vue';
 
+// Import Vuex
+import Vuex from 'vuex';
+
 // Import F7
 import Framework7 from 'framework7/dist/framework7.esm.bundle.js';
 
@@ -20,6 +23,19 @@ import Routes from './routes.js';
 
 // Import App Component
 import App from './app';
+
+// Init Vuex
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment (state) {
+            state.count++;
+        }
+    }
+});
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue, Framework7);
