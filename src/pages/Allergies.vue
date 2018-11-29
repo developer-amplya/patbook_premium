@@ -30,8 +30,15 @@
         },
         mounted() {
             axios
-                .get('http://patbookapi.local/api/allergies')
-                .then(response => (this.list = response.data));
+                .get('http://patbookapi.local/api/allergies', {
+                    params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    }
+                })
+                .then(response => (this.list = response.data))
+                .catch(error => (console.log(error)));
         }
     }
     ;
