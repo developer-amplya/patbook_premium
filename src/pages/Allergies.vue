@@ -1,6 +1,6 @@
 <template>
     <f7-page>
-        <f7-navbar title="ALERGIAS" back-link="Back"></f7-navbar>
+        <f7-navbar title="ALERGIAS" back-link="Volver"></f7-navbar>
         <f7-block inner>
             <f7-list>
                 <f7-list-item
