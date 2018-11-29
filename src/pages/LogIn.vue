@@ -79,6 +79,7 @@
                         console.log(response);
                         if (response.data.result === 'OK') {
                             sessionStorage.user_id = response.data.user._id;
+                            sessionStorage.device_code = this.log_in.token;
                             this.$f7router.navigate('/home');
                         } else {
                             alert(response.data.message);
