@@ -1,1 +1,12 @@
 /* Your app styles here */
+
+.ios .list .item-header, .ios .list .item-footer,
+.md .list .item-header, .md .list .item-footer {
+    line-height: 2;
+}
+
+.navbar,
+.navbar a.back,
+.navbar i.icon-back {
+    color: #ffffff;
+}

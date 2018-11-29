@@ -2,48 +2,66 @@
 
     <f7-page>
 
-        <f7-navbar :title="details.name" back-link="Back"></f7-navbar>
+        <f7-navbar title="ALERGIA" back-link="Volver"></f7-navbar>
 
         <f7-block inner>
 
-            <f7-list no-hairlines-md>
+            <f7-list media-list>
 
-                <f7-list-input
-                        label="Nombre"
-                        type="text"
-                        :title="details.name"
-                        clear-button
-                ></f7-list-input>
-
-                <f7-list-item title="Tipo" smart-select :after="details.type">
-                    <select name="type" v-model="selectedType">
-                        <option
-                                v-for="typeCase in typeList"
-                                :value="typeCase"> {{ typeCase }}
-                        </option>
-                    </select>
+                <f7-list-item header="Nombre"
+                              @click="openPopup('edit_name')">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ details.name }}</span>
                 </f7-list-item>
-                <f7-list-item title="Grado" smart-select :after="details.degree">
-                    <select name="type" v-model="selectedDegree">
-                        <option
-                                v-for="degreeCase in degreeList"
-                                :value="degreeCase">{{ degreeCase }}
-                        </option>
-                    </select>
+
+                <f7-list-item header="Tipo"
+                              @click="openPopup('edit_type')">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ details.type }}</span>
                 </f7-list-item>
-                <f7-list-item header="Reacción" :text="details.reaction"></f7-list-item>
 
+                <f7-list-item header="Grado"
+                              @click="openPopup('edit_degree')">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ details.degree }}</span>
+                </f7-list-item>
 
-                <component v-for="(field, index) in schema"
-                           :key="index"
-                           :is="field.fieldType"
-                           v-model="formData[field.name]"
-                           v-bind="field">
-                </component>
+                <f7-list-item header="Reacción"
+                              @click="openPopup('edit_reaction')">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ details.reaction }}</span>
+                </f7-list-item>
+
+                <f7-list-item v-for="(field, index) in schema"
+                              :key="index"
+                              :header="field.label">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ field.value }}</span>
+                </f7-list-item>
 
             </f7-list>
 
         </f7-block>
+
+        <!-- Popup -->
+        <f7-popup ref="edit_name">
+            <f7-button @click="closePopup('edit_name')">Cerrar</f7-button>
+        </f7-popup>
+
+        <!-- Popup -->
+        <f7-popup ref="edit_type">
+            <f7-button @click="closePopup('edit_type')">Cerrar</f7-button>
+        </f7-popup>
+
+        <!-- Popup -->
+        <f7-popup ref="edit_degree">
+            <f7-button @click="closePopup('edit_degree')">Cerrar</f7-button>
+        </f7-popup>
+
+        <!-- Popup -->
+        <f7-popup ref="edit_reaction">
+            <f7-button @click="closePopup('edit_reaction')">Cerrar</f7-button>
+        </f7-popup>
 
     </f7-page>
 
@@ -53,11 +71,14 @@
     import axios from 'axios';
     import SelectList from '../form_elements/SelectList';
     import TextInput from '../form_elements/TextInput';
+    import F7ListItem from 'framework7-vue/src/components/list-item';
 
     export default {
         name: 'AllergiesDetails',
         components: {
-            SelectList, TextInput
+            F7ListItem,
+            SelectList,
+            TextInput
         },
         props: [
             'id'
@@ -74,11 +95,21 @@
             };
         },
         methods: {
-            //
+            openPopup(popup) {
+                this.$refs[popup].opened = true;
+            },
+            closePopup(popup) {
+                this.$refs[popup].opened = false;
+            }
         },
         mounted() {
             axios
-                .get('http://patbookapi.local/api/allergies/' + this.id)
+                .get('http://patbookapi.local/api/allergies/' + this.id, {
+                    params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                    }
+                })
                 .then(response => {
                     console.log(JSON.parse(response.data.schema));
                     this.details = response.data;
@@ -90,3 +121,25 @@
     }
     ;
 </script>
+
+<style scoped>
+    li i.icon {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        color: #9a9a9a !important;
+        background: #eeeeee;
+        padding: 5px;
+        border-radius: 50%;
+        opacity: .65;
+    }
+
+    li span {
+        position: relative;
+        z-index: 10;
+    }
+
+    .navbar {
+        background-color: #D3698E;
+    }
+</style>

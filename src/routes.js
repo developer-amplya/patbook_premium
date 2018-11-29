@@ -14,8 +14,8 @@ import AllergiesDetails from './pages/AllergiesDetails.vue';
 export default [
     {
         path: '/',
-        component: LogIn
-        //component: Home
+        //component: LogIn
+        component: Home
     },
     {
         path: '/new-device',
