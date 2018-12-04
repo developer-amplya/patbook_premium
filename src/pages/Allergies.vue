@@ -43,3 +43,9 @@
     }
     ;
 </script>
+
+<style scoped>
+    .navbar {
+        background-color: #D3698E;
+    }
+</style>

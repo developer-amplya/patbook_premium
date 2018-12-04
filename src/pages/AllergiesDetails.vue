@@ -8,10 +8,29 @@
 
             <f7-list media-list>
 
-                <f7-list-item header="Nombre"
-                              @click="openPopup('edit_name')">
+                <f7-list-item header="Nombre" ref="x1" :value="details.name"
+                              v-if="!edit_name"
+                              @click="openEdit">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.name }}</span>
+                </f7-list-item>
+
+                <f7-list-item  header="Nombre"
+                               v-if="edit_name">
+                    <f7-block>
+                        <f7-input
+                                type="text"
+                                ref="t1"
+                                :title="details.name"
+                                :value="details.name"
+                                @input="details.name = $event.target.value"
+                        ></f7-input>
+                        <br>
+                        <f7-segmented round raised>
+                            <f7-button round @click="cancelEdit()">Cancelar</f7-button>
+                            <f7-button round @click="updateInfo()">Guardar</f7-button>
+                        </f7-segmented>
+                    </f7-block>
                 </f7-list-item>
 
                 <f7-list-item header="Tipo"
@@ -42,11 +61,6 @@
             </f7-list>
 
         </f7-block>
-
-        <!-- Popup -->
-        <f7-popup ref="edit_name">
-            <f7-button @click="closePopup('edit_name')">Cerrar</f7-button>
-        </f7-popup>
 
         <!-- Popup -->
         <f7-popup ref="edit_type">
@@ -91,15 +105,38 @@
                 typeList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
                 degreeList: ['Leve', 'Moderado', 'Severo'],
                 schema: [],
-                formData: {}
+                formData: {},
+                edit_name: false,
+                before_editing: ''
             };
         },
         methods: {
-            openPopup(popup) {
-                this.$refs[popup].opened = true;
+            openEdit(event) {console.log(event.target);
+                this.before_editing = this.$refs.x1.value;
+                console.log(this.before_editing);
+                this.edit_name = true;
             },
-            closePopup(popup) {
-                this.$refs[popup].opened = false;
+            cancelEdit(popup) {
+                this.details.name = this.before_editing;
+                this.before_editing = '';
+                this.edit_name = false;
+            },
+            updateInfo() {
+                axios.put('http://patbookapi.local/api/allergies/' + this.id, {
+                    params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                    },
+                    name: this.details.name
+                })
+                    .then((response) => {
+                        console.log(response);
+                        // TODO: confirm the update is OK
+                        this.edit_name = false;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         mounted() {
@@ -123,6 +160,11 @@
 </script>
 
 <style scoped>
+
+    .invisible {
+        display: none;
+    }
+
     li i.icon {
         position: absolute;
         right: 15px;
