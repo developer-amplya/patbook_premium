@@ -10,6 +10,11 @@ import EmergenciesData from './pages/emergencies';
 import ListView from './pages/list-view.vue';
 import Allergies from './pages/Allergies.vue';
 import AllergiesDetails from './pages/AllergiesDetails.vue';
+import Medicines from './pages/Medicines.vue';
+import MedicalVisitPreparations from './pages/MedicalVisitPreparations.vue';
+import MedicalVisits from './pages/MedicalVisits.vue';
+import DiagnosticTests from './pages/DiagnosticTests.vue';
+
 
 export default [
     {
@@ -61,6 +66,22 @@ export default [
         path: '/allergies/:id',
         component: AllergiesDetails,
         props: true
+    },
+    {
+        path: '/medicines',
+        component: Medicines
+    },
+    {
+        path: '/medical_visit_preparations',
+        component: MedicalVisitPreparations
+    },
+    {
+        path: '/medical_visits',
+        component: MedicalVisits
+    },
+    {
+        path: '/diagnostic_tests',
+        component: DiagnosticTests
     },
     {
         path: '(.*)',
