@@ -8,26 +8,25 @@
 
             <f7-list media-list>
 
-                <f7-list-item header="Nombre" ref="x1" :value="details.name"
+                <f7-list-item header="Nombre"
                               v-if="!edit_name"
-                              @click="openEdit">
+                              @click="openEdit($event, details.name, 'edit_name')">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.name }}</span>
                 </f7-list-item>
 
-                <f7-list-item  header="Nombre"
-                               v-if="edit_name">
+                <f7-list-item header="Nombre"
+                              v-if="edit_name">
                     <f7-block>
                         <f7-input
                                 type="text"
-                                ref="t1"
                                 :title="details.name"
                                 :value="details.name"
                                 @input="details.name = $event.target.value"
                         ></f7-input>
                         <br>
                         <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit()">Cancelar</f7-button>
+                            <f7-button round @click="cancelEdit($event, 'name', 'edit_name')">Cancelar</f7-button>
                             <f7-button round @click="updateInfo()">Guardar</f7-button>
                         </f7-segmented>
                     </f7-block>
@@ -53,29 +52,35 @@
 
                 <f7-list-item v-for="(field, index) in schema"
                               :key="index"
-                              :header="field.label">
+                              :header="field.label"
+                              v-if="field.is_editing == false"
+                              @click="openEditSchema($event, index)">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ field.value }}</span>
+                </f7-list-item>
+
+                <f7-list-item v-for="(field, index) in schema"
+                              :key="index"
+                              :header="field.label"
+                              v-if="field.is_editing == true">
+                    <f7-block>
+                        <f7-input
+                                :type="field.fieldType"
+                                :title="field.name"
+                                :value="field.value"
+                                @input="field.value = $event.target.value"
+                        ></f7-input>
+                        <br>
+                        <f7-segmented round raised>
+                            <f7-button round @click="cancelEditSchema($event, index)">Cancelar</f7-button>
+                            <f7-button round @click="updateInfoSchema(index)">Guardar</f7-button>
+                        </f7-segmented>
+                    </f7-block>
                 </f7-list-item>
 
             </f7-list>
 
         </f7-block>
-
-        <!-- Popup -->
-        <f7-popup ref="edit_type">
-            <f7-button @click="closePopup('edit_type')">Cerrar</f7-button>
-        </f7-popup>
-
-        <!-- Popup -->
-        <f7-popup ref="edit_degree">
-            <f7-button @click="closePopup('edit_degree')">Cerrar</f7-button>
-        </f7-popup>
-
-        <!-- Popup -->
-        <f7-popup ref="edit_reaction">
-            <f7-button @click="closePopup('edit_reaction')">Cerrar</f7-button>
-        </f7-popup>
 
     </f7-page>
 
@@ -87,6 +92,8 @@
     import TextInput from '../form_elements/TextInput';
     import F7ListItem from 'framework7-vue/src/components/list-item';
 
+    // TODO: refactor the hole code as much as possible
+    // TODO: try to add an remove the property is_editing in schema objects dynamically
     export default {
         name: 'AllergiesDetails',
         components: {
@@ -107,19 +114,33 @@
                 schema: [],
                 formData: {},
                 edit_name: false,
+                edit_type: false,
+                edit_degree: false,
+                edit_reaction: false,
                 before_editing: ''
             };
         },
         methods: {
-            openEdit(event) {console.log(event.target);
-                this.before_editing = this.$refs.x1.value;
-                console.log(this.before_editing);
-                this.edit_name = true;
+            openEdit(event, param, param2) {
+                this.before_editing = param;
+                console.log(param2);
+                this[param2] = true;
             },
-            cancelEdit(popup) {
-                this.details.name = this.before_editing;
+            cancelEdit(event, param, param2) {
+                this.details[param] = this.before_editing
                 this.before_editing = '';
-                this.edit_name = false;
+                this[param2] = false;
+            },
+            openEditSchema(event, index) {
+                console.log(index);
+                this.before_editing = this.schema[index].value;
+                console.log(this.before_editing);
+                this.schema[index].is_editing = true;
+            },
+            cancelEditSchema(event, index) {
+                this.schema[index].value = this.before_editing
+                this.before_editing = '';
+                this.schema[index].is_editing = false;
             },
             updateInfo() {
                 axios.put('http://patbookapi.local/api/allergies/' + this.id, {
@@ -128,6 +149,24 @@
                         user_id: sessionStorage.user_id
                     },
                     name: this.details.name
+                })
+                    .then((response) => {
+                        console.log(response);
+                        // TODO: confirm the update is OK
+                        this.edit_name = false;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            updateInfoSchema(index) {
+                this.schema[index].is_editing = false;
+                axios.put('http://patbookapi.local/api/allergies/' + this.id, {
+                    params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                    },
+                    schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {
                         console.log(response);
@@ -148,11 +187,12 @@
                     }
                 })
                 .then(response => {
-                    console.log(JSON.parse(response.data.schema));
+                    //console.log(JSON.parse(response.data.schema));
                     this.details = response.data;
                     this.selectedType = this.details.type;
                     this.selectedDegree = this.details.degree;
                     this.schema = JSON.parse(response.data.schema);
+                    console.log(this.schema);
                 });
         }
     }
@@ -165,10 +205,14 @@
         display: none;
     }
 
+    .md .list .item-header {
+        padding-left: 39px !important;
+    }
+
     li i.icon {
-        position: absolute;
-        right: 15px;
-        top: 20px;
+        /*position: absolute;
+        left: 15px;
+        top: 20px;*/
         color: #9a9a9a !important;
         background: #eeeeee;
         padding: 5px;
