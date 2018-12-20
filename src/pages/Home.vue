@@ -1,27 +1,31 @@
 <template>
     <f7-page>
-        <img src="./icono_alergias.png">
+
+        <!--img src="../assets/icono_alergias.png" height="133" width="133"/-->
         <f7-navbar sliding title="PATBOOK"></f7-navbar>
         <f7-block-title>{{ title }}</f7-block-title>
         <f7-block inner>
             <f7-list>
                 <f7-list-item
-                        media="./icono_alergias.png"
                         title="Alergias"
                         badge="2"
                         link="/allergies"></f7-list-item>
                 <f7-list-item
                         title="Medicación"
+                        badge="1"
                         link="/medicines"></f7-list-item>
                 <f7-list-item
                         title="Preparación visita médica"
-                        link="/medical_visit_preparations"></f7-list-item>
+                        badge="1"
+                        link="/medical-visit-preparations"></f7-list-item>
                 <f7-list-item
                         title="Visita médica"
-                        link="/medical_visits"></f7-list-item>
+                        badge="1"
+                        link="/medical-visits"></f7-list-item>
                 <f7-list-item
                         title="Pruebas diagnósticas"
-                        link="/diagnostic_tests"></f7-list-item>
+                        badge="1"
+                        link="/diagnostic-tests"></f7-list-item>
             </f7-list>
         </f7-block>
     </f7-page>

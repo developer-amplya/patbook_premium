@@ -11,9 +11,13 @@ import ListView from './pages/list-view.vue';
 import Allergies from './pages/Allergies.vue';
 import AllergiesDetails from './pages/AllergiesDetails.vue';
 import Medicines from './pages/Medicines.vue';
+import MedicinesDetails from './pages/MedicinesDetails.vue';
 import MedicalVisitPreparations from './pages/MedicalVisitPreparations.vue';
+import MedicalVisitPreparationsDetails from './pages/MedicalVisitPreparationsDetails.vue';
 import MedicalVisits from './pages/MedicalVisits.vue';
+import MedicalVisitsDetails from './pages/MedicalVisitsDetails.vue';
 import DiagnosticTests from './pages/DiagnosticTests.vue';
+import DiagnosticTestsDetails from './pages/DiagnosticTestsDetails.vue';
 
 
 export default [
@@ -72,16 +76,36 @@ export default [
         component: Medicines
     },
     {
-        path: '/medical_visit_preparations',
+        path: '/medicines/:id',
+        component: MedicinesDetails,
+        props: true
+    },
+    {
+        path: '/medical-visit-preparations',
         component: MedicalVisitPreparations
     },
     {
-        path: '/medical_visits',
+        path: '/medical-visit-preparations/:id',
+        component: MedicalVisitPreparationsDetails,
+        props: true
+    },
+    {
+        path: '/medical-visits',
         component: MedicalVisits
     },
     {
-        path: '/diagnostic_tests',
+        path: '/medical-visits/:id',
+        component: MedicalVisitsDetails,
+        props: true
+    },
+    {
+        path: '/diagnostic-tests',
         component: DiagnosticTests
+    },
+    {
+        path: '/diagnostic-tests/:id',
+        component: DiagnosticTestsDetails,
+        props: true
     },
     {
         path: '(.*)',
