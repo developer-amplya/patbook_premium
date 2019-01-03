@@ -9,16 +9,21 @@ import UserData from './pages/user-data';
 import EmergenciesData from './pages/emergencies';
 import ListView from './pages/list-view.vue';
 import Allergies from './pages/Allergies.vue';
+import AllergiesInsert from './pages/AllergiesInsert.vue';
 import AllergiesDetails from './pages/AllergiesDetails.vue';
 import Medicines from './pages/Medicines.vue';
+import MedicinesInsert from './pages/MedicinesInsert.vue';
 import MedicinesDetails from './pages/MedicinesDetails.vue';
 import MedicalVisitPreparations from './pages/MedicalVisitPreparations.vue';
+import MedicalVisitPreparationsInsert from './pages/MedicalVisitPreparationsInsert.vue';
 import MedicalVisitPreparationsDetails from './pages/MedicalVisitPreparationsDetails.vue';
 import MedicalVisits from './pages/MedicalVisits.vue';
+import MedicalVisitsInsert from './pages/MedicalVisitsInsert.vue';
 import MedicalVisitsDetails from './pages/MedicalVisitsDetails.vue';
 import DiagnosticTests from './pages/DiagnosticTests.vue';
+import DiagnosticTestsInsert from './pages/DiagnosticTestsInsert.vue';
 import DiagnosticTestsDetails from './pages/DiagnosticTestsDetails.vue';
-
+import CreateCustomField from './pages/CreateCustomField.vue';
 
 export default [
     {
@@ -67,6 +72,10 @@ export default [
         component: Allergies
     },
     {
+        path: '/allergies/insert',
+        component: AllergiesInsert
+    },
+    {
         path: '/allergies/:id',
         component: AllergiesDetails,
         props: true
@@ -74,6 +83,10 @@ export default [
     {
         path: '/medicines',
         component: Medicines
+    },
+    {
+        path: '/medicines/insert',
+        component: MedicinesInsert
     },
     {
         path: '/medicines/:id',
@@ -85,6 +98,10 @@ export default [
         component: MedicalVisitPreparations
     },
     {
+        path: '/medical-visit-preparations/insert',
+        component: MedicalVisitPreparationsInsert
+    },
+    {
         path: '/medical-visit-preparations/:id',
         component: MedicalVisitPreparationsDetails,
         props: true
@@ -92,6 +109,10 @@ export default [
     {
         path: '/medical-visits',
         component: MedicalVisits
+    },
+    {
+        path: '/medical-visits/insert',
+        component: MedicalVisitsInsert
     },
     {
         path: '/medical-visits/:id',
@@ -103,8 +124,17 @@ export default [
         component: DiagnosticTests
     },
     {
+        path: '/diagnostic-tests/insert',
+        component: DiagnosticTestsInsert
+    },
+    {
         path: '/diagnostic-tests/:id',
         component: DiagnosticTestsDetails,
+        props: true
+    },
+    {
+        path: '/create-custom-field',
+        component: CreateCustomField,
         props: true
     },
     {
