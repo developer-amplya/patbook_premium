@@ -3,7 +3,7 @@
 
         <!--img src="../assets/icono_alergias.png" height="133" width="133"/-->
         <f7-navbar sliding title="PATBOOK"></f7-navbar>
-        <f7-block-title>{{ title }}</f7-block-title>
+        <f7-block-title>{{ getMessage }}</f7-block-title>
         <f7-block inner>
             <f7-list>
                 <f7-list-item
@@ -31,12 +31,14 @@
     </f7-page>
 </template>
 <script>
+    import { mapGetters } from 'vuex';
     export default {
         name: 'Home',
         data() {
             return {
                 title: 'Francisco'
             };
-        }
+        },
+        computed: mapGetters(['getMessage'])
     };
 </script>
