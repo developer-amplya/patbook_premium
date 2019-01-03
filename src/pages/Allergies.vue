@@ -12,6 +12,11 @@
                         :footer="listItem.degree"></f7-list-item>
             </f7-list>
         </f7-block>
+        <f7-toolbar bottom-md>
+            <f7-link>&nbsp;</f7-link>
+            <f7-link href="/allergies/insert">+</f7-link>
+            <f7-link>&nbsp;</f7-link>
+        </f7-toolbar>
     </f7-page>
 </template>
 <script>
@@ -47,5 +52,9 @@
 <style scoped>
     .navbar {
         background-color: #c36eb5;
+    }
+
+    .toolbar a {
+        font-size: 48px !important;
     }
 </style>
