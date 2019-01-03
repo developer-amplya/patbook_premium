@@ -120,7 +120,7 @@
                     </f7-block>
                 </f7-list-item>
 
-                <!-- SQUEMA -->
+                <!-- SCHEMA -->
                 <f7-list-item v-for="(field, index) in schema"
                               :key="index"
                               :header="field.label"
@@ -272,8 +272,7 @@
                     this.schema = JSON.parse(response.data.schema);
                 });
         }
-    }
-    ;
+    };
 </script>
 
 <style scoped>

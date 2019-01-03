@@ -34,7 +34,7 @@
                 </f7-list-item>
 
                 <!-- SYMPTOMS DESCRIPTION -->
-                <f7-list-item header="Descripción"
+                <f7-list-item header="Descripción de los síntomas"
                               v-if="!edit_symptoms_description"
                               @click="openEdit($event, details.symptoms_description, 'edit_symptoms_description')"
                               resizable>
@@ -42,7 +42,7 @@
                     <span>{{ details.symptoms_description }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Descripción"
+                <f7-list-item header="Descripción de los síntomas"
                               v-if="edit_symptoms_description">
                     <f7-block>
                         <f7-input

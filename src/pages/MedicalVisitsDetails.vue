@@ -492,7 +492,6 @@
                 details: [],
                 specialityList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
                 schema: [],
-                formData: {},
                 edit_name: false,
                 edit_description: false,
                 edit_doctor: false,

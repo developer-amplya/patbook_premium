@@ -318,7 +318,6 @@
                 details: [],
                 testsList: ['Análisis de sangre', 'Análisis de orina', 'Endoscopia', 'Mamografía', 'Rayos X', 'TAC', 'PET', 'Colonoscopia', 'Densiometría ósea', 'IRM', 'ECG', 'EEF', 'Ultrasonido', 'Espirometría', 'Otros'],
                 schema: [],
-                formData: {},
                 edit_name: false,
                 edit_test: false,
                 edit_date: false,
