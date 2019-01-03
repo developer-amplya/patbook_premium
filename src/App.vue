@@ -13,8 +13,10 @@
 </template>
 
 <script>
+    import store from './vuex/store';
     export default {
         name: 'App',
+        store,
         methods: {
             handleBackButton() {
                 // NOTE: The back button will behave differently depending on circumstance
