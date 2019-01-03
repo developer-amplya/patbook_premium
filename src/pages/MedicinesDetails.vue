@@ -291,6 +291,29 @@
                 </f7-list-item>
 
                 <!-- DOCTOR -->
+                <f7-list-item header="Médico"
+                              v-if="!edit_doctor"
+                              @click="openEdit($event, details.doctor, 'edit_doctor')">
+                    <f7-icon material="edit"></f7-icon>
+                    <span>{{ details.doctor }}</span>
+                </f7-list-item>
+
+                <f7-list-item header="Médico"
+                              v-if="edit_doctor">
+                    <f7-block>
+                        <f7-input
+                                type="text"
+                                :title="details.doctor"
+                                :value="details.doctor"
+                                @input="details.doctor = $event.target.value"
+                        ></f7-input>
+                        <br>
+                        <f7-segmented round raised>
+                            <f7-button round @click="cancelEdit($event, 'doctor', 'edit_doctor')">Cancelar</f7-button>
+                            <f7-button round @click="updateInfo($event, 'doctor', 'edit_doctor')">Guardar</f7-button>
+                        </f7-segmented>
+                    </f7-block>
+                </f7-list-item>
 
                 <!-- SQUEMA -->
                 <f7-list-item v-for="(field, index) in schema"
