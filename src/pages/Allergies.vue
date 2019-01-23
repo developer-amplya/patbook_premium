@@ -54,6 +54,10 @@
         background-color: #c36eb5;
     }
 
+    .toolbar {
+        background-color: #c36eb5;
+    }
+    
     .toolbar a {
         font-size: 48px !important;
     }
