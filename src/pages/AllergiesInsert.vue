@@ -46,6 +46,18 @@
                     ></f7-input>
                 </f7-list-item>
 
+                <!-- SCHEMA -->
+                <f7-list-item v-for="(field, index) in schema"
+                              :key="index">
+                    <f7-label>{{ field.label }}</f7-label>
+                    <f7-input
+                            :type="field.fieldType"
+                            :title="field.name"
+                            :value="field.value"
+                            @input="field.value = $event.target.value"
+                    ></f7-input>
+                </f7-list-item>
+
             </f7-list>
 
             <f7-button @click="createCustomField()">NUEVO CAMPO PERSONALIZADO</f7-button>
@@ -93,7 +105,7 @@
                     type: this.type,
                     degree: this.degree,
                     reaction: this.reaction,
-                    schema: this.schema
+                    schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {
                         console.log(response);
@@ -104,10 +116,30 @@
                     });
             },
             createCustomField() {
+                let nowInsertingDetails = {};
+                nowInsertingDetails.name = this.name;
+                nowInsertingDetails.type = this.type;
+                nowInsertingDetails.degree = this.degree;
+                nowInsertingDetails.reaction = this.reaction;
+                sessionStorage.currentInsertingDetails = JSON.stringify(nowInsertingDetails);
+                console.log(this.schema);
+                sessionStorage.currentInsertingSchema = JSON.stringify(this.schema);
                 this.$f7router.navigate('/create-custom-field');
             }
         },
-        mounted() {
+        beforeMount() {
+            if (typeof sessionStorage.currentInsertingDetails !== 'undefined') {
+                let details = JSON.parse(sessionStorage.currentInsertingDetails);
+                this.name = details.name;
+                this.type = details.type;
+                this.degree = details.degree;
+                this.reaction = details.reaction;
+            }
+
+            if (typeof sessionStorage.currentInsertingSchema !== 'undefined') {
+                this.schema = JSON.parse(sessionStorage.currentInsertingSchema);
+                console.log(this.schema);
+            }
         }
     }
     ;

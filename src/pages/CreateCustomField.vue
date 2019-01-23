@@ -19,8 +19,8 @@
                     <select :name="type" v-model="type">
                         <option v-for="(item, index) in typeList"
                                 :key="index"
-                                :value="item"
-                        >{{ item }}
+                                :value="item.value"
+                        >{{ item.text }}
                         </option>
                     </select>
                 </f7-list-item>
@@ -46,13 +46,30 @@
         props: [],
         data() {
             return {
-                typeList: ['Campo de texto', 'Área de texto', 'Lista', 'Fecha', 'Hora'],
+                typeList: [
+                    {text: 'Campo de texto', value: 'text'},
+                    {text: 'Área de texto', value: 'text-area'},
+                    {text: 'Lista', value: 'select'},
+                    {text: 'Fecha', value: 'date'},
+                    {text: 'Hora', value: 'time'}
+                ],
                 name: '',
                 type: ''
             };
         },
         methods: {
-            //
+            insert() {
+                let nowInsertingSchema = JSON.parse(sessionStorage.currentInsertingSchema);
+                let newObject = {};
+                newObject.is_editing = false;
+                newObject.fieldType = this.type;
+                newObject.label = this.name;
+                newObject.name = this.name;
+                newObject.value = '';
+                nowInsertingSchema.push(newObject);
+                sessionStorage.currentInsertingSchema = JSON.stringify(nowInsertingSchema);
+                this.$f7router.navigate('/allergies/insert');
+            }
         },
         mounted() {
             //
