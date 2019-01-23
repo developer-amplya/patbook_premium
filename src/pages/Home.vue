@@ -3,28 +3,28 @@
 
         <!--img src="../assets/icono_alergias.png" height="133" width="133"/-->
         <f7-navbar sliding title="PATBOOK"></f7-navbar>
-        <f7-block-title>{{ getMessage }}</f7-block-title>
+        <f7-block-title>{{ getUserName }}</f7-block-title>
         <f7-block inner>
             <f7-list>
                 <f7-list-item
                         title="Alergias"
-                        badge="2"
+                        :badge="getDocumentCounting.allergies"
                         link="/allergies"></f7-list-item>
                 <f7-list-item
                         title="Medicación"
-                        badge="1"
+                        :badge="getDocumentCounting.medicines"
                         link="/medicines"></f7-list-item>
                 <f7-list-item
                         title="Preparación visita médica"
-                        badge="1"
+                        :badge="getDocumentCounting.medical_visit_preparations"
                         link="/medical-visit-preparations"></f7-list-item>
                 <f7-list-item
                         title="Visita médica"
-                        badge="1"
+                        :badge="getDocumentCounting.medical_visits"
                         link="/medical-visits"></f7-list-item>
                 <f7-list-item
                         title="Pruebas diagnósticas"
-                        badge="1"
+                        :badge="getDocumentCounting.diagnostic_tests"
                         link="/diagnostic-tests"></f7-list-item>
             </f7-list>
         </f7-block>
@@ -36,9 +36,9 @@
         name: 'Home',
         data() {
             return {
-                title: 'Francisco'
+                //
             };
         },
-        computed: mapGetters(['getMessage'])
+        computed: mapGetters(['getUserName', 'getDocumentCounting'])
     };
 </script>
