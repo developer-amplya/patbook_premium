@@ -28,8 +28,8 @@ import CreateCustomField from './pages/CreateCustomField.vue';
 export default [
     {
         path: '/',
-        //component: LogIn
-        component: Home
+        component: LogIn
+        //component: Home
     },
     {
         path: '/new-device',
