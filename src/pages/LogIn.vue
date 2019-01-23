@@ -29,6 +29,7 @@
 
 <script>
     import axios from 'axios';
+    import {mapActions} from "vuex";
 
     export default {
         name: 'LogIn',
@@ -52,11 +53,14 @@
         methods: {
             do_login() {
 
+                /* Cheking if the user is registered in the device and so he or she is allowed to connect with the
+                device */
                 if (localStorage.allowed_users !== '') {
                     var isAllowed = false;
                     var allowedUsers = JSON.parse(localStorage.allowed_users);
                     allowedUsers.forEach((item) => {
-                        if (item.email === this.log_in.email) {
+                        // if (item.email === this.log_in.email) {
+                        if (item.email === 'reezooh@gmail.com') {
                             isAllowed = true;
                             this.log_in.token = item.token;
                         }
@@ -71,15 +75,20 @@
                 }
 
                 axios.post('http://patbookapi.local/api/login', {
-                    email: this.log_in.email,
-                    password: this.log_in.password,
+                    // email: this.log_in.email,
+                    // password: this.log_in.password,
+                    // device_code: this.log_in.token
+                    email: 'reezooh@gmail.com',
+                    password: '123456',
                     device_code: this.log_in.token
                 })
                     .then((response) => {
                         console.log(response);
                         if (response.data.result === 'OK') {
-                            sessionStorage.user_id = response.data.user._id;
-                            sessionStorage.device_code = this.log_in.token;
+                            this.$store.dispatch('setUserName', response.data.user.name);
+                            this.$store.dispatch('setUserID', response.data.user._id);
+                            this.$store.dispatch('setDeviceCode', this.log_in.token);
+                            this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');
                         } else {
                             alert(response.data.message);
