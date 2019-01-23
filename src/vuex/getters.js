@@ -1,5 +1,8 @@
 export default {
-    getMessage(state) {
-        return (state.msg).toUpperCase();
+    getUserName(state) {
+        return (state.user_name);
+    },
+    getDocumentCounting(state) {
+        return (state.document_counting);
     }
 };
