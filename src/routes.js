@@ -1,3 +1,4 @@
+import Cover from './pages/Cover.vue';
 import LogIn from './pages/LogIn.vue';
 import NewDevice from './pages/NewDevice.vue';
 import UserRegister from './pages/UserRegister.vue';
@@ -28,8 +29,11 @@ import CreateCustomField from './pages/CreateCustomField.vue';
 export default [
     {
         path: '/',
+        component: Cover
+    },
+    {
+        path: '/login',
         component: LogIn
-        //component: Home
     },
     {
         path: '/new-device',
