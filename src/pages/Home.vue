@@ -1,8 +1,8 @@
 <template>
     <f7-page>
 
-        <!--img src="../assets/icono_alergias.png" height="133" width="133"/-->
-        <f7-navbar sliding title="PATBOOK"></f7-navbar>
+        <f7-navbar sliding></f7-navbar>
+
         <f7-block-title>{{ getUserName }}</f7-block-title>
         <f7-block inner>
             <f7-list>

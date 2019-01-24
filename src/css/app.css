@@ -5,10 +5,16 @@
     line-height: 2;
 }
 
+.md input {
+    background-color: #efefef;
+    padding: 0 5px;
+}
+
 .navbar,
 .navbar a.back,
 .navbar i.icon-back {
     color: #ffffff;
+    /*background-color: #0D7782 !important;*/
 }
 
 /* COLORS */

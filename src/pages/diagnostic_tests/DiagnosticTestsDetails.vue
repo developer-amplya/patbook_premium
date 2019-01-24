@@ -297,8 +297,8 @@
 
 <script>
     import axios from 'axios';
-    import SelectList from '../form_elements/SelectList';
-    import TextInput from '../form_elements/TextInput';
+    import SelectList from '../../form_elements/SelectList';
+    import TextInput from '../../form_elements/TextInput';
     import F7ListItem from 'framework7-vue/src/components/list-item';
 
     // TODO: refactor the hole code as much as possible

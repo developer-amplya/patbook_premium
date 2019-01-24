@@ -1,32 +1,47 @@
 <template>
     <f7-page>
-        <f7-navbar title="REGISTRO"></f7-navbar>
+
+        <f7-navbar title="REGISTRO" back-link></f7-navbar>
+
         <f7-block inner>
-            <f7-list>
+
+            <f7-list form>
+
+                <!-- USER NAME -->
                 <f7-list-item>
                     <f7-label>Usuario</f7-label>
                     <f7-input type="text" :value="register.name"
                               @input="register.name = $event.target.value"></f7-input>
                 </f7-list-item>
+
+                <!-- EMAIL -->
                 <f7-list-item>
                     <f7-label>Email</f7-label>
                     <f7-input type="text" :value="register.email"
                               @input="register.email = $event.target.value"></f7-input>
                 </f7-list-item>
+
+                <!-- PASSWORD -->
                 <f7-list-item>
                     <f7-label>Contraseña</f7-label>
                     <f7-input type="password" :value="register.password"
                               @input="register.password = $event.target.value"></f7-input>
                 </f7-list-item>
+
+                <!-- CONFIRM PASSWORD -->
                 <f7-list-item>
                     <f7-label>Confirmar contraseña</f7-label>
                     <f7-input type="password" :value="register.password_confirmation"
                               @input="register.password_confirmation = $event.target.value"></f7-input>
                 </f7-list-item>
+
+                <!-- SUBMIT -->
+                <f7-list-item>
+                    <f7-list-button @click="signIn">Enviar</f7-list-button>
+                </f7-list-item>
+
             </f7-list>
-            <f7-list>
-                <f7-list-button @click="signIn">Enviar</f7-list-button>
-            </f7-list>
+
         </f7-block>
     </f7-page>
 </template>
