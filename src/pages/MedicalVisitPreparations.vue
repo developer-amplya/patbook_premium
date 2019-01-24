@@ -21,6 +21,7 @@
 </template>
 <script>
     import axios from 'axios';
+    import { mapGetters } from 'vuex';
 
     export default {
         name: 'MedicalVisitsPreparation',
@@ -33,12 +34,13 @@
         methods: {
             //
         },
+        computed: mapGetters(['getUserID', 'getDeviceCode']),
         mounted() {
             axios
                 .get('http://patbookapi.local/api/medical-visit-preparations', {
                     params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
+                        device_code: this.getDeviceCode,
+                        user_id: this.getUserID
                         // TODO: encriptar las credenciales?
                     }
                 })
