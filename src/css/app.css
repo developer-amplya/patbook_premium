@@ -10,3 +10,24 @@
 .navbar i.icon-back {
     color: #ffffff;
 }
+
+/* COLORS */
+.purple {
+    background-color: #c36eb5 !important;
+}
+
+.yellow {
+    background-color: #F2BE4C !important;
+}
+
+.stone {
+    background-color: #6F715E !important;
+}
+
+.orange {
+    background-color: #FF7E3A !important;
+}
+
+.pink {
+    background-color: #FF3183 !important;
+}

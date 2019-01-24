@@ -1,6 +1,6 @@
 <template>
     <f7-page>
-        <f7-navbar title="ALERGIAS" back-link="Volver"></f7-navbar>
+        <f7-navbar title="ALERGIAS" back-link="Volver" :class="getMainColor"></f7-navbar>
         <f7-block inner>
             <f7-list>
                 <f7-list-item
@@ -12,7 +12,7 @@
                         :footer="listItem.degree"></f7-list-item>
             </f7-list>
         </f7-block>
-        <f7-toolbar bottom-md>
+        <f7-toolbar bottom-md :class="getMainColor">
             <f7-link>&nbsp;</f7-link>
             <f7-link href="/allergies/insert">+</f7-link>
             <f7-link>&nbsp;</f7-link>
@@ -21,7 +21,10 @@
 </template>
 <script>
     import axios from 'axios';
-    import { mapGetters } from 'vuex';
+    import {
+        mapGetters,
+        mapActions
+    } from 'vuex';
 
     export default {
         name: 'Allergies',
@@ -31,11 +34,12 @@
                 list: []
             };
         },
-        methods: {
-            //
+        methods: mapActions(['setMainColor']),
+        computed: {
+            ...mapGetters(['getUserID', 'getDeviceCode', 'getMainColor'])
         },
-        computed: mapGetters(['getUserID', 'getDeviceCode']),
         mounted() {
+            this.setMainColor('purple');
             axios
                 .get('http://patbookapi.local/api/allergies', {
                     params: {
@@ -52,14 +56,6 @@
 </script>
 
 <style scoped>
-    .navbar {
-        background-color: #c36eb5;
-    }
-
-    .toolbar {
-        background-color: #c36eb5;
-    }
-    
     .toolbar a {
         font-size: 48px !important;
     }

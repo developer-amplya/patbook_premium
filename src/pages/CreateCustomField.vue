@@ -1,6 +1,6 @@
 <template>
     <f7-page>
-        <f7-navbar title="CREAR CAMPO PERSONALIZADO" back-link="Volver"></f7-navbar>
+        <f7-navbar title="CREAR CAMPO PERSONALIZADO" back-link="Volver" :class="getMainColor"></f7-navbar>
         <f7-block inner>
             <f7-list>
 
@@ -39,7 +39,10 @@
     </f7-page>
 </template>
 <script>
-    import axios from 'axios';
+    import {
+        mapGetters,
+        mapActions
+    } from 'vuex';
 
     export default {
         name: 'CreateCustomField',
@@ -57,6 +60,7 @@
                 type: ''
             };
         },
+        computed: mapGetters(['getMainColor']),
         methods: {
             insert() {
                 let nowInsertingSchema = JSON.parse(sessionStorage.currentInsertingSchema);

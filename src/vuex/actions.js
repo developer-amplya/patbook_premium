@@ -2,7 +2,8 @@
 import {
     SET_USER_NAME,
     SET_USER_ID,
-    SET_DEVICE_CODE, SET_DOCUMENT_COUNTING
+    SET_DEVICE_CODE, SET_DOCUMENT_COUNTING,
+    SET_CURRENT_MAIN_COLOR
 } from './mutations';
 
 export default {
@@ -19,5 +20,8 @@ export default {
         Object.entries(documents).forEach((entry) => {
             commit(SET_DOCUMENT_COUNTING, {category: entry[0], value: entry[1]});
         });
+    },
+    setMainColor({commit}, mainColor) {
+        commit(SET_CURRENT_MAIN_COLOR, mainColor);
     }
 };

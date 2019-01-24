@@ -10,5 +10,8 @@ export default {
     },
     getDocumentCounting(state) {
         return (state.document_counting);
+    },
+    getMainColor(state) {
+        return (state.current_main_color);
     }
 };

@@ -6,7 +6,8 @@ import {
     SET_USER_NAME,
     SET_USER_ID,
     SET_DEVICE_CODE,
-    SET_DOCUMENT_COUNTING
+    SET_DOCUMENT_COUNTING,
+    SET_CURRENT_MAIN_COLOR
 } from './mutations';
 
 Vue.use(Vuex)
@@ -22,6 +23,7 @@ const state = {
         medical_visits: 0,
         diagnostic_tests: 0
     },
+    current_main_color: '',
     currentValues: {}
 }
 
@@ -37,6 +39,9 @@ const mutations = {
     },
     [SET_DOCUMENT_COUNTING](state, object) {
         state.document_counting[object.category] = object.value;
+    },
+    [SET_CURRENT_MAIN_COLOR] (state, color) {
+        state.current_main_color = color;
     }
 }
 
