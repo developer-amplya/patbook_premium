@@ -104,6 +104,7 @@
 </template>
 <script>
     import axios from 'axios';
+    import {mapGetters} from 'vuex';
 
     export default {
         name: 'MedicalVisitsPreparationInsert',
@@ -123,6 +124,7 @@
                 schema: []
             };
         },
+        computed: mapGetters(['getUserID']),
         methods: {
             insert() {
                 axios.post('http://patbookapi.local/api/medical-visit-preparations', {
@@ -131,7 +133,7 @@
                         user_id: sessionStorage.user_id
                         // TODO: encriptar las credenciales?
                     },*/
-                    user_id: sessionStorage.user_id,
+                    user_id: this.getUserID,
                     name: this.name,
                     symptoms_description: this.name,
                     intensity: this.name,
