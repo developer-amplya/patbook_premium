@@ -5,7 +5,7 @@
     line-height: 2;
 }
 
-.md input {
+.md input, .md textarea {
     background-color: #efefef;
     padding: 0 5px;
 }
