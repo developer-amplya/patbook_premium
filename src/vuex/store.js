@@ -5,6 +5,7 @@ import actions from './actions';
 import {
     SET_USER_NAME,
     SET_USER_ID,
+    SET_USER_PIC,
     SET_DEVICE_CODE,
     SET_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR
@@ -15,6 +16,7 @@ Vue.use(Vuex)
 const state = {
     user_name: '',
     user_id: '',
+    user_pic: '',
     device_code: '',
     document_counting: {
         allergies: 0,
@@ -42,6 +44,9 @@ const mutations = {
     },
     [SET_CURRENT_MAIN_COLOR] (state, color) {
         state.current_main_color = color;
+    },
+    [SET_USER_PIC] (state, userPic) {
+        state.user_pic = userPic;
     }
 }
 

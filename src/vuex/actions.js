@@ -2,6 +2,7 @@
 import {
     SET_USER_NAME,
     SET_USER_ID,
+    SET_USER_PIC,
     SET_DEVICE_CODE, SET_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR
 } from './mutations';
@@ -23,5 +24,8 @@ export default {
     },
     setMainColor({commit}, mainColor) {
         commit(SET_CURRENT_MAIN_COLOR, mainColor);
+    },
+    setUserPic({commit}, userPic) {
+        commit(SET_USER_PIC, userPic);
     }
 };

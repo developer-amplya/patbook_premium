@@ -43,7 +43,10 @@
 
 <script>
     import axios from 'axios';
-    import {mapActions} from "vuex";
+    import {
+        API_PATH
+    } from '../../config.js';
+    // import {mapActions} from "vuex";
 
     export default {
         name: 'LogIn',
@@ -66,7 +69,6 @@
         },
         methods: {
             do_login() {
-
                 /* Cheking if the user is registered in the device and so he or she is allowed to connect with the
                 device */
                 if (localStorage.allowed_users !== '') {
@@ -88,7 +90,7 @@
                     this.$f7router.navigate('new-device');
                 }
 
-                axios.post('http://patbookapi.local/api/login', {
+                axios.post(API_PATH + 'login', {
                     // email: this.log_in.email,
                     // password: this.log_in.password,
                     // device_code: this.log_in.token
@@ -101,6 +103,7 @@
                         if (response.data.result === 'OK') {
                             this.$store.dispatch('setUserName', response.data.user.name);
                             this.$store.dispatch('setUserID', response.data.user._id);
+                            this.$store.dispatch('setUserPic', response.data.pic);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');

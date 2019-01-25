@@ -5,6 +5,9 @@ export default {
     getUserID(state) {
         return (state.user_id);
     },
+    getUserPic(state) {
+        return (state.user_pic);
+    },
     getDeviceCode(state) {
         return (state.device_code);
     },
