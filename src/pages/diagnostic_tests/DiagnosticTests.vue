@@ -2,12 +2,13 @@
     <f7-page>
 
         <!-- Navbar -->
-        <f7-navbar title="PRUEBAS DIAGNÓSTICAS" :class="getMainColor">
+        <f7-navbar :class="getMainColor">
             <f7-nav-left>
                 <f7-link href="/home">
                     <f7-icon material="arrow_back"></f7-icon>
                 </f7-link>
             </f7-nav-left>
+            <f7-nav-title title="PRUEBAS DIAGNÓSTICAS"></f7-nav-title>
         </f7-navbar>
 
         <f7-block inner>
