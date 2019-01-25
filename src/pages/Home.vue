@@ -33,29 +33,44 @@
             <f7-list>
 
                 <f7-list-item
+                        class="allergies"
                         title="Alergias"
                         :badge="getDocumentCounting.allergies"
-                        link="/allergies"></f7-list-item>
+                        link="/allergies">
+                    <img src="../assets/icono_alergias.png" slot="media">
+                </f7-list-item>
 
                 <f7-list-item
+                        class="medicines"
                         title="Medicación"
                         :badge="getDocumentCounting.medicines"
-                        link="/medicines"></f7-list-item>
+                        link="/medicines">
+                    <img src="../assets/icono_medicacion.png" slot="media">
+                </f7-list-item>
 
                 <f7-list-item
+                        class="medical-visit-preparations"
                         title="Preparación visita médica"
                         :badge="getDocumentCounting.medical_visit_preparations"
-                        link="/medical-visit-preparations"></f7-list-item>
+                        link="/medical-visit-preparations">
+                    <img src="../assets/icono_preparaciondevisitamedica.png" slot="media">
+                </f7-list-item>
 
                 <f7-list-item
+                        class="medical-visit"
                         title="Visita médica"
                         :badge="getDocumentCounting.medical_visits"
-                        link="/medical-visits"></f7-list-item>
+                        link="/medical-visits">
+                    <img src="../assets/icono_visitamedica.png" slot="media">
+                </f7-list-item>
 
                 <f7-list-item
+                        class="diagnostic-tests"
                         title="Pruebas diagnósticas"
                         :badge="getDocumentCounting.diagnostic_tests"
-                        link="/diagnostic-tests"></f7-list-item>
+                        link="/diagnostic-tests">
+                    <img src="../assets/icono_diagnosticospruebas.png" slot="media">
+                </f7-list-item>
 
             </f7-list>
         </f7-block>
@@ -80,6 +95,31 @@
 </script>
 
 <style scoped>
+
+    .list img {
+        width: 50px;
+        border-radius: 100%;
+    }
+
+    .allergies img {
+        background-color: #c36eb5;
+    }
+
+    .medicines img {
+        background-color: #F2BE4C;
+    }
+
+    .medical-visit-preparations img {
+        background-color: #6F715E;
+    }
+
+    .medical-visit img {
+        background-color: #FF7E3A;
+    }
+
+    .diagnostic-tests img {
+        background-color: #FF3183;
+    }
 
     .header-container {
         display: flex;
