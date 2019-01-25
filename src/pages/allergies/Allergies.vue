@@ -1,6 +1,16 @@
 <template>
     <f7-page>
-        <f7-navbar title="ALERGIAS" back-link="Volver" :class="getMainColor"></f7-navbar>
+
+        <!-- Navbar -->
+        <f7-navbar :class="getMainColor">
+            <f7-nav-left>
+                <f7-link href="/home">
+                    <f7-icon material="arrow_back"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+            <f7-nav-title title="ALERGIAS"></f7-nav-title>
+        </f7-navbar>
+
         <f7-block inner>
             <f7-list>
                 <f7-list-item
@@ -12,11 +22,13 @@
                         :footer="listItem.degree"></f7-list-item>
             </f7-list>
         </f7-block>
+
         <f7-toolbar bottom-md :class="getMainColor">
             <f7-link>&nbsp;</f7-link>
             <f7-link href="/allergies/insert">+</f7-link>
             <f7-link>&nbsp;</f7-link>
         </f7-toolbar>
+
     </f7-page>
 </template>
 <script>
@@ -25,9 +37,11 @@
         mapGetters,
         mapActions
     } from 'vuex';
+    import F7Icon from "framework7-vue/src/components/icon";
 
     export default {
         name: 'Allergies',
+        components: {F7Icon},
         props: [],
         data() {
             return {

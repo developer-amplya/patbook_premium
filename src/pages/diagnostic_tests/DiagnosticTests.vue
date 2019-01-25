@@ -1,6 +1,15 @@
 <template>
     <f7-page>
-        <f7-navbar title="PRUEBAS DIAGNÓSTICAS" back-link="Volver" :class="getMainColor"></f7-navbar>
+
+        <!-- Navbar -->
+        <f7-navbar title="PRUEBAS DIAGNÓSTICAS" :class="getMainColor">
+            <f7-nav-left>
+                <f7-link href="/home">
+                    <f7-icon material="arrow_back"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+        </f7-navbar>
+
         <f7-block inner>
             <f7-list>
                 <f7-list-item
