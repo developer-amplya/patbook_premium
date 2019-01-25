@@ -30,6 +30,8 @@
         to {opacity: 1;}
     }
     .page-content > img {
+        width: 200px;
+        margin-top: 100px;
         animation-name: change-opacity;
         animation-duration: 4s;
     }
