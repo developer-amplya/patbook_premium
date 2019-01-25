@@ -109,6 +109,7 @@
                 })
                     .then((response) => {
                         console.log(response);
+                        this.$store.dispatch('incrementDocumentCounting', 'allergies');
                         this.$f7router.navigate('/allergies');
                     })
                     .catch(function (error) {

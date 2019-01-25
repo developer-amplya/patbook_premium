@@ -8,6 +8,7 @@ import {
     SET_USER_PIC,
     SET_DEVICE_CODE,
     SET_DOCUMENT_COUNTING,
+    INCREMENT_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR
 } from './mutations';
 
@@ -41,6 +42,9 @@ const mutations = {
     },
     [SET_DOCUMENT_COUNTING](state, object) {
         state.document_counting[object.category] = object.value;
+    },
+    [INCREMENT_DOCUMENT_COUNTING](state, category) {
+        state.document_counting[category] += 1;
     },
     [SET_CURRENT_MAIN_COLOR] (state, color) {
         state.current_main_color = color;
