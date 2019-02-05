@@ -24,6 +24,9 @@ import App from './app';
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue, Framework7);
 
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 // Init App
 const baseApp = new Vue({
 

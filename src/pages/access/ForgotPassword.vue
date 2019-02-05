@@ -35,7 +35,10 @@
 
 <script>
     import axios from 'axios';
-    import F7ListItem from "framework7-vue/src/components/list-item";
+    import {
+        API_PATH
+    } from '../../config.js';
+    import F7ListItem from 'framework7-vue/src/components/list-item';
 
     export default {
         name: 'ForgotPassword',
@@ -51,7 +54,7 @@
             retrievePassword() {
                 console.log(this.email);
 
-                axios.post('http://patbookapi.local/api/forgot-password', {
+                axios.post(API_PATH + 'forgot-password', {
                     email: this.email
                 })
                     .then((response) => {

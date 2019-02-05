@@ -79,8 +79,28 @@
                 </f7-list-item>
 
                 <!-- Start date -->
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-iner">
+                            <f7-label>Fecha de inicio</f7-label>
+                            <div class="item-input-wrap">
+                                <datepicker id="dob"></datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
                 <!-- Ending date -->
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-iner">
+                            <f7-label>Fecha de fin</f7-label>
+                            <div class="item-input-wrap">
+                                <datepicker id="dob"></datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
                 <!-- Cause -->
                 <f7-list-item>
@@ -136,14 +156,24 @@
             </f7-segmented>
 
         </f7-block>
+
     </f7-page>
 </template>
+
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
+    //import Datepicker from '../../TouchDatePicker.vue';
+    import Datepicker from 'vuejs-datepicker';
     import {mapGetters} from 'vuex';
 
     export default {
         name: 'MedicinesInsert',
+        components: {
+            Datepicker
+        },
         props: [],
         data() {
             return {
@@ -169,7 +199,7 @@
         computed: mapGetters(['getUserID']),
         methods: {
             insert() {
-                axios.post('http://patbookapi.local/api/medicines', {
+                axios.post(API_PATH + 'medicines', {
                     /*params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id

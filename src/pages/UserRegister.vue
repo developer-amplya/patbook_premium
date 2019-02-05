@@ -48,6 +48,9 @@
 
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
 
     export default {
         name: 'UserRegister',
@@ -69,7 +72,7 @@
             signIn() {
                 console.log(this.register.name + '/' + this.register.email + '/' + this.register.password + '/' + this.register.password_confirmation);
 
-                axios.post('http://patbookapi.local/api/register', {
+                axios.post(API_PATH + 'register', {
                     name: this.register.name,
                     email: this.register.email,
                     password: this.register.password,

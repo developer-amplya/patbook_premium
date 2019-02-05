@@ -159,6 +159,9 @@
 
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
     import F7ListItem from 'framework7-vue/src/components/list-item';
@@ -225,7 +228,7 @@
 
                 axios({
                     method: 'PUT',
-                    url: 'http://patbookapi.local/api/allergies/' + this.id,
+                    url: API_PATH + 'allergies/' + this.id,
                     params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id
@@ -243,7 +246,7 @@
             },
             updateInfoSchema(index) {
                 this.schema[index].is_editing = false;
-                axios.put('http://patbookapi.local/api/allergies/' + this.id, {
+                axios.put(API_PATH + 'allergies/' + this.id, {
                     params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id
@@ -261,7 +264,7 @@
         },
         mounted() {
             axios
-                .get('http://patbookapi.local/api/allergies/' + this.id, {
+                .get(API_PATH + 'allergies/' + this.id, {
                     params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id

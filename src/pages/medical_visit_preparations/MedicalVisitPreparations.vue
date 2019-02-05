@@ -32,6 +32,9 @@
 <script>
     import axios from 'axios';
     import {
+        API_PATH
+    } from '../../config.js';
+    import {
         mapGetters,
         mapActions
     } from 'vuex';
@@ -52,7 +55,7 @@
         mounted() {
             this.setMainColor('stone');
             axios
-                .get('http://patbookapi.local/api/medical-visit-preparations', {
+                .get(API_PATH + 'medical-visit-preparations', {
                     params: {
                         device_code: this.getDeviceCode,
                         user_id: this.getUserID

@@ -77,6 +77,9 @@
 
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
     import {mapGetters} from 'vuex';
 
     export default {
@@ -96,7 +99,7 @@
         computed: mapGetters(['getUserID']),
         methods: {
             insert() {
-                axios.post('http://patbookapi.local/api/allergies', {
+                axios.post(API_PATH + 'allergies', {
                     /*params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id

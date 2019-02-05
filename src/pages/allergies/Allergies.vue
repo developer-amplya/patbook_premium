@@ -34,14 +34,15 @@
 <script>
     import axios from 'axios';
     import {
+        API_PATH
+    } from '../../config.js';
+    import {
         mapGetters,
         mapActions
     } from 'vuex';
-    import F7Icon from "framework7-vue/src/components/icon";
 
     export default {
         name: 'Allergies',
-        components: {F7Icon},
         props: [],
         data() {
             return {
@@ -55,7 +56,7 @@
         mounted() {
             this.setMainColor('purple');
             axios
-                .get('http://patbookapi.local/api/allergies', {
+                .get(API_PATH + 'allergies', {
                     params: {
                         device_code: this.getDeviceCode,
                         user_id: this.getUserID

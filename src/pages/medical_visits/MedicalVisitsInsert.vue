@@ -191,10 +191,17 @@
 </template>
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
+    import Calendar from '../../form_elements/Calendar';
     import {mapGetters} from 'vuex';
 
     export default {
         name: 'MedicalVisitsInsert',
+        components: {
+            Calendar
+        },
         props: [],
         data() {
             return {
@@ -225,7 +232,7 @@
         computed: mapGetters(['getUserID']),
         methods: {
             insert() {
-                axios.post('http://patbookapi.local/api/medical-visits', {
+                axios.post(API_PATH + 'medical-visits', {
                     /*params: {
                         device_code: sessionStorage.device_code,
                         user_id: sessionStorage.user_id

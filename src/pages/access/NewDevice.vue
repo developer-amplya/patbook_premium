@@ -26,6 +26,9 @@
 
 <script>
     import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
 
     export default {
         name: 'NewDevice',
@@ -43,7 +46,7 @@
             registerDevice() {
                 console.log(this.email);
 
-                axios.post('http://patbookapi.local/api/register-device', {
+                axios.post(API_PATH + 'register-device', {
                     email: this.email
                 })
                     .then((response) => {
