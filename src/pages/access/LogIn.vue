@@ -83,11 +83,11 @@
                     });
 
                     if (isAllowed === false) {
-                        this.$f7router.navigate('new-device');
+                        this.$f7router.navigate('/new-device');
                         return;
                     }
                 } else {
-                    this.$f7router.navigate('new-device');
+                    this.$f7router.navigate('/new-device');
                 }
 
                 axios.post(API_PATH + 'login', {
