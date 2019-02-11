@@ -6,7 +6,6 @@
 .npmignore
 .postcssrc.js
 build/
-config.xml
 config/
 hooks/
 node_modules/
@@ -14,3 +13,5 @@ platforms/
 res/
 static/
 test/
+plugins/
+pp
