@@ -1,0 +1,13 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Patbook",
+  "short_name": "Patbook",
+  "version": "com.pat-book.beta",
+  "description": "...",
+  "author": "Francisco Bosch",
+  "icons": [],
+  "orientation": "any",
+  "start_url": "index.html",
+  "theme_color": "#000000"
+}

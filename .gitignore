@@ -9,8 +9,6 @@ build/
 config/
 hooks/
 node_modules/
-platforms/
-res/
 static/
 test/
 plugins/
