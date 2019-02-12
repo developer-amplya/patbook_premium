@@ -9,7 +9,6 @@ build/
 config/
 hooks/
 node_modules/
-static/
 test/
 plugins/
 pp
