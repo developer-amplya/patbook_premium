@@ -75,8 +75,7 @@
                     var isAllowed = false;
                     var allowedUsers = JSON.parse(localStorage.allowed_users);
                     allowedUsers.forEach((item) => {
-                        // if (item.email === this.log_in.email) {
-                        if (item.email === 'reezooh@gmail.com') {
+                        if (item.email === this.log_in.email) {
                             isAllowed = true;
                             this.log_in.token = item.token;
                         }
@@ -91,11 +90,8 @@
                 }
 
                 axios.post(API_PATH + 'login', {
-                    // email: this.log_in.email,
-                    // password: this.log_in.password,
-                    // device_code: this.log_in.token
-                    email: 'reezooh@gmail.com',
-                    password: '123456',
+                    email: this.log_in.email,
+                    password: this.log_in.password,
                     device_code: this.log_in.token
                 })
                     .then((response) => {
