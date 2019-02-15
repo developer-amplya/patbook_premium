@@ -1,5 +1,18 @@
 /* Your app styles here */
 
+.alert {
+    position: relative;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
 .ios .list .item-header, .ios .list .item-footer,
 .md .list .item-header, .md .list .item-footer {
     line-height: 2;
