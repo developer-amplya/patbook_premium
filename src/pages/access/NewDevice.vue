@@ -15,14 +15,14 @@
 
             <f7-list form>
 
+                <f7-list-item v-show="msg" class="alert alert-warning">
+                    {{ msg }}
+                </f7-list-item>
+
                 <f7-list-item>
                     <f7-label>Email</f7-label>
                     <f7-input type="text" :value="email"
                               @input="email = $event.target.value"></f7-input>
-                </f7-list-item>
-
-                <f7-list-item v-show="msg">
-                    {{ msg }}
                 </f7-list-item>
 
                 <f7-list-item>
