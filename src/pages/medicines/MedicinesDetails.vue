@@ -359,14 +359,12 @@
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
-    import F7ListItem from 'framework7-vue/src/components/list-item';
 
     // TODO: refactor the hole code as much as possible
     // TODO: try to add an remove the property is_editing in schema objects dynamically
     export default {
         name: 'MedicinesDetails',
         components: {
-            F7ListItem,
             SelectList,
             TextInput
         },
