@@ -1,13 +1,21 @@
 <template>
     <f7-page>
 
-        <f7-navbar title="REGISTRO"></f7-navbar>
+        <!-- Navbar -->
+        <f7-navbar>
+            <f7-nav-left>
+                <f7-link href="/login">
+                    <f7-icon material="arrow_back"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+            <f7-nav-title title="Registro de dispositivo"></f7-nav-title>
+        </f7-navbar>
 
         <f7-block inner>
 
-            <p>Escriba aquí el código que le hemos enviado a su email.</p>
+            <p>Escribe a continuación el código que hemos enviado a tu dirección de correo electrónico*.</p>
 
-            <f7-list form>
+            <f7-list form no-hairlines>
 
                 <f7-list-item>
                     <f7-label>Código</f7-label>
@@ -20,6 +28,13 @@
                 </f7-list-item>
 
             </f7-list>
+
+            <p>
+                <small>* El email puede tardar unos minutos en alcanzar tu bandeja de entrada. Si, pasado un tiempo, no
+                    lo ves revisa en
+                    <em>spam</em>, puede que haya llegado ahí por error.
+                </small>
+            </p>
 
         </f7-block>
     </f7-page>

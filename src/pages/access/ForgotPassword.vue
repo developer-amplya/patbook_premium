@@ -1,13 +1,25 @@
 <template>
     <f7-page>
 
-        <f7-navbar title="RECUPERAR CONTRASEÑA" back-link></f7-navbar>
+        <!-- Navbar -->
+        <f7-navbar>
+            <f7-nav-left>
+                <f7-link href="/login">
+                    <f7-icon material="arrow_back"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+            <f7-nav-title title="Nueva contraseña"></f7-nav-title>
+        </f7-navbar>
 
         <f7-block inner>
 
-            <p>Introduzca su dirección y le enviaremos un email para generar una nueva contraseña.</p>
+            <p>Por razones de seguridad tu contraseña se guarda encriptada en nuestra base de datos, por lo que no es
+                posible recuperarla.</p>
 
-            <f7-list form>
+            <p>Introduce tu dirección de correo electrónico a continuación y te enviaremos un email para generar una
+                nueva contraseña.</p>
+
+            <f7-list form no-hairlines>
 
                 <!-- EMAIL -->
                 <f7-list-item>
@@ -38,12 +50,9 @@
     import {
         API_PATH
     } from '../../config.js';
-    import F7ListItem from 'framework7-vue/src/components/list-item';
 
     export default {
         name: 'ForgotPassword',
-        components: {F7ListItem},
-        props: [],
         data() {
             return {
                 email: '',

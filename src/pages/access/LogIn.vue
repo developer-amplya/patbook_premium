@@ -1,11 +1,11 @@
 <template>
     <f7-page>
 
-        <f7-navbar title="ACCESO"></f7-navbar>
+        <f7-navbar title="Acceso"></f7-navbar>
 
         <f7-block inner>
 
-            <f7-list form>
+            <f7-list form no-hairlines>
 
                 <!-- EMAIL  -->
                 <f7-list-item>
@@ -33,7 +33,11 @@
             </f7-list>
 
             <f7-list>
-                <f7-button href="/user-register" fill round>Registrar nuevo usuario</f7-button>
+                <f7-button href="/user-register" fill round>Nuevo usuario</f7-button>
+            </f7-list>
+
+            <f7-list>
+                <f7-button href="/new-device" fill round>Registrar este dispositivo</f7-button>
             </f7-list>
 
         </f7-block>
