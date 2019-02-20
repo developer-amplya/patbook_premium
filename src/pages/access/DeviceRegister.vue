@@ -53,6 +53,8 @@
             console.log('-> DeviceRegister');
         },
         methods: {
+            // TODO: comprobar que el código se ha escrito correctamente llamando a la API
+
             setDeviceCode() {
                 var allowedUsers = JSON.parse(localStorage.allowed_users);
                 allowedUsers.push({email: this.email, token: this.device_code})

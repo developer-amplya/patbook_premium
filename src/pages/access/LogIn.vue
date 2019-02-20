@@ -10,7 +10,7 @@
                 <!-- EMAIL  -->
                 <f7-list-item>
                     <f7-label>Email</f7-label>
-                    <f7-input type="text" :value="log_in.email"
+                    <f7-input type="email" :value="log_in.email"
                               @input="log_in.email = $event.target.value"></f7-input>
                 </f7-list-item>
 
