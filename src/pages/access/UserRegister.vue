@@ -13,6 +13,16 @@
 
         <f7-block inner>
 
+            <!-- Info -->
+            <div class="alert alert-info">
+                <p class="center">
+                    <f7-icon material="info"></f7-icon>
+                </p>
+                <p>Por razones de seguridad y privacidad una vez registrado como usuario también se te pedirá
+                    que registres cada dispositivo desde el que vayas a acceder a tu cuenta. Para ello te
+                    enviaremos un email con un código. Escribe dicho código en la pantalla siguiente.</p>
+            </div>
+
             <f7-list form no-hairlines>
 
                 <!-- USER NAME -->

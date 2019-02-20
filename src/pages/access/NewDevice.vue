@@ -13,7 +13,15 @@
 
         <f7-block inner>
 
-            <p>Es la primera vez que accedes a tu cuenta desde este dispositivo.</p>
+            <!-- Info -->
+            <div class="alert alert-info">
+                <p class="center">
+                    <f7-icon material="info"></f7-icon>
+                </p>
+                <p>Es la primera vez que accedes a tu cuenta desde este dispositivo. Es necesario que lo registres antes
+                    de proseguir.</p>
+            </div>
+
             <p>Si ya eres usuario de Patbook introduce tu email a continuación y te enviaremos un código para registrar
                 este dispositivo y autorizar el acceso a tu cuenta desde el mismo.</p>
 

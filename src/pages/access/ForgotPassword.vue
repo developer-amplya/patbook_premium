@@ -13,8 +13,14 @@
 
         <f7-block inner>
 
-            <p>Por razones de seguridad tu contraseña se guarda encriptada en nuestra base de datos, por lo que no es
-                posible recuperarla.</p>
+            <!-- Info -->
+            <div class="alert alert-info">
+                <p class="center">
+                    <f7-icon material="info"></f7-icon>
+                </p>
+                <p>Por razones de seguridad tu contraseña se guarda encriptada en la base de datos, por lo que no
+                    es posible recuperarla. Deberás crear una nueva.</p>
+            </div>
 
             <p>Introduce tu dirección de correo electrónico a continuación y te enviaremos un email para generar una
                 nueva contraseña.</p>
