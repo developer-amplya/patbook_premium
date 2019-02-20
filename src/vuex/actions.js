@@ -2,6 +2,7 @@
 import {
     SET_USER_NAME,
     SET_USER_ID,
+    SET_USER_EMAIL,
     SET_USER_PIC,
     SET_DEVICE_CODE,
     SET_DOCUMENT_COUNTING,
@@ -15,6 +16,9 @@ export default {
     },
     setUserID({commit}, userID) {
         commit(SET_USER_ID, userID);
+    },
+    setUserEmail({commit}, userEmail) {
+        commit(SET_USER_EMAIL, userEmail);
     },
     setDeviceCode({commit}, deviceCode) {
         commit(SET_DEVICE_CODE, deviceCode);

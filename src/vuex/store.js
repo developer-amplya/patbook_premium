@@ -5,6 +5,7 @@ import actions from './actions';
 import {
     SET_USER_NAME,
     SET_USER_ID,
+    SET_USER_EMAIL,
     SET_USER_PIC,
     SET_DEVICE_CODE,
     SET_DOCUMENT_COUNTING,
@@ -17,6 +18,7 @@ Vue.use(Vuex)
 const state = {
     user_name: '',
     user_id: '',
+    user_email: '',
     user_pic: '',
     device_code: '',
     document_counting: {
@@ -36,6 +38,9 @@ const mutations = {
     },
     [SET_USER_ID](state, userID) {
         state.user_id = userID;
+    },
+    [SET_USER_EMAIL](state, userEmail) {
+        state.user_email = userEmail;
     },
     [SET_DEVICE_CODE](state, deviceCode) {
         state.device_code = deviceCode;
