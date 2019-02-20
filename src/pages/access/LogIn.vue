@@ -36,10 +36,6 @@
                 <f7-button href="/user-register" fill round>Nuevo usuario</f7-button>
             </f7-list>
 
-            <f7-list>
-                <f7-button href="/new-device" fill round>Registrar este dispositivo</f7-button>
-            </f7-list>
-
         </f7-block>
 
     </f7-page>
@@ -50,7 +46,7 @@
     import {
         API_PATH
     } from '../../config.js';
-    // import {mapActions} from "vuex";
+    // import {mapActions} from 'vuex';
 
     export default {
         name: 'LogIn',
@@ -86,10 +82,10 @@
                     });
 
                     if (isAllowed === false) {
-                        this.$f7router.navigate('/new-device');
+                        this.$f7router.navigate('/new-device/' + this.log_in.email + '/' + this.log_in.password);
                         return;
                     }
-                } else {
+                } else { // innecesario? siempre se crea en mounted
                     this.$f7router.navigate('/new-device');
                 }
 
@@ -103,7 +99,7 @@
                         if (response.data.result === 'OK') {
                             this.$store.dispatch('setUserName', response.data.user.name);
                             this.$store.dispatch('setUserID', response.data.user._id);
-                            this.$store.dispatch('setUserPic', response.data.pic);
+                            this.$store.dispatch('setUserEmail', response.data.user.email);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');

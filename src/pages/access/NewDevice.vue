@@ -34,8 +34,8 @@
 
                 <f7-list-item>
                     <f7-label>Email</f7-label>
-                    <f7-input type="email" :value="email"
-                              @input="email = $event.target.value"></f7-input>
+                    <f7-input type="email" :value="email_input"
+                              @input="email_input = $event.target.value"></f7-input>
                 </f7-list-item>
 
                 <f7-list-item>
@@ -61,9 +61,10 @@
 
     export default {
         name: 'NewDevice',
+        props: ['email', 'password'],
         data() {
             return {
-                email: '',
+                email_input: this.email,
                 msg: ''
             };
         },
@@ -82,7 +83,7 @@
                         if (response.data.result === 'KO') {
                             this.msg = response.data.message;
                         } else {
-                            this.$f7router.navigate('/device-register/' + this.email);
+                            this.$f7router.navigate('/device-register/' + this.email_input + '/' + this.password);
                         }
                     })
                     .catch(function (error) {

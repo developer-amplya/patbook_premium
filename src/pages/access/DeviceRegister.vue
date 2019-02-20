@@ -25,7 +25,7 @@
                 </f7-list-item>
 
                 <f7-list-item>
-                    <f7-list-button @click="setDeviceCode">Enviar</f7-list-button>
+                    <f7-list-button @click="checkDeviceCode" no-fast-click>Enviar</f7-list-button>
                 </f7-list-item>
 
             </f7-list>
@@ -42,9 +42,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import {
+        API_PATH
+    } from '../../config.js';
+
     export default {
         name: 'DeviceRegister',
-        props: ['email'],
+        props: ['email', 'password'],
         data() {
             return {
                 device_code: ''
@@ -54,14 +59,58 @@
             console.log('-> DeviceRegister');
         },
         methods: {
-            // TODO: comprobar que el código se ha escrito correctamente llamando a la API
 
-            setDeviceCode() {
+            // Comprobar que el código se ha escrito correctamente llamando a la API
+            checkDeviceCode() {
+                axios.post(API_PATH + 'check-device-code', {
+                    email: this.email,
+                    device_code: this.device_code
+                })
+                    .then((response) => {
+                        console.log(response);
+                        if (response.data.result === 'OK') {
+                            this.pushAllowedUser();
+                            this.do_login();
+                        } else {
+                            alert(response.data.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+
+            // Push user email and device code into localStorage
+            pushAllowedUser() {
                 var allowedUsers = JSON.parse(localStorage.allowed_users);
                 allowedUsers.push({email: this.email, token: this.device_code})
                 allowedUsers = JSON.stringify(allowedUsers);
                 localStorage.allowed_users = allowedUsers;
                 this.$f7router.navigate('/home');
+            },
+
+            do_login() {
+                axios.post(API_PATH + 'login', {
+                    email: this.email,
+                    password: this.password,
+                    device_code: this.device_code
+                })
+                    .then((response) => {
+                        console.log(response);
+                        if (response.data.result === 'OK') {
+                            this.$store.dispatch('setUserName', response.data.user.name);
+                            this.$store.dispatch('setUserID', response.data.user._id);
+                            this.$store.dispatch('setUserEmail', response.data.user.email);
+                            this.$store.dispatch('setDeviceCode', this.device_code);
+                            this.$store.dispatch('setDocumentCounting', response.data.documents);
+                            this.$f7router.navigate('/home');
+                        } else {
+                            alert(response.data.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         }
     };

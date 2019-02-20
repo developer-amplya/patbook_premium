@@ -36,15 +36,16 @@ export default [
         component: LogIn
     },
     {
-        path: '/new-device',
-        component: NewDevice
+        path: '/new-device/:email/:password',
+        component: NewDevice,
+        props: true
     },
     {
         path: '/user-register',
         component: UserRegister
     },
     {
-        path: '/device-register/:email',
+        path: '/device-register/:email/:password',
         component: DeviceRegister,
         props: true
     },

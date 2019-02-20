@@ -98,7 +98,8 @@
                 })
                     .then((response) => {
                         console.log(response);
-                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email);
+                        // Proceeding to the device registration by passing the user's email.
+                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email + '/' + this.register.password);
                     })
                     .catch(function (error) {
                         console.log(error);
