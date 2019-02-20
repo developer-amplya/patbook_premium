@@ -25,11 +25,12 @@
             <p>Si ya eres usuario de Patbook introduce tu email a continuación y te enviaremos un código para registrar
                 este dispositivo y autorizar el acceso a tu cuenta desde el mismo.</p>
 
-            <f7-list form no-hairlines>
+            <div v-show="msg" class="alert alert-warning">
+                <span><f7-icon material="warning"></f7-icon></span>
+                {{ msg }}
+            </div>
 
-                <f7-list-item v-show="msg" class="alert alert-warning">
-                    {{ msg }}
-                </f7-list-item>
+            <f7-list form no-hairlines>
 
                 <f7-list-item>
                     <f7-label>Email</f7-label>
