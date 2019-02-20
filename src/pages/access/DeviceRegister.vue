@@ -13,7 +13,8 @@
 
         <f7-block inner>
 
-            <p>Escribe a continuación el código que hemos enviado a tu dirección de correo electrónico*.</p>
+            <p>Escribe a continuación el código que hemos enviado a tu dirección de correo electrónico* (respeta las
+                mayúsculas y minúsculas).</p>
 
             <f7-list form no-hairlines>
 
