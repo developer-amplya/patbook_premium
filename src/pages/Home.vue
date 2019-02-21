@@ -5,7 +5,7 @@
 
             <!-- EDIT USER -->
             <div class="col">
-                <f7-link href="#" icon-only class="edit-user">
+                <f7-link href="/user-info" icon-only class="edit-user">
                     <f7-icon material="create"></f7-icon>
                 </f7-link>
             </div>

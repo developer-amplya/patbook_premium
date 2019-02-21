@@ -6,9 +6,8 @@ import DeviceRegister from './pages/access/DeviceRegister.vue';
 import ForgotPassword from './pages/access/ForgotPassword.vue';
 import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
-import UserData from './pages/user-data';
+import UserInfo from './pages/UserInfo.vue';
 import EmergenciesData from './pages/emergencies';
-import ListView from './pages/list-view.vue';
 import Allergies from './pages/allergies/Allergies.vue';
 import AllergiesInsert from './pages/allergies/AllergiesInsert.vue';
 import AllergiesDetails from './pages/allergies/AllergiesDetails.vue';
@@ -58,19 +57,13 @@ export default [
         component: Home
     },
     {
-        path: '/user-data/:category',
-        component: UserData,
+        path: '/user-info',
+        component: UserInfo,
         props: true
     },
     {
-        path: '/list-view/:category',
-        component: ListView,
-        props: true
-    },
-    {
-        path: '/emergencies/:category',
-        component: EmergenciesData,
-        props: true
+        path: '/emergencies',
+        component: EmergenciesData
     },
     {
         path: '/allergies',
