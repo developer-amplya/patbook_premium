@@ -1,15 +1,57 @@
 export default {
-    getUserName(state) {
-        return (state.user_name);
-    },
     getUserID(state) {
         return (state.user_id);
     },
     getUserEmail(state) {
         return (state.user_email);
     },
+    getUserName(state) {
+        return (state.user_name);
+    },
+    getUserLastname(state) {
+        return (state.user_lastname);
+    },
     getUserPic(state) {
         return (state.user_pic);
+    },
+    getUserBirthdate(state) {
+        return (state.user_birthdate);
+    },
+    getUserSex(state) {
+        return (state.user_sex);
+    },
+    getUserWeight(state) {
+        return (state.user_height);
+    },
+    getUserHeight(state) {
+        return (state.user_weight);
+    },
+    getUserCountry(state) {
+        return (state.user_country);
+    },
+    getUserAddress(state) {
+        return (state.user_address);
+    },
+    getUserPhone(state) {
+        return (state.user_phone);
+    },
+    getUserProfession(state) {
+        return (state.user_profession);
+    },
+    getUserCompany(state) {
+        return (state.user_company);
+    },
+    getUserBloodType(state) {
+        return (state.user_bloodtype);
+    },
+    getClinicName(state) {
+        return (state.clinic_name);
+    },
+    getClinicAddress(state) {
+        return (state.clinic_address);
+    },
+    getClinicPhone(state) {
+        return (state.clinic_phone);
     },
     getDeviceCode(state) {
         return (state.device_code);

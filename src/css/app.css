@@ -41,6 +41,17 @@
     /*background-color: #0D7782 !important;*/
 }
 
+.popover {
+    width: 90%;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.popover-angle {
+    display: none;
+}
+
 /* COLORS */
 .purple {
     background-color: #c36eb5 !important;

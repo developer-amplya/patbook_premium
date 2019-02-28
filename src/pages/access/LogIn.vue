@@ -23,7 +23,7 @@
 
                 <!-- SUBMIT -->
                 <f7-list-item>
-                    <f7-list-button @click="do_login">Enviar</f7-list-button>
+                    <f7-button big fill @click="do_login">Enviar</f7-button>
                 </f7-list-item>
 
             </f7-list>
@@ -54,8 +54,8 @@
         data() {
             return {
                 log_in: {
-                    email: '',
-                    password: '',
+                    email: 'reezooh@yahoo.com',
+                    password: '123456',
                     token: ''
                 }
             };
@@ -97,12 +97,32 @@
                     .then((response) => {
                         console.log(response);
                         if (response.data.result === 'OK') {
-                            this.$store.dispatch('setUserName', response.data.user.name);
                             this.$store.dispatch('setUserID', response.data.user._id);
                             this.$store.dispatch('setUserEmail', response.data.user.email);
+                            this.$store.dispatch('setUserName', response.data.user.name);
+                            this.$store.dispatch('setUserLastname', response.data.user.name);
+                            this.$store.dispatch('setUserPic', response.data.user.name);
+                            this.$store.dispatch('setUserBirthdate', response.data.user.name);
+                            this.$store.dispatch('setUserSex', response.data.user.name);
+                            this.$store.dispatch('setUserWeight', response.data.user.name);
+                            this.$store.dispatch('setUserHeight', response.data.user.name);
+                            this.$store.dispatch('setUserCountry', response.data.user.name);
+                            this.$store.dispatch('setUserAddress', response.data.user.name);
+                            this.$store.dispatch('setUserPhone', response.data.user.name);
+                            this.$store.dispatch('setUserProfession', response.data.user.name);
+                            this.$store.dispatch('setUserCompany', response.data.user.name);
+                            this.$store.dispatch('setUserBloodType', response.data.user.name);
+                            this.$store.dispatch('setClinicName', response.data.user.name);
+                            this.$store.dispatch('setClinicAddress', response.data.user.name);
+                            this.$store.dispatch('setClinicPhone', response.data.user.name);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');
+                        } else if (
+                            response.data.result === 'KO' &&
+                            response.data.message_code === 'nomatchinguserdevice'
+                        ) {
+                            this.$f7router.navigate('/new-device/' + this.log_in.email + '/' + this.log_in.password);
                         } else {
                             alert(response.data.message);
                         }

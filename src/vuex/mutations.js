@@ -1,8 +1,22 @@
 // mutations.js
-export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_USER_ID = 'SET_USER_ID';
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
+export const SET_USER_NAME = 'SET_USER_NAME';
+export const SET_USER_LASTNAME = 'SET_USER_LASTNAME';
 export const SET_USER_PIC = 'SET_USER_PIC';
+export const SET_USER_BIRTHDATE = '';
+export const SET_USER_SEX = '';
+export const SET_USER_WEIGHT = '';
+export const SET_USER_HEIGHT = '';
+export const SET_USER_COUNTRY = '';
+export const SET_USER_ADDRESS = '';
+export const SET_USER_PHONE = '';
+export const SET_USER_PROFESSION = '';
+export const SET_USER_COMPANY = '';
+export const SET_USER_BLOODTYPE = '';
+export const SET_CLINIC_NAME = '';
+export const SET_CLINIC_ADDRESS = '';
+export const SET_CLINIC_PHONE = '';
 export const SET_DEVICE_CODE = 'SET_DEVICE_CODE';
 export const SET_DOCUMENT_COUNTING = 'SET_DOCUMENT_COUNTING';
 export const INCREMENT_DOCUMENT_COUNTING = 'INCREMENT_DOCUMENT_COUNTING';
