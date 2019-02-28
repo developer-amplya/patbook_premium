@@ -55,7 +55,7 @@
 
                 <!-- SUBMIT -->
                 <f7-list-item>
-                    <f7-list-button big fill  @click="signIn">Enviar</f7-list-button>
+                    <f7-button big fill  @click="signIn">Enviar</f7-button>
                 </f7-list-item>
 
             </f7-list>
