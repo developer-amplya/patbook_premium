@@ -39,7 +39,7 @@
                 </f7-list-item>
 
                 <f7-list-item>
-                    <f7-list-button @click="registerDevice">Enviar</f7-list-button>
+                    <f7-list-button big fill  @click="registerDevice">Enviar</f7-list-button>
                 </f7-list-item>
 
             </f7-list>
