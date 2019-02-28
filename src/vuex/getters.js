@@ -21,10 +21,10 @@ export default {
         return (state.user_sex);
     },
     getUserWeight(state) {
-        return (state.user_height);
+        return (state.user_weight);
     },
     getUserHeight(state) {
-        return (state.user_weight);
+        return (state.user_height);
     },
     getUserCountry(state) {
         return (state.user_country);

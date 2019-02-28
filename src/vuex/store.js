@@ -30,10 +30,24 @@ import {
 Vue.use(Vuex)
 
 const state = {
-    user_name: '',
     user_id: '',
     user_email: '',
+    user_name: '',
+    user_lastname: '',
     user_pic: '',
+    user_birthdate: '',
+    user_sex: '',
+    user_height: '',
+    user_weight: '',
+    user_country: '',
+    user_address: '',
+    user_phone: '',
+    user_profession: '',
+    user_company: '',
+    user_bloodtype: '',
+    clinic_name: '',
+    clinic_address: '',
+    clinic_phone: '',
     device_code: '',
     document_counting: {
         allergies: 0,
@@ -47,14 +61,59 @@ const state = {
 }
 
 const mutations = {
-    [SET_USER_NAME](state, userName) {
-        state.user_name = userName;
-    },
     [SET_USER_ID](state, userID) {
         state.user_id = userID;
     },
     [SET_USER_EMAIL](state, userEmail) {
         state.user_email = userEmail;
+    },
+    [SET_USER_NAME](state, userName) {
+        state.user_name = userName;
+    },
+    [SET_USER_LASTNAME](state, userLastname) {
+        state.user_lastname = userLastname;
+    },
+    [SET_USER_PIC] (state, userPic) {
+        state.user_pic = userPic;
+    },
+    [SET_USER_BIRTHDATE] (state, userBirthdate) {
+        state.user_birthdate = userBirthdate;
+    },
+    [SET_USER_SEX] (state, userSex) {
+        state.user_sex = userSex;
+    },
+    [SET_USER_WEIGHT] (state, userWeight) {
+        state.user_weight = userWeight;
+    },
+    [SET_USER_HEIGHT] (state, userHeight) {
+        state.user_height = userHeight;
+    },
+    [SET_USER_COUNTRY] (state, userCountry) {
+        state.user_country = userCountry;
+    },
+    [SET_USER_ADDRESS] (state, userAddress) {
+        state.user_address = userAddress;
+    },
+    [SET_USER_PHONE] (state, userPhone) {
+        state.user_phone = userPhone;
+    },
+    [SET_USER_PROFESSION] (state, userProfession) {
+        state.user_profession = userProfession;
+    },
+    [SET_USER_COMPANY] (state, userCompany) {
+        state.user_company = userCompany;
+    },
+    [SET_USER_BLOODTYPE] (state, userBloodType) {
+        state.user_bloodtype = userBloodType;
+    },
+    [SET_CLINIC_NAME] (state, clinicName) {
+        state.clinic_name = clinicName;
+    },
+    [SET_CLINIC_ADDRESS] (state, clinicAddress) {
+        state.clinic_address = clinicAddress;
+    },
+    [SET_CLINIC_PHONE] (state, clinicPhone) {
+        state.clinic_phone = clinicPhone;
     },
     [SET_DEVICE_CODE](state, deviceCode) {
         state.device_code = deviceCode;
@@ -67,9 +126,6 @@ const mutations = {
     },
     [SET_CURRENT_MAIN_COLOR] (state, color) {
         state.current_main_color = color;
-    },
-    [SET_USER_PIC] (state, userPic) {
-        state.user_pic = userPic;
     }
 }
 

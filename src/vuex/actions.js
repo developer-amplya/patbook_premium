@@ -35,49 +35,49 @@ export default {
         commit(SET_USER_NAME, userName);
     },
     setUserLastname({commit}, userLastname) {
-        commit(SET_USER_EMAIL, userLastname);
+        commit(SET_USER_LASTNAME, userLastname);
     },
     setUserPic({commit}, userPic) {
         commit(SET_USER_PIC, userPic);
     },
-    setUserEmail({commit}, userBirthdate) {
-        commit(SET_USER_EMAIL, userBirthdate);
+    setUserBirthdate({commit}, userBirthdate) {
+        commit(SET_USER_BIRTHDATE, userBirthdate);
     },
-    setUserEmail({commit}, userSex) {
-        commit(SET_USER_EMAIL, userSex);
+    setUserSex({commit}, userSex) {
+        commit(SET_USER_SEX, userSex);
     },
-    setUserEmail({commit}, userWeight) {
-        commit(SET_USER_EMAIL, userWeight);
+    setUserWeight({commit}, userWeight) {
+        commit(SET_USER_WEIGHT, userWeight);
     },
-    setUserEmail({commit}, userHeight) {
-        commit(SET_USER_EMAIL, userHeight);
+    setUserHeight({commit}, userHeight) {
+        commit(SET_USER_HEIGHT, userHeight);
     },
-    setUserEmail({commit}, userCountry) {
-        commit(SET_USER_EMAIL, userCountry);
+    setUserCountry({commit}, userCountry) {
+        commit(SET_USER_COUNTRY, userCountry);
     },
-    setUserEmail({commit}, userAddress) {
-        commit(SET_USER_EMAIL, userAddress);
+    setUserAddress({commit}, userAddress) {
+        commit(SET_USER_ADDRESS, userAddress);
     },
-    setUserEmail({commit}, userPhone) {
-        commit(SET_USER_EMAIL, userPhone);
+    setUserPhone({commit}, userPhone) {
+        commit(SET_USER_PHONE, userPhone);
     },
-    setUserEmail({commit}, userProfession) {
-        commit(SET_USER_EMAIL, userEmail);
+    setUserProfession({commit}, userProfession) {
+        commit(SET_USER_PROFESSION, userProfession);
     },
-    setUserEmail({commit}, userEmail) {
-        commit(SET_USER_EMAIL, userEmail);
+    setUserCompany({commit}, userCompany) {
+        commit(SET_USER_COMPANY, userCompany);
     },
-    setUserEmail({commit}, userEmail) {
-        commit(SET_USER_EMAIL, userEmail);
+    setUserBloodType({commit}, userBloodType) {
+        commit(SET_USER_BLOODTYPE, userBloodType);
     },
-    setUserEmail({commit}, userEmail) {
-        commit(SET_USER_EMAIL, userEmail);
+    setClinicName({commit}, clinicName) {
+        commit(SET_CLINIC_NAME, clinicName);
     },
-    setUserEmail({commit}, userEmail) {
-        commit(SET_USER_EMAIL, userEmail);
+    setClinicAddress({commit}, clinicAddress) {
+        commit(SET_CLINIC_ADDRESS, clinicAddress);
     },
-    setUserEmail({commit}, userEmail) {
-        commit(SET_USER_EMAIL, userEmail);
+    setClinicPhone({commit}, clinicPhone) {
+        commit(SET_CLINIC_PHONE, clinicPhone);
     },
     setDeviceCode({commit}, deviceCode) {
         commit(SET_DEVICE_CODE, deviceCode);
