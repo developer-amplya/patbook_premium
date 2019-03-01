@@ -8,6 +8,7 @@
             <div class="user-pic" @click="$refs.EditUserPicPopover.open()">
                 <img ref="userPic" :src="USER_PICS_PATH + getUserPic"/>
             </div>
+            <div><img :src="path" alt=""></div>
         </div>
 
         <!-- Popover -->
@@ -35,7 +36,8 @@
         name: 'UserPic',
         data() {
             return {
-                USER_PICS_PATH: USER_PICS_PATH
+                USER_PICS_PATH: USER_PICS_PATH,
+                path: ''
             };
         },
         computed: mapGetters(['getUserPic']),
@@ -60,11 +62,22 @@
             },
             // From library
             getPictureFromLibrary() {
-
+                navigator.camera.getPicture(this.setPicture, this.error, {
+                    quality: 50,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    encodingType: Camera.EncodingType.JPEG,
+                    allowEdit: true,
+                    correctOrientation: true,
+                    targetWidth: 1920,
+                    targetHeight: 1920
+                });
             },
             setPicture(imagePath) {
                 var image = this.$refs.userPic;
-                image.src = imagePath;
+                image.src = "data:image/jpeg;base64," + imagePath;
+                this.path = imagePath;
+                this.$refs.EditUserPicPopover.close();
             }
         }
     }
