@@ -11,6 +11,9 @@
             <f7-nav-title title="Información del usuario"></f7-nav-title>
         </f7-navbar>
 
+        <!-- Pic -->
+        <user-pic></user-pic>
+
         <f7-block inner>
 
             <f7-card>
@@ -197,12 +200,14 @@
     } from 'vuex';
     import TextInput from '../form_elements/TextInput';
     import SelectList from '../form_elements/SelectList';
+    import UserPic from '../form_elements/UserPic';
 
     export default {
         name: 'UserInfo',
         components: {
             TextInput,
-            SelectList
+            SelectList,
+            UserPic
         },
         data() {
             return {
@@ -318,10 +323,6 @@
 
 <style scoped>
 
-    .md .list .item-header {
-        padding-left: 39px !important;
-    }
-
     li i.icon {
         /*position: absolute;
         left: 15px;
@@ -337,4 +338,9 @@
         position: relative;
         z-index: 10;
     }
+
+    .md .list .item-header {
+        padding-left: 39px !important;
+    }
+
 </style>
