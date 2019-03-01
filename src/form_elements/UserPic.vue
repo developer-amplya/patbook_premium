@@ -64,7 +64,7 @@
             },
             setPicture(imagePath) {
                 var image = this.$refs.userPic;
-                image.src = 'imagePath';
+                image.src = imagePath;
             }
         }
     }
