@@ -77,12 +77,14 @@
 
                 axios({
                     method: 'post',
-                    url: API_PATH + 'update-user-pic',
+                    url: API_PATH + 'user/update-pic',
                     data: bodyFormData
                 })
                     .then((response) => {
                         console.log(response);
 
+                        let fileName = image.substr(image.lastIndexOf('/') + 1);
+                        this.$store.dispatch('setUserPic', fileName);
                     })
                     .catch(function (error) {
                         console.log(error);
