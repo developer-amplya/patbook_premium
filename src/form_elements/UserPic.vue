@@ -72,14 +72,16 @@
                 });
             },
             setPicture(image) {
+
                 let bodyFormData = new FormData();
-                bodyFormData.append('pic', image);
+                bodyFormData.append('name', 'pic');
+                bodyFormData.append('file', image);
 
                 axios({
                     method: 'post',
                     url: API_PATH + 'user/update-pic',
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'image/jpeg'
                     },
                     data: bodyFormData
                 })
@@ -93,6 +95,20 @@
                         console.log(error);
                     });
 
+                /*
+                let uri = encodeURI(API_PATH + 'user/update-pic');
+                let options = new FileUploadOptions();
+                options.fileKey = "pic";
+                options.fileName = image.substr(image.lastIndexOf('/') + 1);
+                options.mimeType = "image / jpeg";
+                options.params = {
+                    //
+                };
+
+                var ft = new FileTransfer();
+                ft.upload(image, uri, this.win, this.failfail, options);
+*/
+                // Close popover
                 this.$refs.EditUserPicPopover.close();
             }
         }
