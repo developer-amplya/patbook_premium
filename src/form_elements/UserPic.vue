@@ -8,7 +8,6 @@
             <div class="user-pic" @click="$refs.EditUserPicPopover.open()">
                 <img ref="userPic" :src="USER_PICS_PATH + getUserPic"/>
             </div>
-            <div><img :src="path" alt=""></div>
         </div>
 
         <!-- Popover -->
@@ -25,8 +24,9 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import {
-        USER_PICS_PATH
+        USER_PICS_PATH, API_PATH
     } from '../config.js';
     import {
         mapGetters
@@ -36,11 +36,12 @@
         name: 'UserPic',
         data() {
             return {
-                USER_PICS_PATH: USER_PICS_PATH,
-                path: ''
+                USER_PICS_PATH: USER_PICS_PATH
             };
         },
-        computed: mapGetters(['getUserPic']),
+        computed: {
+            ...mapGetters(['getUserPic'])
+        },
         methods: {
             // From camera
             getPictureFromCamera() {
@@ -67,16 +68,26 @@
                     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
                     destinationType: Camera.DestinationType.FILE_URI,
                     encodingType: Camera.EncodingType.JPEG,
-                    allowEdit: true,
-                    correctOrientation: true,
-                    targetWidth: 1920,
-                    targetHeight: 1920
+                    allowEdit: true
                 });
             },
-            setPicture(imagePath) {
-                var image = this.$refs.userPic;
-                image.src = "data:image/jpeg;base64," + imagePath;
-                this.path = imagePath;
+            setPicture(image) {
+                let bodyFormData = new FormData();
+                bodyFormData.set('pic', image);
+
+                axios({
+                    method: 'post',
+                    url: API_PATH + 'update-user-pic',
+                    data: bodyFormData
+                })
+                    .then((response) => {
+                        console.log(response);
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
                 this.$refs.EditUserPicPopover.close();
             }
         }
