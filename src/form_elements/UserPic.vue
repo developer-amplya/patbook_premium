@@ -73,11 +73,14 @@
             },
             setPicture(image) {
                 let bodyFormData = new FormData();
-                bodyFormData.set('pic', image);
+                bodyFormData.append('pic', image);
 
                 axios({
                     method: 'post',
                     url: API_PATH + 'user/update-pic',
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
                     data: bodyFormData
                 })
                     .then((response) => {
