@@ -71,11 +71,11 @@
                     allowEdit: true
                 });
             },
-            setPicture(image) {
-
+            setPicture(imageURI) {
+/*
                 let bodyFormData = new FormData();
                 bodyFormData.append('name', 'pic');
-                bodyFormData.append('file', image);
+                bodyFormData.append('file', imageURI);
 
                 axios({
                     method: 'post',
@@ -94,20 +94,20 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+*/
 
-                /*
                 let uri = encodeURI(API_PATH + 'user/update-pic');
                 let options = new FileUploadOptions();
                 options.fileKey = "pic";
-                options.fileName = image.substr(image.lastIndexOf('/') + 1);
-                options.mimeType = "image / jpeg";
+                options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
                 options.params = {
                     //
                 };
 
                 var ft = new FileTransfer();
-                ft.upload(image, uri, this.win, this.failfail, options);
-*/
+                ft.upload(imageURI, uri, this.success, this.error, options);
+
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
             }
