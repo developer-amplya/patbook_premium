@@ -54,8 +54,8 @@
         data() {
             return {
                 log_in: {
-                    email: 'reezooh@yahoo.com',
-                    password: '123456',
+                    email: '',
+                    password: '',
                     token: ''
                 }
             };
