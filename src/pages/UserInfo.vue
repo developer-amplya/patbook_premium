@@ -282,8 +282,6 @@
                 this.$refs.EditSelectField.close();
             },
             updateInfo(event, param) {
-                /* We need to create first an object an then to assign the key name as an array key, because assigning
-                 dynamic key names in an object does not work */
                 let data = {};
                 data['id'] = this.getUserID;
                 data['key'] = param;
