@@ -7,6 +7,8 @@ export const USER_PICS_PATH = 'https://pat-book.es/storage/user_pics/';
 export default {
     sexList: ['Masculino', 'Femenino', 'Otros'],
     bloodTypesList: ['0-', '0+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'],
+    allergiesTypeList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
+    allergiesDegreeList: ['Leve', 'Moderado', 'Severo'],
     countriesList: ["Afghanistan",
         "Albania",
         "Algeria",
