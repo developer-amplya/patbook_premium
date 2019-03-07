@@ -10,148 +10,69 @@
 
                 <!-- NAME -->
                 <f7-list-item header="Nombre"
-                              v-if="!edit_name"
-                              @click="openEdit($event, details.name, 'edit_name')">
+                              @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.name }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Nombre"
-                              v-if="edit_name">
-                    <f7-block>
-                        <f7-input
-                                type="text"
-                                :title="details.name"
-                                :value="details.name"
-                                @input="details.name = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'name', 'edit_name')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'name', 'edit_name')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- TYPE -->
                 <f7-list-item header="Tipo"
-                              v-if="!edit_type"
-                              @click="openEdit($event, details.type, 'edit_type')">
+                              @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.type }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Tipo"
-                              v-if="edit_type">
-                    <f7-block>
-                        <f7-list>
-                            <f7-list-item radio
-                                          v-for="(item, index) in typeList"
-                                          :key="index"
-                                          name="type"
-                                          :title="item"
-                                          :value="item"
-                                          :checked="item === details.type"
-                                          @change="details.type = $event.target.value"
-                            ></f7-list-item>
-                        </f7-list>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'type', 'edit_type')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'type', 'edit_type')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- DEGREE -->
                 <f7-list-item header="Grado"
-                              v-if="!edit_degree"
-                              @click="openEdit($event, details.degree, 'edit_degree')">
+                              @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.degree }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Grado"
-                              v-if="edit_degree">
-                    <f7-block>
-                        <f7-list>
-                            <f7-list-item radio
-                                          v-for="(item, index) in degreeList"
-                                          :key="index"
-                                          name="degree"
-                                          :title="item"
-                                          :value="item"
-                                          :checked="item === details.degree"
-                                          @change="details.degree = $event.target.value"
-                            ></f7-list-item>
-                        </f7-list>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'degree', 'edit_degree')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'degree', 'edit_degree')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- REACTION -->
                 <f7-list-item header="Reacción"
-                              v-if="!edit_reaction"
-                              @click="openEdit($event, details.reaction, 'edit_reaction')"
+                              @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
                               resizable>
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.reaction }}</span>
-                </f7-list-item>
-
-                <f7-list-item header="Reacción"
-                              v-if="edit_reaction">
-                    <f7-block>
-                        <f7-input
-                                type="textarea"
-                                :value="details.reaction"
-                                @input="details.reaction = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'reaction', 'edit_reaction')">Cancelar
-                            </f7-button>
-                            <f7-button round @click="updateInfo($event, 'reaction', 'edit_reaction')">Guardar
-                            </f7-button>
-                        </f7-segmented>
-                    </f7-block>
                 </f7-list-item>
 
                 <!-- SCHEMA -->
                 <f7-list-item v-for="(field, index) in schema"
                               :key="index"
                               :header="field.label"
-                              v-if="field.is_editing == false"
-                              @click="openEditSchema($event, index)">
+                              @click="openEditSchema($event, index, field)">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ field.value }}</span>
-                </f7-list-item>
-
-                <f7-list-item v-for="(field, index) in schema"
-                              :key="index"
-                              :header="field.label"
-                              v-if="field.is_editing == true">
-                    <f7-block>
-                        <f7-input
-                                :type="field.fieldType"
-                                :title="field.name"
-                                :value="field.value"
-                                @input="field.value = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEditSchema($event, index)">Cancelar</f7-button>
-                            <f7-button round @click="updateInfoSchema(index)">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
                 </f7-list-item>
 
             </f7-list>
 
         </f7-block>
+
+        <!-- Input popover -->
+        <f7-popover ref="EditInputField" :close="isSchema = false">
+            <text-input :type="field.type"
+                        :label="field.label"
+                        :name="field.name"
+                        :value="field.value"
+                        @input="setInputValue"></text-input>
+            <f7-block>
+                <f7-segmented round raised>
+                    <f7-button round @click="$refs.EditInputField.close()">Cancelar</f7-button>
+                    <f7-button round @click="updateInfo">Guardar</f7-button>
+                </f7-segmented>
+            </f7-block>
+        </f7-popover>
+
+        <!-- Select popover -->
+        <f7-popup ref="EditSelectField" :close="isSchema = false">
+            <select-list :type="field.type"
+                         :label="field.label"
+                         :name="field.name"
+                         :value="field.value"
+                         @select="setSelectValue"></select-list>
+        </f7-popup>
 
     </f7-page>
 
@@ -178,76 +99,99 @@
         ],
         data() {
             return {
+                field: {
+                    type: '',
+                    label: '',
+                    name: '',
+                    value: '',
+                    isSchema: false
+                },
                 details: [],
-                typeList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
-                degreeList: ['Leve', 'Moderado', 'Severo'],
                 schema: [],
-                edit_name: false,
-                edit_type: false,
-                edit_degree: false,
-                edit_reaction: false,
-                before_editing: ''
+                isSchema: false
             };
         },
         methods: {
-            openEdit(event, param, param2) {
-                this.before_editing = param;
-                this[param2] = true;
+            openInputPopover($event, type, label, name, value) {
+                console.log('@openInputPopover');
+                this.field.type = type;
+                this.field.label = label;
+                this.field.name = name;
+                this.field.value = value;
+                this.$refs.EditInputField.open();
             },
-            cancelEdit(event, param, param2) {
-                this.details[param] = this.before_editing
-                this.before_editing = '';
-                this[param2] = false;
+            openSelectPopover($event, type, label, name, value) {
+                console.log('@openSelectPopover');
+                this.field.type = type;
+                this.field.label = label;
+                this.field.name = name;
+                this.field.value = value;
+                this.$refs.EditSelectField.open();
             },
-            openEditSchema(event, index) {
-                console.log(index);
-                this.before_editing = this.schema[index].value;
-                this.schema[index].is_editing = true;
+            openEditSchema($event, index, field) {
+                console.log('@openEditSchema');
+                console.log(this.isSchema);
+                this.isSchema = true;
+                console.log(this.isSchema);
+                if (field.fieldType === 'select') {
+                    //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
+                } else {
+                    this.openInputPopover($event, field.fieldType, field.label, field.name, field.value);
+                }
             },
-            cancelEditSchema(event, index) {
-                this.schema[index].value = this.before_editing
-                this.before_editing = '';
-                this.schema[index].is_editing = false;
+            setInputValue(e) {
+                console.log('@setInputValue');
+                this.field.value = e;
             },
-            updateInfo(event, param, param2) {
+            setSelectValue(e) {
+                console.log('@setSelectValue');
+                this.field.value = e;
+                this.updateInfo(event, this.field.name);
+                this.$refs.EditSelectField.close();
+            },
+            updateInfo() {
+                console.log('@updateInfo');
 
-                /* We need to create first an object an then to assign the key name as an array key, because assigning
+                console.log(this.isSchema);
+                if (this.isSchema === true) {
+                    this.updateInfoSchema(0);
+                }
+
+                /* We need to create first an object and then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
                 let data = {};
-                data[param] = this.details[param];
-
-                /* axios.put('http://patbookapi.local/api/allergies/' + this.id, {
-                    params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
-                    },
-                    data: data
-                }) */
+                data[this.field.name] = this.field.value;
 
                 axios({
                     method: 'PUT',
                     url: API_PATH + 'allergies/' + this.id,
                     params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
                     },
                     data: data
                 })
                     .then((response) => {
-                        console.log(response);
-                        // TODO: confirm the update is OK
-                        this[param2] = false;
+                        if (response.data.result === 'OK') {
+                            // Update details
+                            this.details[this.field.name] = this.field.value;
+                            // Close popover
+                            this.$refs.EditInputField.close();
+                        } else {
+                            // TODO ??
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
             updateInfoSchema(index) {
-                this.schema[index].is_editing = false;
+                console.log('@updateInfoSchema');
+
                 axios.put(API_PATH + 'allergies/' + this.id, {
                     params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
                     },
                     schema: JSON.stringify(this.schema)
                 })
@@ -261,6 +205,9 @@
             }
         },
         mounted() {
+            console.log('-> AllergiesDetails');
+            console.log('@mounted');
+
             axios
                 .get(API_PATH + 'allergies/' + this.id, {
                     params: {
@@ -277,10 +224,6 @@
 </script>
 
 <style scoped>
-
-    .invisible {
-        display: none;
-    }
 
     .md .list .item-header {
         padding-left: 39px !important;
