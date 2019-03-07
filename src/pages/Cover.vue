@@ -11,7 +11,7 @@
                 setTimeout(() => {
                     this.$f7router.navigate('/login');
                     //alert('4s');
-                }, 4000);
+                }, 2000);
             }
         },
         mounted() {
