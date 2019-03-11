@@ -56,8 +56,7 @@
                                   :key="index">
                         <f7-label>{{ field.label }}</f7-label>
                         <f7-input
-                                :type="field.fieldType"
-                                :title="field.name"
+                                :type="field.type"
                                 :value="field.value"
                                 @input="field.value = $event.target.value"
                         ></f7-input>

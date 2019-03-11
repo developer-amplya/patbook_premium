@@ -71,7 +71,7 @@
 
                 let newObject = {};
                 newObject.label = this.name;
-                newObject.fieldType = this.type;
+                newObject.type = this.type;
                 newObject.value = '';
                 this.schema.push(newObject);
                 this.$emit('update:schema', this.schema);

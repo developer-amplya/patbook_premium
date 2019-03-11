@@ -136,7 +136,7 @@
                               v-if="field.is_editing == true">
                     <f7-block>
                         <f7-input
-                                :type="field.fieldType"
+                                :type="field.type"
                                 :title="field.name"
                                 :value="field.value"
                                 @input="field.value = $event.target.value"

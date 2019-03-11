@@ -66,7 +66,7 @@
                 let nowInsertingSchema = JSON.parse(sessionStorage.currentInsertingSchema);
                 let newObject = {};
                 newObject.is_editing = false;
-                newObject.fieldType = this.type;
+                newObject.type = this.type;
                 newObject.label = this.name;
                 newObject.name = this.name;
                 newObject.value = '';
