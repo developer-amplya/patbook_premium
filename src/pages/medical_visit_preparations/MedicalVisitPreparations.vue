@@ -17,9 +17,7 @@
                         v-for="listItem in list"
                         :key="listItem._id"
                         :link="/medical-visit-preparations/ + listItem._id"
-                        :header="listItem.type"
-                        :title="listItem.name"
-                        :footer="listItem.degree"></f7-list-item>
+                        :title="listItem.symptoms_description"></f7-list-item>
             </f7-list>
         </f7-block>
         <f7-toolbar bottom-md :class="getMainColor">

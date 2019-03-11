@@ -8,7 +8,7 @@
                     <f7-icon material="arrow_back"></f7-icon>
                 </f7-link>
             </f7-nav-left>
-            <f7-nav-title title="MEDICACIONES"></f7-nav-title>
+            <f7-nav-title title="MEDICACIÓN"></f7-nav-title>
         </f7-navbar>
 
         <f7-block inner>
@@ -17,9 +17,7 @@
                         v-for="listItem in list"
                         :key="listItem._id"
                         :link="/medicines/ + listItem._id"
-                        :header="listItem.type"
-                        :title="listItem.name"
-                        :footer="listItem.degree"></f7-list-item>
+                        :title="listItem.name"></f7-list-item>
             </f7-list>
         </f7-block>
         <f7-toolbar bottom-md :class="getMainColor">
