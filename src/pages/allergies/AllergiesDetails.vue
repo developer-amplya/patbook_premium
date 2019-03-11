@@ -2,51 +2,57 @@
 
     <f7-page>
 
-        <f7-navbar title="ALERGIA" back-link="Volver"></f7-navbar>
+        <f7-navbar title="ALERGIAS" back-link="Volver"></f7-navbar>
 
         <f7-block inner>
 
-            <f7-list media-list>
+            <f7-card title="REGISTRO DE ALERGIA">
+                <f7-list media-list>
 
-                <!-- NAME -->
-                <f7-list-item header="Nombre"
-                              @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ details.name }}</span>
-                </f7-list-item>
+                    <!-- NAME -->
+                    <f7-list-item header="Nombre"
+                                  @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.name }}</span>
+                    </f7-list-item>
 
-                <!-- TYPE -->
-                <f7-list-item header="Tipo"
-                              @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ details.type }}</span>
-                </f7-list-item>
+                    <!-- TYPE -->
+                    <f7-list-item header="Tipo"
+                                  @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.type }}</span>
+                    </f7-list-item>
 
-                <!-- DEGREE -->
-                <f7-list-item header="Grado"
-                              @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ details.degree }}</span>
-                </f7-list-item>
+                    <!-- DEGREE -->
+                    <f7-list-item header="Grado"
+                                  @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.degree }}</span>
+                    </f7-list-item>
 
-                <!-- REACTION -->
-                <f7-list-item header="Reacción"
-                              @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
-                              resizable>
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ details.reaction }}</span>
-                </f7-list-item>
+                    <!-- REACTION -->
+                    <f7-list-item header="Reacción"
+                                  @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
+                                  resizable>
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.reaction }}</span>
+                    </f7-list-item>
+                </f7-list>
+            </f7-card>
 
-                <!-- SCHEMA -->
-                <f7-list-item v-for="(field, index) in schema"
-                              :key="index"
-                              :header="field.label"
-                              @click="openEditSchema($event, index, field)">
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ field.value }}</span>
-                </f7-list-item>
+            <f7-card title="CAMPOS PERSONALIZADOS">
+                <f7-list media-list>
+                    <!-- SCHEMA -->
+                    <f7-list-item v-for="(field, index) in schema"
+                                  :key="index"
+                                  :header="field.label"
+                                  @click="openEditSchema($event, index, field)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ field.value }}</span>
+                    </f7-list-item>
 
-            </f7-list>
+                </f7-list>
+            </f7-card>
 
         </f7-block>
 
@@ -86,8 +92,6 @@
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
 
-    // TODO: refactor the hole code as much as possible
-    // TODO: try to add an remove the property is_editing in schema objects dynamically
     export default {
         name: 'AllergiesDetails',
         components: {
@@ -103,8 +107,7 @@
                     type: '',
                     label: '',
                     name: '',
-                    value: '',
-                    isSchema: false
+                    value: ''
                 },
                 details: [],
                 schema: [],
@@ -133,10 +136,10 @@
                 console.log(this.isSchema);
                 this.isSchema = true;
                 console.log(this.isSchema);
-                if (field.fieldType === 'select') {
+                if (field.type === 'select') {
                     //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
-                } else {
-                    this.openInputPopover($event, field.fieldType, field.label, field.name, field.value);
+                } else {console.log(field);
+                    this.openInputPopover($event, field.type, field.label, field.name, field.value);
                 }
             },
             setInputValue(e) {

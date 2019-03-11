@@ -16,23 +16,6 @@
                     <span>{{ details.name }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Nombre"
-                              v-if="edit_name">
-                    <f7-block>
-                        <f7-input
-                                type="text"
-                                :title="details.name"
-                                :value="details.name"
-                                @input="details.name = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'name', 'edit_name')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'name', 'edit_name')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- SYMPTOMS DESCRIPTION -->
                 <f7-list-item header="Descripción de los síntomas"
                               v-if="!edit_symptoms_description"
@@ -40,24 +23,6 @@
                               resizable>
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.symptoms_description }}</span>
-                </f7-list-item>
-
-                <f7-list-item header="Descripción de los síntomas"
-                              v-if="edit_symptoms_description">
-                    <f7-block>
-                        <f7-input
-                                type="textarea"
-                                :value="details.symptoms_description"
-                                @input="details.symptoms_description = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'symptoms_description', 'edit_symptoms_description')">Cancelar
-                            </f7-button>
-                            <f7-button round @click="updateInfo($event, 'symptoms_description', 'edit_symptoms_description')">Guardar
-                            </f7-button>
-                        </f7-segmented>
-                    </f7-block>
                 </f7-list-item>
 
                 <!-- INTENSITY -->
@@ -68,51 +33,12 @@
                     <span>{{ details.intensity }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Intensidad"
-                              v-if="edit_intensity">
-                    <f7-block>
-                        <f7-list>
-                            <f7-list-item radio
-                                          v-for="(item, index) in intensityList"
-                                          :key="index"
-                                          name="intensity"
-                                          :title="item"
-                                          :value="item"
-                                          :checked="item === details.intensity"
-                                          @change="details.intensity = $event.target.value"
-                            ></f7-list-item>
-                        </f7-list>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'intensity', 'edit_intensity')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'intensity', 'edit_intensity')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- FREQUENCY -->
                 <f7-list-item header="Frecuencia"
                               v-if="!edit_frequency"
                               @click="openEdit($event, details.frequency, 'edit_frequency')">
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.frequency }}</span>
-                </f7-list-item>
-
-                <f7-list-item header="Frecuencia"
-                              v-if="edit_frequency">
-                    <f7-block>
-                        <f7-input
-                                type="text"
-                                :title="details.frequency"
-                                :value="details.frequency"
-                                @input="details.frequency = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'frequency', 'edit_frequency')">Cancelar</f7-button>
-                            <f7-button round @click="updateInfo($event, 'frequency', 'edit_frequency')">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
                 </f7-list-item>
 
                 <!-- DATE -->
@@ -132,24 +58,6 @@
                     <span>{{ details.actions }}</span>
                 </f7-list-item>
 
-                <f7-list-item header="Acciones preventivas"
-                              v-if="edit_actions">
-                    <f7-block>
-                        <f7-input
-                                type="textarea"
-                                :value="details.actions"
-                                @input="details.actions = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'actions', 'edit_actions')">Cancelar
-                            </f7-button>
-                            <f7-button round @click="updateInfo($event, 'actions', 'edit_actions')">Guardar
-                            </f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
                 <!-- NOTES -->
                 <f7-list-item header="Notas"
                               v-if="!edit_notes"
@@ -157,24 +65,6 @@
                               resizable>
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.notes }}</span>
-                </f7-list-item>
-
-                <f7-list-item header="Notas"
-                              v-if="edit_notes">
-                    <f7-block>
-                        <f7-input
-                                type="textarea"
-                                :value="details.notes"
-                                @input="details.notes = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'notes', 'edit_notes')">Cancelar
-                            </f7-button>
-                            <f7-button round @click="updateInfo($event, 'notes', 'edit_notes')">Guardar
-                            </f7-button>
-                        </f7-segmented>
-                    </f7-block>
                 </f7-list-item>
 
                 <!-- DOCTOR -->
@@ -187,55 +77,22 @@
                     <f7-icon material="edit"></f7-icon>
                     <span>{{ details.questions }}</span>
                 </f7-list-item>
-
-                <f7-list-item header="Preguntas"
-                              v-if="edit_questions">
-                    <f7-block>
-                        <f7-input
-                                type="textarea"
-                                :value="details.questions"
-                                @input="details.questions = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEdit($event, 'questions', 'edit_questions')">Cancelar
-                            </f7-button>
-                            <f7-button round @click="updateInfo($event, 'questions', 'edit_questions')">Guardar
-                            </f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
-                <!-- SCHEMA -->
-                <f7-list-item v-for="(field, index) in schema"
-                              :key="index"
-                              :header="field.label"
-                              v-if="field.is_editing == false"
-                              @click="openEditSchema($event, index)">
-                    <f7-icon material="edit"></f7-icon>
-                    <span>{{ field.value }}</span>
-                </f7-list-item>
-
-                <f7-list-item v-for="(field, index) in schema"
-                              :key="index"
-                              :header="field.label"
-                              v-if="field.is_editing == true">
-                    <f7-block>
-                        <f7-input
-                                :type="field.fieldType"
-                                :title="field.name"
-                                :value="field.value"
-                                @input="field.value = $event.target.value"
-                        ></f7-input>
-                        <br>
-                        <f7-segmented round raised>
-                            <f7-button round @click="cancelEditSchema($event, index)">Cancelar</f7-button>
-                            <f7-button round @click="updateInfoSchema(index)">Guardar</f7-button>
-                        </f7-segmented>
-                    </f7-block>
-                </f7-list-item>
-
             </f7-list>
+            </f7-card>
+
+            <f7-card title="CAMPOS PERSONALIZADOS">
+                <f7-list media-list>
+                    <!-- Schema -->
+                    <f7-list-item v-for="(field, index) in schema"
+                                  :key="index"
+                                  :header="field.label"
+                                  @click="openEditSchema($event, index, field)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ field.value }}</span>
+                    </f7-list-item>
+
+                </f7-list>
+            </f7-card>
 
         </f7-block>
 
@@ -251,8 +108,6 @@
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
 
-    // TODO: refactor the hole code as much as possible
-    // TODO: try to add an remove the property is_editing in schema objects dynamically
     export default {
         name: 'MedicalVisitPreparationsDetails',
         components: {
@@ -264,6 +119,13 @@
         ],
         data() {
             return {
+                field: {
+                    type: '',
+                    label: '',
+                    name: '',
+                    value: '',
+                    isSchema: false
+                },
                 details: [],
                 intensityList: ['Leve', 'Moderada', 'Severa'],
                 schema: [],
