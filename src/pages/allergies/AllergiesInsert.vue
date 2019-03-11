@@ -1,66 +1,71 @@
 <template>
     <f7-page>
-        <f7-navbar title="CREAR ALERGIA" back-link="Volver"></f7-navbar>
+        <f7-navbar title="ALERGIAS" back-link="Volver"></f7-navbar>
         <f7-block inner>
-            <f7-list>
 
-                <!-- Name -->
-                <f7-list-item>
-                    <f7-label>Nombre</f7-label>
-                    <f7-input
-                            type="text"
-                            :value="name"
-                            @input="name = $event.target.value"
-                            clear-button></f7-input>
-                </f7-list-item>
+            <f7-card title="REGISTRO DE ALERGIA">
+                <f7-list>
+                    <!-- Name -->
+                    <f7-list-item>
+                        <f7-label>Nombre</f7-label>
+                        <f7-input
+                                type="text"
+                                :value="name"
+                                @input="name = $event.target.value"
+                                clear-button></f7-input>
+                    </f7-list-item>
 
-                <!-- Type -->
-                <f7-list-item smart-select title="Tipo" :smart-select-params="{ closeOnSelect: true }">
-                    <select :name="type" v-model="type">
-                        <option v-for="(item, index) in typeList"
-                                :key="index"
-                                :value="item"
-                        >{{ item }}
-                        </option>
-                    </select>
-                </f7-list-item>
+                    <!-- Type -->
+                    <f7-list-item smart-select title="Tipo" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="type" v-model="type">
+                            <option v-for="(item, index) in typeList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                    </f7-list-item>
 
-                <!-- Degree -->
-                <f7-list-item smart-select title="Grado" :smart-select-params="{ closeOnSelect: true }">
-                    <select :name="degree" v-model="degree">
-                        <option v-for="(item, index) in degreeList"
-                                :key="index"
-                                :value="item"
-                        >{{ item }}
-                        </option>
-                    </select>
-                </f7-list-item>
+                    <!-- Degree -->
+                    <f7-list-item smart-select title="Grado" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="degree" v-model="degree">
+                            <option v-for="(item, index) in degreeList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                    </f7-list-item>
 
-                <!-- Reaction -->
-                <f7-list-item>
-                    <f7-label>Reacción</f7-label>
-                    <f7-input
-                            type="textarea"
-                            :value="reaction"
-                            @input="reaction = $event.target.value"
-                    ></f7-input>
-                </f7-list-item>
+                    <!-- Reaction -->
+                    <f7-list-item>
+                        <f7-label>Reacción</f7-label>
+                        <f7-input
+                                type="textarea"
+                                :value="reaction"
+                                @input="reaction = $event.target.value"
+                        ></f7-input>
+                    </f7-list-item>
+                </f7-list>
+            </f7-card>
 
-                <!-- SCHEMA -->
-                <f7-list-item v-for="(field, index) in schema"
-                              :key="index">
-                    <f7-label>{{ field.label }}</f7-label>
-                    <f7-input
-                            :type="field.fieldType"
-                            :title="field.name"
-                            :value="field.value"
-                            @input="field.value = $event.target.value"
-                    ></f7-input>
-                </f7-list-item>
+            <f7-card title="CAMPOS PERSONALIZADOS">
+                <f7-list>
+                    <!-- SCHEMA -->
+                    <f7-list-item v-for="(field, index) in schema"
+                                  :key="index">
+                        <f7-label>{{ field.label }}</f7-label>
+                        <f7-input
+                                :type="field.fieldType"
+                                :title="field.name"
+                                :value="field.value"
+                                @input="field.value = $event.target.value"
+                        ></f7-input>
+                    </f7-list-item>
+                </f7-list>
 
-            </f7-list>
-
-            <f7-button @click="createCustomField()">NUEVO CAMPO PERSONALIZADO</f7-button>
+                <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
+            </f7-card>
 
             <br>
             <br>
@@ -72,6 +77,12 @@
             </f7-segmented>
 
         </f7-block>
+
+        <!-- Custom field popup -->
+        <f7-popup class="custom-field">
+            <create-custom-field :schema="schema"></create-custom-field>
+        </f7-popup>
+
     </f7-page>
 </template>
 
@@ -81,10 +92,13 @@
         API_PATH
     } from '../../config.js';
     import {mapGetters} from 'vuex';
+    import CreateCustomField from '../../form_elements/CreateCustomField';
 
     export default {
         name: 'AllergiesInsert',
-        props: [],
+        components: {
+            'create-custom-field': CreateCustomField
+        },
         data() {
             return {
                 typeList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
@@ -113,42 +127,20 @@
                     schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {
-                        console.log(response);
+                        // Incrementing counting state
                         this.$store.dispatch('incrementDocumentCounting', 'allergies');
+                        // Returning to list
                         this.$f7router.navigate('/allergies');
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
-            createCustomField() {
-                let nowInsertingDetails = {};
-                nowInsertingDetails.name = this.name;
-                nowInsertingDetails.type = this.type;
-                nowInsertingDetails.degree = this.degree;
-                nowInsertingDetails.reaction = this.reaction;
-                sessionStorage.currentInsertingDetails = JSON.stringify(nowInsertingDetails);
-                console.log(this.schema);
-                sessionStorage.currentInsertingSchema = JSON.stringify(this.schema);
-                this.$f7router.navigate('/create-custom-field');
-            }
-        },
-        beforeMount() {
-            if (typeof sessionStorage.currentInsertingDetails !== 'undefined') {
-                let details = JSON.parse(sessionStorage.currentInsertingDetails);
-                this.name = details.name;
-                this.type = details.type;
-                this.degree = details.degree;
-                this.reaction = details.reaction;
-            }
-
-            if (typeof sessionStorage.currentInsertingSchema !== 'undefined') {
-                this.schema = JSON.parse(sessionStorage.currentInsertingSchema);
-                console.log(this.schema);
+            cancel() {
+                this.$f7Router.navigate('/allergies');
             }
         }
-    }
-    ;
+    };
 </script>
 
 <style scoped>

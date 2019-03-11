@@ -72,7 +72,7 @@
                 newObject.value = '';
                 nowInsertingSchema.push(newObject);
                 sessionStorage.currentInsertingSchema = JSON.stringify(nowInsertingSchema);
-                this.$f7router.navigate('/allergies/insert');
+                //this.$f7router.navigate(-1);
             }
         },
         mounted() {
