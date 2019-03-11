@@ -12,8 +12,7 @@
                         <f7-input
                                 type="textarea"
                                 :value="description"
-                                @input="description = $event.target.value"
-                        ></f7-input>
+                                @input="description = $event.target.value"></f7-input>
                     </f7-list-item>
 
                     <!-- DOCTOR -->

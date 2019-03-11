@@ -4,7 +4,8 @@
         <f7-block inner>
 
             <f7-card title="REGISTRO DE SÍNTOMAS">
-                <f7-list><!-- Symptoms description -->
+                <f7-list>
+                    <!-- Symptoms description -->
                     <f7-list-item>
                         <f7-label>Descripción de los síntomas</f7-label>
                         <f7-input

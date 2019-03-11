@@ -62,14 +62,14 @@
 
                     <!-- Start date -->
                     <f7-list-item header="Fecha de inicio"
-                                  @click="openInputPopover($event, 'text', 'Fecha de inici', 'start', details.start)">
+                                  @click="openInputPopover($event, 'date', 'Fecha de inicio', 'start', details.start)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ details.start }}</span>
                     </f7-list-item>
 
                     <!-- Ending date -->
                     <f7-list-item header="Fecha de fin"
-                                  @click="openInputPopover($event, 'text', 'Fecha de fin', 'end', details.end)">
+                                  @click="openInputPopover($event, 'date', 'Fecha de fin', 'end', details.end)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ details.end }}</span>
                     </f7-list-item>
@@ -102,23 +102,54 @@
                         <span>{{ details.doctor }}</span>
                     </f7-list-item>
                 </f7-list>
-                </f7-card>
+            </f7-card>
 
-                <f7-card title="CAMPOS PERSONALIZADOS">
-                    <f7-list media-list>
-                        <!-- Schema -->
-                        <f7-list-item v-for="(field, index) in schema"
-                                      :key="index"
-                                      :header="field.label"
-                                      @click="openEditSchema($event, index, field)">
-                            <f7-icon material="edit"></f7-icon>
-                            <span>{{ field.value }}</span>
-                        </f7-list-item>
+            <f7-card title="CAMPOS PERSONALIZADOS">
+                <f7-list media-list>
+                    <!-- Schema -->
+                    <f7-list-item v-for="(field, index) in schema"
+                                  :key="index"
+                                  :header="field.label"
+                                  @click="openEditSchema($event, index, field)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ field.value }}</span>
+                    </f7-list-item>
 
-                    </f7-list>
-                </f7-card>
+                </f7-list>
+
+                <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
+            </f7-card>
 
         </f7-block>
+
+        <!-- Input popover -->
+        <f7-popover ref="EditInputField" :close="isSchema = false">
+            <text-input :type="field.type"
+                        :label="field.label"
+                        :name="field.name"
+                        :value="field.value"
+                        @input="setInputValue"></text-input>
+            <f7-block>
+                <f7-segmented round raised>
+                    <f7-button round @click="$refs.EditInputField.close()">Cancelar</f7-button>
+                    <f7-button round @click="updateInfo">Guardar</f7-button>
+                </f7-segmented>
+            </f7-block>
+        </f7-popover>
+
+        <!-- Select popup -->
+        <f7-popup ref="EditSelectField" :close="isSchema = false">
+            <select-list :type="field.type"
+                         :label="field.label"
+                         :name="field.name"
+                         :value="field.value"
+                         @select="setSelectValue"></select-list>
+        </f7-popup>
+
+        <!-- Custom field popup -->
+        <f7-popup class="custom-field">
+            <create-custom-field :schema="schema"></create-custom-field>
+        </f7-popup>
 
     </f7-page>
 
@@ -131,12 +162,14 @@
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
+    import CreateCustomField from '../../form_elements/CreateCustomField';
 
     export default {
         name: 'MedicinesDetails',
         components: {
             SelectList,
-            TextInput
+            TextInput,
+            'create-custom-field': CreateCustomField
         },
         props: [
             'id'
@@ -147,74 +180,107 @@
                     type: '',
                     label: '',
                     name: '',
-                    value: '',
-                    isSchema: false
+                    value: ''
                 },
                 details: [],
-                frequencyList: ['Diaria', 'Semanal', 'Mensual', 'Bimensual', 'Trimestral', 'Otros'],
-                dayTimeList: ['Mañana', 'Tarde', 'Noche'],
-                schema: []
+                schema: [],
+                isSchema: false
             };
         },
+        mounted() {
+            axios
+                .get(API_PATH + 'medicines/' + this.id, {
+                    params: {
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
+                    }
+                })
+                .then(response => {
+                    this.details = response.data;
+                    this.schema = JSON.parse(response.data.schema);
+                });
+        },
         methods: {
-            openEdit(event, param, param2) {
-                this.before_editing = param;
-                this[param2] = true;
+            openInputPopover($event, type, label, name, value) {
+                console.log('@openInputPopover');
+                this.field.type = type;
+                this.field.label = label;
+                this.field.name = name;
+                this.field.value = value;
+                this.$refs.EditInputField.open();
             },
-            cancelEdit(event, param, param2) {
-                this.details[param] = this.before_editing
-                this.before_editing = '';
-                this[param2] = false;
+            openSelectPopover($event, type, label, name, value) {
+                console.log('@openSelectPopover');
+                this.field.type = type;
+                this.field.label = label;
+                this.field.name = name;
+                this.field.value = value;
+                this.$refs.EditSelectField.open();
             },
-            openEditSchema(event, index) {
-                console.log(index);
-                this.before_editing = this.schema[index].value;
-                this.schema[index].is_editing = true;
+            openEditSchema($event, index, field) {
+                console.log('@openEditSchema');
+                console.log(this.isSchema);
+                this.isSchema = true;
+                console.log(this.isSchema);
+                if (field.type === 'select') {
+                    //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
+                } else {
+                    this.openInputPopover($event, field.type, field.label, field.label, field.value);
+                }
             },
-            cancelEditSchema(event, index) {
-                this.schema[index].value = this.before_editing
-                this.before_editing = '';
-                this.schema[index].is_editing = false;
+            setInputValue(e) {
+                console.log('@setInputValue');
+                this.field.value = e;
             },
-            updateInfo(event, param, param2) {
+            setSelectValue(e) {
+                console.log('@setSelectValue');
+                this.field.value = e;
+                this.updateInfo(event, this.field.name);
+                this.$refs.EditSelectField.close();
+            },
+            updateInfo() {
+                console.log('@updateInfo');
+
+                console.log(this.isSchema);
+                if (this.isSchema === true) {
+                    this.updateInfoSchema(0);
+                }
 
                 /* We need to create first an object an then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
                 let data = {};
-                data[param] = this.details[param];
-
-                /* axios.put('http://patbookapi.local/api/allergies/' + this.id, {
-                    params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
-                    },
-                    data: data
-                }) */
+                data[this.field.name] = this.field.value;
 
                 axios({
                     method: 'PUT',
                     url: API_PATH + 'medicines/' + this.id,
                     params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
                     },
                     data: data
                 })
                     .then((response) => {
-                        console.log(response);
-                        // TODO: confirm the update is OK
-                        this[param2] = false;
+                        if (response.data.result === 'OK') {
+                            // Update details
+                            this.details[this.field.name] = this.field.value;
+                            // Close popover
+                            this.$refs.EditInputField.close();
+                        } else {
+                            // TODO ??
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
             updateInfoSchema(index) {
-                this.schema[index].is_editing = false;
+                console.log('@updateInfoSchema');
+
                 axios.put(API_PATH + 'medicines/' + this.id, {
                     params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
                     },
                     schema: JSON.stringify(this.schema)
                 })
@@ -226,29 +292,11 @@
                         console.log(error);
                     });
             }
-        },
-        mounted() {
-            axios
-                .get(API_PATH + 'medicines/' + this.id, {
-                    params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
-                    }
-                })
-                .then(response => {
-                    this.details = response.data;
-                    this.schema = JSON.parse(response.data.schema);
-                });
         }
-    }
-    ;
+    };
 </script>
 
 <style scoped>
-
-    .invisible {
-        display: none;
-    }
 
     .md .list .item-header {
         padding-left: 39px !important;

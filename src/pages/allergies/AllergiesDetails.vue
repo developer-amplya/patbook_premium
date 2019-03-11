@@ -52,6 +52,8 @@
                     </f7-list-item>
 
                 </f7-list>
+
+                <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
             </f7-card>
 
         </f7-block>
@@ -71,13 +73,18 @@
             </f7-block>
         </f7-popover>
 
-        <!-- Select popover -->
+        <!-- Select popup -->
         <f7-popup ref="EditSelectField" :close="isSchema = false">
             <select-list :type="field.type"
                          :label="field.label"
                          :name="field.name"
                          :value="field.value"
                          @select="setSelectValue"></select-list>
+        </f7-popup>
+
+        <!-- Custom field popup -->
+        <f7-popup class="custom-field">
+            <create-custom-field :schema="schema"></create-custom-field>
         </f7-popup>
 
     </f7-page>
@@ -91,12 +98,14 @@
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
+    import CreateCustomField from '../../form_elements/CreateCustomField';
 
     export default {
         name: 'AllergiesDetails',
         components: {
             SelectList,
-            TextInput
+            TextInput,
+            'create-custom-field': CreateCustomField
         },
         props: [
             'id'
@@ -113,6 +122,22 @@
                 schema: [],
                 isSchema: false
             };
+        },
+        mounted() {
+            console.log('-> AllergiesDetails');
+            console.log('@mounted');
+
+            axios
+                .get(API_PATH + 'allergies/' + this.id, {
+                    params: {
+                        // device_code: sessionStorage.device_code,
+                        // user_id: sessionStorage.user_id
+                    }
+                })
+                .then(response => {
+                    this.details = response.data;
+                    this.schema = JSON.parse(response.data.schema);
+                });
         },
         methods: {
             openInputPopover($event, type, label, name, value) {
@@ -138,8 +163,8 @@
                 console.log(this.isSchema);
                 if (field.type === 'select') {
                     //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
-                } else {console.log(field);
-                    this.openInputPopover($event, field.type, field.label, field.name, field.value);
+                } else {
+                    this.openInputPopover($event, field.type, field.label, field.label, field.value);
                 }
             },
             setInputValue(e) {
@@ -206,22 +231,6 @@
                         console.log(error);
                     });
             }
-        },
-        mounted() {
-            console.log('-> AllergiesDetails');
-            console.log('@mounted');
-
-            axios
-                .get(API_PATH + 'allergies/' + this.id, {
-                    params: {
-                        device_code: sessionStorage.device_code,
-                        user_id: sessionStorage.user_id
-                    }
-                })
-                .then(response => {
-                    this.details = response.data;
-                    this.schema = JSON.parse(response.data.schema);
-                });
         }
     };
 </script>
