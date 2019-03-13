@@ -174,7 +174,7 @@
             <f7-block>
                 <f7-segmented round raised>
                     <f7-button round @click="$refs.EditInputField.close()">Cancelar</f7-button>
-                    <f7-button round @click="updateInfo">Guardar</f7-button>
+                    <f7-button round @click="update">Guardar</f7-button>
                 </f7-segmented>
             </f7-block>
         </f7-popover>
@@ -226,7 +226,7 @@
                 },
                 details: [],
                 schema: [],
-                isSchema: false
+                schema_active_index: null
             };
         },
         mounted() {
@@ -262,14 +262,14 @@
                 this.$refs.EditSelectField.open();
             },
             openEditSchema($event, index, field) {
-                console.log('@openEditSchema');
-                console.log(this.isSchema);
-                this.isSchema = true;
-                console.log(this.isSchema);
+
+                this.schema_active_index = index;
+
                 if (field.type === 'select') {
                     //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
                 } else {
-                    this.openInputPopover($event, field.type, field.label, field.label, field.value);
+                    // Using 'schema" word as 'name' to identify schema fields
+                    this.openInputPopover($event, field.type, field.label, 'schema', field.value);
                 }
             },
             setInputValue(e) {
@@ -282,13 +282,16 @@
                 this.updateInfo(event, this.field.name);
                 this.$refs.EditSelectField.close();
             },
+            update() {
+                console.log('@update');
+                if (this.field.name === 'schema') {
+                    this.updateInfoSchema(this.schema_active_index);
+                } else {
+                    this.updateInfo();
+                }
+            },
             updateInfo() {
                 console.log('@updateInfo');
-
-                console.log(this.isSchema);
-                if (this.isSchema === true) {
-                    this.updateInfoSchema(0);
-                }
 
                 /* We need to create first an object an then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
@@ -319,7 +322,15 @@
                     });
             },
             updateInfoSchema(index) {
-                this.schema[index].is_editing = false;
+
+                this.schema_active_index = null;
+
+                this.schema[index] = {
+                    "label": this.field.label,
+                    "type": this.field.type,
+                    "value": this.field.value
+                };
+
                 axios.put(API_PATH + 'medical-visits/' + this.id, {
                     params: {
                         // device_code: sessionStorage.device_code,
@@ -328,8 +339,14 @@
                     schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {
-                        console.log(response);
-                        // TODO: confirm the update is OK
+                        if (response.data.result === 'OK') {
+                            // Update schema
+                            this.$forceUpdate();
+                            // Close popover
+                            this.$refs.EditInputField.close();
+                        } else {
+                            // TODO ??
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);
