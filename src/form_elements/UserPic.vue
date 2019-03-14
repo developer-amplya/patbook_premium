@@ -72,7 +72,7 @@
                 });
             },
             setPicture(imageURI) {
-/*
+
                 let bodyFormData = new FormData();
                 bodyFormData.append('name', 'pic');
                 bodyFormData.append('file', imageURI);
@@ -94,9 +94,9 @@
                     .catch(function (error) {
                         console.log(error);
                     });
-*/
 
-                let uri = encodeURI(API_PATH + 'user/update-pic');
+
+                /*let uri = encodeURI(API_PATH + 'user/update-pic');
                 let options = new FileUploadOptions();
                 options.fileKey = "pic";
                 options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -107,7 +107,7 @@
 
                 var ft = new FileTransfer();
                 ft.upload(imageURI, uri, this.success, this.error, options);
-
+*/
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
             }
