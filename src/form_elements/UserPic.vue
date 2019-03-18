@@ -40,7 +40,7 @@
             };
         },
         computed: {
-            ...mapGetters(['getUserPic'])
+            ...mapGetters(['getUserPic', 'getUserID'])
         },
         methods: {
             // From camera
@@ -110,7 +110,7 @@
                 options.httpMethod = "POST";
                 options.chunkedMode = true;
                 options.params = {
-                    //
+                    id: this.getUserID
                 };
 
                 var ft = new FileTransfer();
