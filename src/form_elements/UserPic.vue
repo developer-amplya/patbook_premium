@@ -63,51 +63,59 @@
             },
             // From library
             getPictureFromLibrary() {
-                navigator.camera.getPicture(this.setPicture, this.error, {
-                    quality: 50,
-                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                    destinationType: Camera.DestinationType.FILE_URI,
-                    encodingType: Camera.EncodingType.JPEG,
-                    allowEdit: true
-                });
+                if (navigator.camera) {
+                    navigator.camera.getPicture(this.setPicture, this.error, {
+                        quality: 50,
+                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                        destinationType: Camera.DestinationType.FILE_URI,
+                        encodingType: Camera.EncodingType.JPEG,
+                        allowEdit: true,
+                        correctOrientation: true,
+                    });
+                } else {
+                    // If the navigator.camera is not available display generic error to the user.
+                    alert('Cámara no disponible');
+                }
             },
             setPicture(imageURI) {
+                /*
+                                let bodyFormData = new FormData();
+                                bodyFormData.append('name', 'pic');
+                                bodyFormData.append('file', imageURI);
 
-                let bodyFormData = new FormData();
-                bodyFormData.append('name', 'pic');
-                bodyFormData.append('file', imageURI);
+                                axios({
+                                    method: 'post',
+                                    url: API_PATH + 'user/update-pic',
+                                    headers: {
+                                        'Content-Type': 'image/jpeg'
+                                    },
+                                    data: bodyFormData
+                                })
+                                    .then((response) => {
+                                        console.log(response);
 
-                axios({
-                    method: 'post',
-                    url: API_PATH + 'user/update-pic',
-                    headers: {
-                        'Content-Type': 'image/jpeg'
-                    },
-                    data: bodyFormData
-                })
-                    .then((response) => {
-                        console.log(response);
+                                        let fileName = image.substr(image.lastIndexOf('/') + 1);
+                                        this.$store.dispatch('setUserPic', fileName);
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    });
+                */
 
-                        let fileName = image.substr(image.lastIndexOf('/') + 1);
-                        this.$store.dispatch('setUserPic', fileName);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-
-
-                /*let uri = encodeURI(API_PATH + 'user/update-pic');
+                let uri = encodeURI(API_PATH + 'user/update-pic');
                 let options = new FileUploadOptions();
-                options.fileKey = "pic";
+                options.fileKey = "file";
                 options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
                 options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
                 options.params = {
                     //
                 };
 
                 var ft = new FileTransfer();
                 ft.upload(imageURI, uri, this.success, this.error, options);
-*/
+
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
             }
