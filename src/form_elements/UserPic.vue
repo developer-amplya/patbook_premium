@@ -117,8 +117,8 @@
                 ft.upload(imageURI, uri, this.success, this.error, options);
             },
             success(response) {
-                console.log(response);
-                //this.$store.dispatch('setUserPic', response.data.image_name);
+                //console.log(response);
+                this.$store.dispatch('setUserPic', response.image_name);
 
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
