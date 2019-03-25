@@ -118,7 +118,7 @@
             },
             success(response) {
                 console.log(response);
-                response = JSON.parse(response);
+                response = JSON.parse(response.response);
                 this.$store.dispatch('setUserPic', response.image_name);
 
                 // Close popover
