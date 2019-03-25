@@ -118,8 +118,8 @@
             },
             success(response) {
                 console.log(response);
+                response = JSON.parse(response);
                 this.$store.dispatch('setUserPic', response.image_name);
-                console.log(this.getUserPic);
 
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
