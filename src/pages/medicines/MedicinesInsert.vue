@@ -17,6 +17,7 @@
                     </f7-list-item>
 
                     <!-- Image -->
+                    <image-uploader></image-uploader>
 
                     <!-- Laboratory -->
                     <f7-list-item>
@@ -183,11 +184,13 @@
     } from '../../config.js';
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import ImageUploader from '../form_elements/ImageUploader';
 
     export default {
         name: 'MedicinesInsert',
         components: {
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'image-uploader': ImageUploader
         },
         data() {
             return {

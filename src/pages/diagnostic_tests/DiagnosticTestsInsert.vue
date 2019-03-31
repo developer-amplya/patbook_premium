@@ -123,6 +123,8 @@
                     </f7-list-item>
 
                     <!-- Image -->
+                    <image-uploader></image-uploader>
+
                 </f7-list>
             </f7-card>
 
@@ -169,11 +171,13 @@
     } from '../../config.js';
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import ImageUploader from '../form_elements/ImageUploader';
 
     export default {
         name: 'DiagnosticTestsInsert',
         components: {
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'image-uploader': ImageUploader
         },
         data() {
             return {
