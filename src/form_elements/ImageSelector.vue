@@ -27,12 +27,9 @@
     import {
         IMAGE_PLACEHOLDER
     } from '../config.js';
-    import {
-        mapGetters
-    } from 'vuex';
 
     export default {
-        name: 'imageSelector',
+        name: 'ImageSelector',
         data() {
             return {
                 image_path: IMAGE_PLACEHOLDER

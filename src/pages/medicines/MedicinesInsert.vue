@@ -184,7 +184,7 @@
     } from '../../config.js';
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
-    import ImageSelector from '../form_elements/ImageSelector';
+    import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
         name: 'MedicinesInsert',

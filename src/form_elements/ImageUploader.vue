@@ -5,13 +5,13 @@
         <!-- Image -->
         <div class="col">
             <i class="icon material-icons">edit</i>
-            <div class="user-pic" @click="$refs.EditUserPicPopover.open()">
-                <img ref="userProfileImg" :src="USER_IMAGES_PATH + getUserProfileImg"/>
+            <div class="image" @click="$refs.EditImagePopover.open()">
+                <img ref="currentImage" :src="USER_IMAGES_PATH + "/>
             </div>
         </div>
 
         <!-- Popover -->
-        <f7-popover ref="EditUserPicPopover">
+        <f7-popover ref="EditImagePopover">
             <f7-block-title>AÑADIR UNA IMAGEN...</f7-block-title>
             <f7-list>
                 <f7-list-item title="Tomar una foto" link="#" @click="getPictureFromCamera"></f7-list-item>
@@ -34,6 +34,9 @@
 
     export default {
         name: 'UserPic',
+        props: {
+
+        },
         data() {
             return {
                 USER_IMAGES_PATH: USER_IMAGES_PATH
