@@ -103,7 +103,7 @@
                             this.$store.dispatch('setUserEmail', response.data.user.email);
                             this.$store.dispatch('setUserName', response.data.user.name);
                             this.$store.dispatch('setUserLastname', response.data.user.lastname);
-                            this.$store.dispatch('setUserPic', response.data.user.pic);
+                            this.$store.dispatch('setUserProfileImg', response.data.user.pic);
                             this.$store.dispatch('setUserBirthdate', response.data.user.birthdate);
                             this.$store.dispatch('setUserSex', response.data.user.sex);
                             this.$store.dispatch('setUserWeight', response.data.user.weight);

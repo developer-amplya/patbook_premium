@@ -13,7 +13,7 @@
             <!-- USER PIC -->
             <div class="col">
                 <div class="user-pic">
-                    <img :src="USER_PICS_PATH + getUserPic"/>
+                    <img :src="USER_IMAGES_PATH + getUserProfileImg"/>
                 </div>
             </div>
 
@@ -80,17 +80,17 @@
 <script>
     import {mapGetters} from 'vuex';
     import {
-        USER_PICS_PATH
+        USER_IMAGES_PATH
     } from '../config.js';
 
     export default {
         name: 'Home',
         data() {
             return {
-                USER_PICS_PATH: USER_PICS_PATH
+                USER_IMAGES_PATH: USER_IMAGES_PATH
             };
         },
-        computed: mapGetters(['getUserName', 'getUserPic', 'getDocumentCounting'])
+        computed: mapGetters(['getUserName', 'getUserProfileImg', 'getDocumentCounting'])
     };
 </script>
 

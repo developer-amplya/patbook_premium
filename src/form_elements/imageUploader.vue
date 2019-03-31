@@ -2,11 +2,11 @@
 
     <f7-block inner>
 
-        <!-- Pic -->
+        <!-- Image -->
         <div class="col">
             <i class="icon material-icons">edit</i>
             <div class="user-pic" @click="$refs.EditUserPicPopover.open()">
-                <img ref="userPic" :src="USER_PICS_PATH + getUserPic"/>
+                <img ref="userProfileImg" :src="USER_IMAGES_PATH + getUserProfileImg"/>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
 <script>
     import axios from 'axios';
     import {
-        USER_PICS_PATH, API_PATH
+        USER_IMAGES_PATH, API_PATH
     } from '../config.js';
     import {
         mapGetters
@@ -36,11 +36,11 @@
         name: 'UserPic',
         data() {
             return {
-                USER_PICS_PATH: USER_PICS_PATH
+                USER_IMAGES_PATH: USER_IMAGES_PATH
             };
         },
         computed: {
-            ...mapGetters(['getUserPic', 'getUserID'])
+            ...mapGetters(['getUserProfileImg', 'getUserID'])
         },
         methods: {
             // From camera
@@ -95,7 +95,7 @@
                                         console.log(response);
 
                                         let fileName = image.substr(image.lastIndexOf('/') + 1);
-                                        this.$store.dispatch('setUserPic', fileName);
+                                        this.$store.dispatch('setUserProfileImg', fileName);
                                     })
                                     .catch(function (error) {
                                         console.log(error);
@@ -119,7 +119,7 @@
             success(response) {
                 console.log(response);
                 response = JSON.parse(response.response);
-                this.$store.dispatch('setUserPic', response.image_name);
+                this.$store.dispatch('setUserProfileImg', response.image_name);
 
                 // Close popover
                 this.$refs.EditUserPicPopover.close();

@@ -4,7 +4,7 @@ import {
     SET_USER_EMAIL,
     SET_USER_NAME,
     SET_USER_LASTNAME,
-    SET_USER_PIC,
+    SET_USER_PROFILE_IMG,
     SET_USER_BIRTHDATE,
     SET_USER_SEX,
     SET_USER_WEIGHT,
@@ -37,8 +37,8 @@ export default {
     setUserLastname({commit}, userLastname) {
         commit(SET_USER_LASTNAME, userLastname);
     },
-    setUserPic({commit}, userPic) {
-        commit(SET_USER_PIC, userPic);
+    setUserProfileImg({commit}, userProfileImg) {
+        commit(SET_USER_PROFILE_IMG, userProfileImg);
     },
     setUserBirthdate({commit}, userBirthdate) {
         commit(SET_USER_BIRTHDATE, userBirthdate);

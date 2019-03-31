@@ -11,8 +11,8 @@ export default {
     getUserLastname(state) {
         return (state.user_lastname);
     },
-    getUserPic(state) {
-        return (state.user_pic);
+    getUserProfileImg(state) {
+        return (state.user_profile_img);
     },
     getUserBirthdate(state) {
         return (state.user_birthdate);

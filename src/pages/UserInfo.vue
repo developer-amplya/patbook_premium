@@ -220,7 +220,7 @@
                 user_info: {
                     name: 'setUserName',
                     lastname: 'setUserLastname',
-                    pic: 'setUserPic',
+                    pic: 'setUserProfileImg',
                     birthdate: 'setUserBirthdate',
                     sex: 'setUserSex',
                     weight: 'setUserWeight',

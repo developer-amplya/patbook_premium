@@ -7,7 +7,7 @@ import {
     SET_USER_EMAIL,
     SET_USER_NAME,
     SET_USER_LASTNAME,
-    SET_USER_PIC,
+    SET_USER_PROFILE_IMG,
     SET_USER_BIRTHDATE,
     SET_USER_SEX,
     SET_USER_WEIGHT,
@@ -34,7 +34,7 @@ const state = {
     user_email: '',
     user_name: '',
     user_lastname: '',
-    user_pic: '',
+    user_profile_img: '',
     user_birthdate: '',
     user_sex: '',
     user_height: '',
@@ -73,8 +73,8 @@ const mutations = {
     [SET_USER_LASTNAME](state, userLastname) {
         state.user_lastname = userLastname;
     },
-    [SET_USER_PIC] (state, userPic) {
-        state.user_pic = userPic;
+    [SET_USER_PROFILE_IMG] (state, userProfileImg) {
+        state.user_profile_img = userProfileImg;
     },
     [SET_USER_BIRTHDATE] (state, userBirthdate) {
         state.user_birthdate = userBirthdate;

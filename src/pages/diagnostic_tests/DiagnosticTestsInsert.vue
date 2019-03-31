@@ -189,6 +189,7 @@
                 phone: '',
                 doctor: '',
                 results: '',
+                image: 'placeholder_img.png',
                 schema: []
             };
         },
@@ -213,6 +214,7 @@
                     phone: this.phone,
                     doctor: this.doctor,
                     results: this.results,
+                    image: this.image,
                     schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {

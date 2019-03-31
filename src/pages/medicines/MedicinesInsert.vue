@@ -194,7 +194,7 @@
                 frequencyList: ['Diaria', 'Semanal', 'Mensual', 'Bimensual', 'Trimestral', 'Otros'],
                 dayTimeList: ['Mañana', 'Tarde', 'Noche'],
                 name: '',
-                image: '',
+                image: 'placeholder_img.png',
                 lab: '',
                 content: '',
                 dose: '',
