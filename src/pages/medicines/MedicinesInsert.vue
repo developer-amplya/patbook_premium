@@ -21,7 +21,7 @@
                         <f7-label>Imagen</f7-label>
                     </f7-list-item>
                     <f7-list-item>
-                            <image-selector></image-selector>
+                        <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
 
                     <!-- Laboratory -->
@@ -202,7 +202,7 @@
                 frequencyList: ['Diaria', 'Semanal', 'Mensual', 'Bimensual', 'Trimestral', 'Otros'],
                 dayTimeList: ['Mañana', 'Tarde', 'Noche'],
                 name: '',
-                image: 'placeholder_img.png',
+                image: '',
                 lab: '',
                 content: '',
                 dose: '',
@@ -256,6 +256,10 @@
             },
             cancel() {
                 this.$f7Router.navigate('/medicines');
+            },
+            setImageURI(e) {
+                console.log('@setImageURI');
+                this.image = e;
             }
         }
     };

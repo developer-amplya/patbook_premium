@@ -127,7 +127,7 @@
                         <f7-label>Imagen</f7-label>
                     </f7-list-item>
                     <f7-list-item>
-                        <image-selector></image-selector>
+                        <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
 
                 </f7-list>
@@ -198,7 +198,7 @@
                 phone: '',
                 doctor: '',
                 results: '',
-                image: 'placeholder_img.png',
+                image: '',
                 schema: []
             };
         },
@@ -238,6 +238,10 @@
             },
             cancel() {
                 this.$f7Router.navigate('/diagnostic-tests');
+            },
+            setImageURI(e) {
+                console.log('@setImageURI');
+                this.image = e;
             }
         }
     };
