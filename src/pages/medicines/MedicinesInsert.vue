@@ -5,7 +5,7 @@
 
 
             <f7-card title="REGISTRO DE MEDICACIÓN">
-                <f7-list>
+                <f7-list no-hairlines no-hairlines-between>
                     <!-- Name -->
                     <f7-list-item>
                         <f7-label>Nombre</f7-label>
@@ -17,7 +17,12 @@
                     </f7-list-item>
 
                     <!-- Image -->
-                    <image-selector></image-selector>
+                    <f7-list-item>
+                        <f7-label>Imagen</f7-label>
+                    </f7-list-item>
+                    <f7-list-item>
+                            <image-selector></image-selector>
+                    </f7-list-item>
 
                     <!-- Laboratory -->
                     <f7-list-item>
