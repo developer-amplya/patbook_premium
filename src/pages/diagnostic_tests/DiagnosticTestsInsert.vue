@@ -229,6 +229,10 @@
                     .then((response) => {
                         // Incrementing counting state
                         this.$store.dispatch('incrementDocumentCounting', 'diagnostic_tests');
+                        // After insert check the existence of an image
+                        if (this.image !== '') {
+                            this.uploadImage(response.recordID);
+                        }
                         // Returning to list
                         this.$f7router.navigate('/diagnostic-tests');
                     })
@@ -242,6 +246,21 @@
             setImageURI(e) {
                 console.log('@setImageURI');
                 this.image = e;
+            },
+            uploadImage(recordID) {
+                let uri = encodeURI(API_PATH + 'diagnostic-tests/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = this.image.substr(this.image.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: recordID
+                };
+
+                var ft = new FileTransfer();
+                ft.upload(this.image, uri, this.success, this.error, options);
             }
         }
     };
