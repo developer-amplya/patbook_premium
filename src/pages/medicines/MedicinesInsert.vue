@@ -254,7 +254,7 @@
                         }
 
                         // Returning to list
-                        this.$f7router.navigate('/medicines');
+                        //this.$f7router.navigate('/medicines');
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -281,6 +281,12 @@
 
                 var ft = new FileTransfer();
                 ft.upload(this.image, uri, this.success, this.error, options);
+            },
+            success(response){
+                alert(response.data.result);
+            },
+            error(response){
+                alert(response.data.result);
             }
         }
     };
