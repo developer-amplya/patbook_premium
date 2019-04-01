@@ -250,7 +250,7 @@
 
                         // After insert check the existence of an image
                         if (this.image !== '') {
-                            this.uploadImage(response.data.recordID);
+                            this.uploadImage(response.data.recordID.$oid);
                         }
 
                         // Returning to list
@@ -267,7 +267,7 @@
                 console.log('@setImageURI');
                 this.image = e;
             },
-            uploadImage(recordID) {
+            uploadImage(record_id) {
                 let uri = encodeURI(API_PATH + 'medicines/update-image');
                 let options = new FileUploadOptions();
                 options.fileKey = "file";
@@ -276,7 +276,7 @@
                 options.httpMethod = "POST";
                 options.chunkedMode = true;
                 options.params = {
-                    id: recordID
+                    id: record_id
                 };
 
                 var ft = new FileTransfer();
