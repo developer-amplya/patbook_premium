@@ -3,11 +3,8 @@
     <f7-block inner>
 
         <!-- Image -->
-        <div class="col">
-            <i class="icon material-icons">edit</i>
-            <div class="image" @click="$refs.EditImagePopover.open()">
-                <img ref="currentImage" :src="image_path"/>
-            </div>
+        <div class="image" @click="$refs.EditImagePopover.open()">
+            <img ref="currentImage" src="../assets/placeholder_img.png"/>
         </div>
 
         <!-- Popover -->
@@ -32,8 +29,7 @@
         name: 'ImageSelector',
         data() {
             return {
-                image_path: IMAGE_PLACEHOLDER
-                //USER_IMAGES_PATH: USER_IMAGES_PATH
+                //
             };
         },
         methods: {
@@ -72,7 +68,10 @@
                 }
             },
             showPicture(imageURI) {
-                this.image_path = imageURI;
+                this.$refs.currentImage.src = imageURI;
+
+                // Close popover
+                this.$refs.EditImagePopover.close();
             }
         }
     };
@@ -80,27 +79,7 @@
 
 <style scoped>
 
-    .col i.icon {
-        position: absolute;
-        top: 36px;
-        left: 50%;
-        transform: translate(-66px);
-        color: #BEBEBE !important;
-        background-color: #F4F4F4;
-        padding: 5px;
-        border-radius: 50%;
-    }
-
-    .user-pic {
-        width: 100px;
-        height: 100px;
-        margin: 20px auto 0px;
-        overflow: hidden;
-        border: 3px solid #1ABAD4;
-        border-radius: 100%;
-    }
-
-    .user-pic img {
+    .image img {
         width: 100%;
     }
 
