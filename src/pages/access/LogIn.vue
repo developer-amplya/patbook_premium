@@ -38,7 +38,7 @@
 
         </f7-block>
 
-        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.84</small></div>
+        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.85</small></div>
 
     </f7-page>
 </template>
@@ -58,6 +58,8 @@
                 log_in: {
                     email: '',
                     password: '',
+                    //email: 'reezooh@yahoo.com',
+                    //password: '123456',
                     token: ''
                 }
             };
