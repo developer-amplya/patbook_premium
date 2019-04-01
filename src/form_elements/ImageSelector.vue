@@ -21,9 +21,6 @@
 </template>
 
 <script>
-    import {
-        IMAGE_PLACEHOLDER
-    } from '../config.js';
 
     export default {
         name: 'ImageSelector',
@@ -72,6 +69,9 @@
 
                 // Close popover
                 this.$refs.EditImagePopover.close();
+
+                // Emit URI to parent
+                this.$emit('image_selected', imageURI);
             }
         }
     };
