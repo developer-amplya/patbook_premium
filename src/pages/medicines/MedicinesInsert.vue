@@ -283,10 +283,10 @@
                 ft.upload(this.image, uri, this.success, this.error, options);
             },
             success(response){
-                alert(response.data.result);
+                console.log(response);
             },
             error(response){
-                alert(response.data.result);
+                console.log(response);
             }
         }
     };
