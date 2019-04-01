@@ -229,10 +229,12 @@
                     .then((response) => {
                         // Incrementing counting state
                         this.$store.dispatch('incrementDocumentCounting', 'diagnostic_tests');
+
                         // After insert check the existence of an image
                         if (this.image !== '') {
-                            this.uploadImage(response.recordID);
+                            this.uploadImage(response.data.recordID);
                         }
+
                         // Returning to list
                         this.$f7router.navigate('/diagnostic-tests');
                     })
