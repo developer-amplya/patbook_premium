@@ -5,7 +5,7 @@
 
 
             <f7-card title="REGISTRO DE PRUEBA DIAGNÓSTICA">
-                <f7-list>
+                <f7-list no-hairlines no-hairlines-between>
                     <!-- Name -->
                     <f7-list-item>
                         <f7-label>Nombre de la prueba</f7-label>
