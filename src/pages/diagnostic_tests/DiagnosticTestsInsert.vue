@@ -263,6 +263,12 @@
 
                 var ft = new FileTransfer();
                 ft.upload(this.image, uri, this.success, this.error, options);
+            },
+            success(response) {
+                console.log(response);
+            },
+            error(response) {
+                console.log(response);
             }
         }
     };
