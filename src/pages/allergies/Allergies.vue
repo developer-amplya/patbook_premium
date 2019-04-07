@@ -64,7 +64,7 @@
                     }
                 })
                 .then(response => (this.list = response.data))
-                .catch(error => (//console.log(error)));
+                //.catch(error => (console.log(error)));
         }
     }
     ;
