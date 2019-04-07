@@ -38,7 +38,7 @@
 
         </f7-block>
 
-        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.97</small></div>
+        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.98</small></div>
 
     </f7-page>
 </template>
