@@ -95,13 +95,13 @@
                                     data: bodyFormData
                                 })
                                     .then((response) => {
-                                        console.log(response);
+                                        //console.log(response);
 
                                         let fileName = image.substr(image.lastIndexOf('/') + 1);
                                         this.$store.dispatch('setUserProfileImg', fileName);
                                     })
                                     .catch(function (error) {
-                                        console.log(error);
+                                        //console.log(error);
                                     });
                 */
 
@@ -120,7 +120,7 @@
                 ft.upload(imageURI, uri, this.success, this.error, options);
             },
             success(response) {
-                console.log(response);
+                //console.log(response);
                 response = JSON.parse(response.response);
                 this.$store.dispatch('setUserProfileImg', response.image_name);
 

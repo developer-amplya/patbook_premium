@@ -84,11 +84,11 @@
             };
         },
         mounted() {
-            console.log('-> UserRegister');
+            //console.log('-> UserRegister');
         },
         methods: {
             signIn() {
-                console.log(this.register.name + '/' + this.register.email + '/' + this.register.password + '/' + this.register.password_confirmation);
+                //console.log(this.register.name + '/' + this.register.email + '/' + this.register.password + '/' + this.register.password_confirmation);
 
                 axios.post(API_PATH + 'register', {
                     name: this.register.name,
@@ -97,12 +97,12 @@
                     password_confirmation: this.register.password_confirmation
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         // Proceeding to the device registration by passing the user's email.
                         if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email + '/' + this.register.password);
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

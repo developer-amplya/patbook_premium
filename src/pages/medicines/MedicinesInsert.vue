@@ -257,14 +257,14 @@
                         //this.$f7router.navigate('/medicines');
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             cancel() {
                 this.$f7Router.navigate('/medicines');
             },
             setImageURI(e) {
-                console.log('@setImageURI');
+                //console.log('@setImageURI');
                 this.image = e;
             },
             uploadImage(record_id) {
@@ -283,10 +283,10 @@
                 ft.upload(this.image, uri, this.success, this.error, options);
             },
             success(response) {
-                console.log(response);
+                //console.log(response);
             },
             error(response) {
-                console.log(response);
+                //console.log(response);
             }
         }
     };

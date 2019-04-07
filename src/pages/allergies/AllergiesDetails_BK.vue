@@ -200,7 +200,7 @@
                 this[param2] = false;
             },
             openEditSchema(event, index) {
-                console.log(index);
+                //console.log(index);
                 this.before_editing = this.schema[index].value;
                 this.schema[index].is_editing = true;
             },
@@ -234,12 +234,12 @@
                     data: data
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         // TODO: confirm the update is OK
                         this[param2] = false;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             updateInfoSchema(index) {
@@ -252,11 +252,11 @@
                     schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         // TODO: confirm the update is OK
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         },

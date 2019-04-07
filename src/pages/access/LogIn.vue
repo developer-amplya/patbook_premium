@@ -65,7 +65,7 @@
             };
         },
         mounted() {
-            console.log('-> LogIn');
+            //console.log('-> LogIn');
 
             if (!localStorage.allowed_users) {
                 localStorage.allowed_users = JSON.stringify([]);
@@ -99,7 +99,7 @@
                     device_code: this.log_in.token
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'OK') {
                             this.$store.dispatch('setUserID', response.data.user._id);
                             this.$store.dispatch('setUserEmail', response.data.user.email);
@@ -132,7 +132,7 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

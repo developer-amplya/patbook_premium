@@ -297,7 +297,7 @@
                     data: data
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'OK') {
 
                             this.$store.dispatch(this.user_info[param], this.field.value);
@@ -309,11 +309,11 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             test(e) {
-                console.log(e);
+                //console.log(e);
             }
         }
     };

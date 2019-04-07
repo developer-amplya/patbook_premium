@@ -56,7 +56,7 @@
             };
         },
         mounted() {
-            console.log('-> DeviceRegister');
+            //console.log('-> DeviceRegister');
         },
         methods: {
 
@@ -67,7 +67,7 @@
                     device_code: this.device_code
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'OK') {
                             this.pushAllowedUser();
                             this.do_login();
@@ -76,7 +76,7 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
 
@@ -96,7 +96,7 @@
                     device_code: this.device_code
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'OK') {
                             this.$store.dispatch('setUserName', response.data.user.name);
                             this.$store.dispatch('setUserID', response.data.user._id);
@@ -109,7 +109,7 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

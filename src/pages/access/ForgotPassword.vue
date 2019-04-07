@@ -67,18 +67,18 @@
         },
         methods: {
             retrievePassword() {
-                console.log(this.email);
+                //console.log(this.email);
 
                 axios.post(API_PATH + 'forgot-password', {
                     email: this.email
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'KO') this.msg = response.data.message;
                         if (response.statusText === 'OK') this.$f7router.navigate('/login');
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

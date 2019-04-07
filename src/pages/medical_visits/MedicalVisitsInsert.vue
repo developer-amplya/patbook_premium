@@ -312,7 +312,7 @@
                         this.$f7router.navigate('/medical-visits');
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             cancel() {

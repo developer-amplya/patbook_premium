@@ -202,7 +202,7 @@
         },
         methods: {
             openInputPopover($event, type, label, name, value) {
-                console.log('@openInputPopover');
+                //console.log('@openInputPopover');
                 this.field.type = type;
                 this.field.label = label;
                 this.field.name = name;
@@ -210,7 +210,7 @@
                 this.$refs.EditInputField.open();
             },
             openSelectPopover($event, type, label, name, value) {
-                console.log('@openSelectPopover');
+                //console.log('@openSelectPopover');
                 this.field.type = type;
                 this.field.label = label;
                 this.field.name = name;
@@ -229,17 +229,17 @@
                 }
             },
             setInputValue(e) {
-                console.log('@setInputValue');
+                //console.log('@setInputValue');
                 this.field.value = e;
             },
             setSelectValue(e) {
-                console.log('@setSelectValue');
+                //console.log('@setSelectValue');
                 this.field.value = e;
                 this.updateInfo(event, this.field.name);
                 this.$refs.EditSelectField.close();
             },
             update() {
-                console.log('@update');
+                //console.log('@update');
                 if (this.field.name === 'schema') {
                     this.updateInfoSchema(this.schema_active_index);
                 } else {
@@ -247,7 +247,7 @@
                 }
             },
             updateInfo() {
-                console.log('@updateInfo');
+                //console.log('@updateInfo');
 
                 /* We need to create first an object an then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
@@ -274,11 +274,11 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             updateInfoSchema(index) {
-                console.log('@updateInfoSchema');
+                //console.log('@updateInfoSchema');
 
                 this.schema_active_index = null;
 
@@ -306,7 +306,7 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

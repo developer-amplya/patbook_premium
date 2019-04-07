@@ -60,14 +60,14 @@
             };
         },
         mounted() {
-            console.log('-> CreateCustomField');
-            console.log(this.schema);
+            //console.log('-> CreateCustomField');
+            //console.log(this.schema);
         },
         computed: mapGetters(['getMainColor']),
         methods: {
             insert() {
-                console.log(this.name);
-                console.log(this.type);
+                //console.log(this.name);
+                //console.log(this.type);
 
                 let newObject = {};
                 newObject.label = this.name;

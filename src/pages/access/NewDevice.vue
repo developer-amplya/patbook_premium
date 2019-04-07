@@ -69,17 +69,17 @@
             };
         },
         mounted() {
-            console.log('-> NewDevice');
+            //console.log('-> NewDevice');
         },
         methods: {
             registerDevice() {
-                console.log(this.email);
+                //console.log(this.email);
 
                 axios.post(API_PATH + 'register-device', {
                     email: this.email
                 })
                     .then((response) => {
-                        console.log(response);
+                        //console.log(response);
                         if (response.data.result === 'KO') {
                             this.msg = response.data.message;
                         } else {
@@ -87,7 +87,7 @@
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             }
         }

@@ -193,7 +193,7 @@
                         this.$f7router.navigate('/medical-visit-preparations');
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
             cancel() {
