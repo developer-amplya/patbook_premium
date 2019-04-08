@@ -87,21 +87,25 @@
                     </f7-list-item>
 
                     <!-- Start date -->
-                    <f7-list-item>
+                    <f7-list-item class="test">
                         <f7-label>Fecha de inicio</f7-label>
-                        <f7-input
-                                type="date"
-                                :value="start"
-                                @input="start = $event.target.value"></f7-input>
+                    </f7-list-item>
+                    <f7-list-item class="date-picker">
+                        <calendar
+                                id="medicines_start"
+                                @change="start = setDate($event)">
+                        </calendar>
                     </f7-list-item>
 
                     <!-- Ending date -->
                     <f7-list-item>
                         <f7-label>Fecha de fin</f7-label>
-                        <f7-input
-                                type="date"
-                                :value="end"
-                                @input="end = $event.target.value"></f7-input>
+                    </f7-list-item>
+                    <f7-list-item class="date-picker">
+                        <calendar
+                                id="medicines_end"
+                                @change="end = setDate($event)">
+                        </calendar>
                     </f7-list-item>
 
                     <!-- Cause -->
@@ -190,12 +194,14 @@
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import ImageSelector from '../../form_elements/ImageSelector';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'MedicinesInsert',
         components: {
             'create-custom-field': CreateCustomField,
-            'image-selector': ImageSelector
+            'image-selector': ImageSelector,
+            'calendar': Calendar
         },
         data() {
             return {
@@ -220,6 +226,13 @@
         },
         computed: mapGetters(['getUserID']),
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             insert() {
                 axios.post(API_PATH + 'medicines', {
                     /*params: {
@@ -254,7 +267,7 @@
                         }
 
                         // Returning to list
-                        //this.$f7router.navigate('/medicines');
+                        this.$f7router.navigate('/medicines');
                     })
                     .catch(function (error) {
                         //console.log(error);
@@ -295,5 +308,9 @@
 <style scoped>
     .navbar {
         background-color: #F2BE4C;
+    }
+
+    .date-picker {
+        margin-top: -24px;
     }
 </style>

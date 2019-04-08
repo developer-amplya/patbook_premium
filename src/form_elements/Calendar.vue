@@ -1,23 +1,47 @@
 <template>
-    <f7-input type="text" readonly="readonly" id="calendar-modal"></f7-input>
+    <input
+            type="text"
+            placeholder="Seleccionar..."
+            readonly="readonly"
+            :id="id"
+            @click="displayCalendar"
+    />
 </template>
 
 <script>
     export default {
         name: 'Calendar',
-        props: [],
-        data() {
-            return {
-                //
-            };
-        },
-        mounted() {
-            self.calendarDefault = self.$f7.calendar.create({
-                inputEl: '#calendar-modal',
-            });
-        },
-        methods: {}
+        props: ['id'],
+        methods: {
+            displayCalendar() {
+                let calendar = this.$f7.calendar.create({
+                    inputEl: '#' + this.id,
+                    openIn: 'customModal',
+                    closeOnSelect: true,
+                    dateFormat: 'dd-mm-yyyy',
+                    monthNames: [
+                        'Enero',
+                        'Febrero',
+                        'Marzo',
+                        'Abril',
+                        'Mayo',
+                        'Junio',
+                        'Julio',
+                        'Agosto',
+                        'Septiembre',
+                        'Octubre',
+                        'Noviembre',
+                        'Diciembre'
+                    ],
+                    dayNamesShort: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                    on: {
+                        closed: () => {
+                            this.$emit('change', calendar.getValue());
+                            calendar.destroy();
+                        }
+                    }
+                });
+            },
+        }
     };
 </script>
-
-<style></style>
