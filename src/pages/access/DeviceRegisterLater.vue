@@ -13,11 +13,27 @@
 
         <f7-block inner>
 
-            <p>Escribe a continuación el código que hemos enviado a tu dirección de correo electrónico* (respeta las
-                mayúsculas y minúsculas).</p>
+            <p>Escribe a continuación la dirección de correo electrónico y la contraseña con que te registrasteel junto
+                al código que hemos enviado a dicha dirección de correo electrónico* (respeta las mayúsculas y
+                minúsculas), junto al email.</p>
 
             <f7-list form no-hairlines>
 
+                <!-- EMAIL  -->
+                <f7-list-item>
+                    <f7-label>Email</f7-label>
+                    <f7-input type="email" :value="email"
+                              @input="email = $event.target.value"></f7-input>
+                </f7-list-item>
+
+                <!-- PASSWORD -->
+                <f7-list-item>
+                    <f7-label>Contraseña</f7-label>
+                    <f7-input type="password" :value="password"
+                              @input="password = $event.target.value"></f7-input>
+                </f7-list-item>
+
+                <!-- Device code -->
                 <f7-list-item>
                     <f7-label>Código</f7-label>
                     <f7-input type="text" :value="device_code"
@@ -25,7 +41,7 @@
                 </f7-list-item>
 
                 <f7-list-item>
-                    <f7-button big fill  @click="checkDeviceCode" no-fast-click>Enviar</f7-button>
+                    <f7-button big fill @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO</f7-button>
                 </f7-list-item>
 
             </f7-list>
@@ -47,10 +63,11 @@
     } from '../../config.js';
 
     export default {
-        name: 'DeviceRegister',
-        props: ['email', 'password'],
+        name: 'DeviceRegisterLater',
         data() {
             return {
+                email: '',
+                password: '',
                 device_code: ''
             };
         },
