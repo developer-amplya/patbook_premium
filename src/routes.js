@@ -1,9 +1,12 @@
 import Cover from './pages/Cover.vue';
+import UseGuide from './pages/UseGuide.vue';
 import LogIn from './pages/access/LogIn.vue';
 import NewDevice from './pages/access/NewDevice.vue';
 import UserRegister from './pages/access/UserRegister.vue';
 import DeviceRegister from './pages/access/DeviceRegister.vue';
+import DeviceRegisterLater from './pages/access/DeviceRegisterLater.vue';
 import ForgotPassword from './pages/access/ForgotPassword.vue';
+import ResetPassword from './pages/access/ResetPassword.vue';
 import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
 import UserInfo from './pages/UserInfo.vue';
@@ -31,6 +34,10 @@ export default [
         component: Cover
     },
     {
+        path: '/use-guide',
+        component: UseGuide
+    },
+    {
         path: '/login',
         component: LogIn
     },
@@ -49,8 +56,17 @@ export default [
         props: true
     },
     {
+        path: '/device-register-later',
+        component: DeviceRegisterLater
+    },
+    {
         path: '/forgot-password',
         component: ForgotPassword
+    },
+    {
+        path: '/reset-password/:email',
+        component: ResetPassword,
+        props: true
     },
     {
         path: '/home',
