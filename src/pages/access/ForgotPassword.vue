@@ -34,14 +34,9 @@
                               @input="email = $event.target.value"></f7-input>
                 </f7-list-item>
 
-                <!-- FEEDBACK -->
-                <f7-list-item v-show="msg">
-                    {{ msg }}
-                </f7-list-item>
-
                 <!-- SUBMIT -->
                 <f7-list-item>
-                    <f7-button big fill  @click="retrievePassword">Enviar</f7-button>
+                    <f7-button big fill @click="retrievePassword">Enviar</f7-button>
                 </f7-list-item>
 
             </f7-list>
@@ -61,24 +56,32 @@
         name: 'ForgotPassword',
         data() {
             return {
-                email: '',
-                msg: ''
+                email: ''
             };
         },
         methods: {
             retrievePassword() {
-                //console.log(this.email);
+                // Preloader On
+                this.$f7.dialog.preloader("Enviando...");
 
                 axios.post(API_PATH + 'forgot-password', {
                     email: this.email
                 })
                     .then((response) => {
-                        //console.log(response);
-                        if (response.data.result === 'KO') this.msg = response.data.message;
-                        if (response.statusText === 'OK') this.$f7router.navigate('/login');
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.result === 'OK') {
+                            this.$f7router.navigate('/reset-password/' + this.email);
+                        } else {
+                            this.$f7.dialog.alert(response.data.message, "Error");
+                        }
                     })
-                    .catch(function (error) {
-                        //console.log(error);
+                    .catch((error) => {
+                        console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("Ha ocurrido un error", "Error");
                     });
             }
         }
