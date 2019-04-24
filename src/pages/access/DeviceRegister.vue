@@ -25,15 +25,14 @@
                 </f7-list-item>
 
                 <f7-list-item>
-                    <f7-button big fill  @click="checkDeviceCode" no-fast-click>Enviar</f7-button>
+                    <f7-button big fill  @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO</f7-button>
                 </f7-list-item>
 
             </f7-list>
 
             <p>
                 <small>* El email puede tardar unos minutos en alcanzar tu bandeja de entrada. Si, pasado un tiempo, no
-                    lo ves revisa en
-                    <em>spam</em>, puede que haya llegado ahí por error.
+                    lo ves revisa en <em>spam</em>, puede que haya llegado ahí por error.
                 </small>
             </p>
 

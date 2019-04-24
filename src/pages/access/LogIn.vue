@@ -29,11 +29,15 @@
             </f7-list>
 
             <f7-list>
-                <f7-button href="/forgot-password" fill round>He olvidado mi contraseña</f7-button>
+                <f7-button href="/forgot-password" fill round>HE OLVIDADO MI CONTRASEÑA</f7-button>
             </f7-list>
 
             <f7-list>
-                <f7-button href="/user-register" fill round>Nuevo usuario</f7-button>
+                <f7-button href="/user-register" fill round>NUEVO USUARIO</f7-button>
+            </f7-list>
+
+            <f7-list>
+                <f7-button href="/device-register-later" fill round>REGISTRAR DISPOSITIVO</f7-button>
             </f7-list>
 
         </f7-block>
@@ -56,10 +60,10 @@
         data() {
             return {
                 log_in: {
-                    email: '',
-                    password: '',
-                    //email: 'reezooh@yahoo.com',
-                    //password: '123456',
+                    //email: '',
+                    //password: '',
+                    email: 'reezooh@yahoo.com',
+                    password: '123456',
                     token: ''
                 }
             };

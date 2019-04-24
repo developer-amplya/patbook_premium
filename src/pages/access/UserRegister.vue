@@ -55,7 +55,7 @@
 
                 <!-- SUBMIT -->
                 <f7-list-item>
-                    <f7-button big fill  @click="signIn">Enviar</f7-button>
+                    <f7-button big fill  @click="signIn">REGISTRAR</f7-button>
                 </f7-list-item>
 
             </f7-list>
@@ -97,7 +97,7 @@
                     password_confirmation: this.register.password_confirmation
                 })
                     .then((response) => {
-                        //console.log(response);
+                        console.log(response);
                         // Proceeding to the device registration by passing the user's email.
                         if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email + '/' + this.register.password);
                     })
