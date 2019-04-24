@@ -1,10 +1,10 @@
 // config.js
 //export const API_PATH = 'http://patbookapi.local/api/';
 //export const USER_IMAGES_PATH = 'http://patbookapi.local/storage/user_profile_imgs/';
-//export const API_PATH = 'https://pat-book.es/api/';
-//export const USER_IMAGES_PATH = 'https://pat-book.es/storage/user_images/';
-export const API_PATH = 'http://patbookapi.local/api/';
-export const USER_IMAGES_PATH = 'http://patbookapi.local/storage/user_images/';
+export const API_PATH = 'https://pat-book.es/api/';
+export const USER_IMAGES_PATH = 'https://pat-book.es/storage/user_images/';
+//export const API_PATH = 'http://patbookapi.local/api/';
+//export const USER_IMAGES_PATH = 'http://patbookapi.local/storage/user_images/';
 export const IMAGE_PLACEHOLDER = '../../assets/placeholder_img.png';
 
 export default {
