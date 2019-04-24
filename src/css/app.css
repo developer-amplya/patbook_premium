@@ -52,6 +52,10 @@
     display: none;
 }
 
+.button-fill {
+    background-color: #1ABAD4 !important;
+}
+
 /* COLORS */
 .purple {
     background-color: #c36eb5 !important;
