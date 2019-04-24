@@ -6,11 +6,11 @@
 
 <script>
     export default {
+        name: 'Cover',
         methods: {
             waitSomeSeconds() {
                 setTimeout(() => {
-                    this.$f7router.navigate('/login');
-                    //alert('4s');
+                    this.$f7router.navigate('/use-guide');
                 }, 2000);
             }
         },
