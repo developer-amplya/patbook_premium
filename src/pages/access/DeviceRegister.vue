@@ -24,10 +24,10 @@
                               @input="device_code = $event.target.value"></f7-input>
                 </f7-list-item>
 
-                <f7-list-item>
-                    <f7-button big fill  @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO</f7-button>
-                </f7-list-item>
+            </f7-list>
 
+            <f7-list>
+                <f7-button big fill  @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO</f7-button>
             </f7-list>
 
             <p>
@@ -71,11 +71,12 @@
                             this.pushAllowedUser();
                             this.do_login();
                         } else {
-                            alert(response.data.message);
+                            this.$f7.dialog.alert(response.data.message, "Error");
                         }
                     })
-                    .catch(function (error) {
-                        //console.log(error);
+                    .catch((error) => {
+                        console.log(error);
+                        this.$f7.dialog.alert('Ha ocurrido un error', "Error");
                     });
             },
 
@@ -104,13 +105,20 @@
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');
                         } else {
-                            alert(response.data.message);
+                            this.$f7.dialog.alert(response.data.message, "Error");
                         }
                     })
-                    .catch(function (error) {
-                        //console.log(error);
+                    .catch((error) => {
+                        console.log(error);
+                        this.$f7.dialog.alert('Ha ocurrido un error', "Error");
                     });
             }
         }
     };
 </script>
+
+<style scoped>
+    .md .navbar {
+        background-color: #1ABAD4 !important;
+    }
+</style>

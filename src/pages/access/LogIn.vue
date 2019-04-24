@@ -20,29 +20,31 @@
                     <f7-input type="password" :value="log_in.password"
                               @input="log_in.password = $event.target.value"></f7-input>
                 </f7-list-item>
-
-                <!-- SUBMIT -->
-                <f7-list-item>
-                    <f7-button big fill @click="do_login">Enviar</f7-button>
-                </f7-list-item>
-
             </f7-list>
 
+            <!-- Submit -->
+            <f7-list>
+                <f7-button big fill @click="do_login">ACCEDER</f7-button>
+            </f7-list>
+
+            <!-- Forgot password -->
             <f7-list>
                 <f7-button href="/forgot-password" fill round>HE OLVIDADO MI CONTRASEÑA</f7-button>
             </f7-list>
 
+            <!-- New user -->
             <f7-list>
                 <f7-button href="/user-register" fill round>NUEVO USUARIO</f7-button>
             </f7-list>
 
+            <!-- Device register later -->
             <f7-list>
                 <f7-button href="/device-register-later" fill round>REGISTRAR DISPOSITIVO</f7-button>
             </f7-list>
 
         </f7-block>
 
-        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.98</small></div>
+        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.99</small></div>
 
     </f7-page>
 </template>
@@ -104,6 +106,7 @@
                 })
                     .then((response) => {
                         //console.log(response);
+                        // TODO: group all this in one object ?
                         if (response.data.result === 'OK') {
                             this.$store.dispatch('setUserID', response.data.user._id);
                             this.$store.dispatch('setUserEmail', response.data.user.email);
@@ -132,14 +135,21 @@
                         ) {
                             this.$f7router.navigate('/new-device/' + this.log_in.email + '/' + this.log_in.password);
                         } else {
-                            alert(response.data.message);
+                            //
                         }
                     })
-                    .catch(function (error) {
-                        //console.log(error);
+                    .catch((error) => {
+                        console.log(error);
+                        this.$f7.dialog.alert('Email o contraseña incorrectos', "Error");
                     });
             }
         }
     }
     ;
 </script>
+
+<style scoped>
+    .md .navbar {
+        background-color: #1ABAD4 !important;
+    }
+</style>

@@ -38,11 +38,10 @@
                     <f7-input type="password" :value="password_confirmation"
                               @input="password_confirmation = $event.target.value"></f7-input>
                 </f7-list-item>
+            </f7-list>
 
-                <f7-list-item>
-                    <f7-button big fill @click="ResetPassword" no-fast-click>CREAR NUEVA CONTRASEÑA</f7-button>
-                </f7-list-item>
-
+            <f7-list>
+                <f7-button big fill @click="ResetPassword" no-fast-click>CREAR NUEVA CONTRASEÑA</f7-button>
             </f7-list>
 
             <p>
@@ -125,7 +124,7 @@
 </script>
 
 <style scoped>
-    .big {
-        width: 100%;
+    .md .navbar {
+        background-color: #1ABAD4 !important;
     }
 </style>

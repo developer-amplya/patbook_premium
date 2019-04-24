@@ -41,7 +41,7 @@
 
                 <!-- PASSWORD -->
                 <f7-list-item>
-                    <f7-label>Contraseña</f7-label>
+                    <f7-label>Contraseña (mínimo 6 caracteres)</f7-label>
                     <f7-input type="password" :value="register.password"
                               @input="register.password = $event.target.value"></f7-input>
                 </f7-list-item>
@@ -52,13 +52,13 @@
                     <f7-input type="password" :value="register.password_confirmation"
                               @input="register.password_confirmation = $event.target.value"></f7-input>
                 </f7-list-item>
-
-                <!-- SUBMIT -->
-                <f7-list-item>
-                    <f7-button big fill  @click="signIn">REGISTRAR</f7-button>
-                </f7-list-item>
-
             </f7-list>
+
+            <!-- SUBMIT -->
+            <f7-list>
+                <f7-button big fill  @click="signIn">REGISTRAR</f7-button>
+            </f7-list>
+
 
         </f7-block>
     </f7-page>
@@ -99,12 +99,19 @@
                     .then((response) => {
                         console.log(response);
                         // Proceeding to the device registration by passing the user's email.
-                        if (response.statusText === 'OK') this.$f7router.navigate('/device-register/' + this.register.email + '/' + this.register.password);
+                        if (response.data.result === 'OK') this.$f7router.navigate('/device-register/' + this.register.email + '/' + this.register.password);
                     })
-                    .catch(function (error) {
-                        //console.log(error);
+                    .catch((error) => {
+                        console.log(error);
+                        this.$f7.dialog.alert('Ha ocurrido un error', "Error");
                     });
             }
         }
     };
 </script>
+
+<style scoped>
+    .md .navbar {
+        background-color: #1ABAD4 !important;
+    }
+</style>

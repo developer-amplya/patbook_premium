@@ -33,12 +33,11 @@
                     <f7-input type="email" :value="email"
                               @input="email = $event.target.value"></f7-input>
                 </f7-list-item>
+            </f7-list>
 
-                <!-- SUBMIT -->
-                <f7-list-item>
-                    <f7-button big fill @click="retrievePassword">Enviar</f7-button>
-                </f7-list-item>
-
+            <!-- SUBMIT -->
+            <f7-list>
+                <f7-button big fill @click="retrievePassword">Enviar</f7-button>
             </f7-list>
 
         </f7-block>
@@ -87,3 +86,9 @@
         }
     };
 </script>
+
+<style scoped>
+    .md .navbar {
+        background-color: #1ABAD4 !important;
+    }
+</style>

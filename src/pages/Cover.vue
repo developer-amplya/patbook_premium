@@ -10,7 +10,11 @@
         methods: {
             waitSomeSeconds() {
                 setTimeout(() => {
-                    this.$f7router.navigate('/use-guide');
+                    if (localStorage.patbookDontShowTheGuide === 'true') {
+                        this.$f7router.navigate('/login');
+                    } else {
+                        this.$f7router.navigate('/use-guide');
+                    }
                 }, 2000);
             }
         },
