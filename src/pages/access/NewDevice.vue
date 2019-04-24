@@ -54,6 +54,7 @@
 </template>
 
 <script>
+    //TODO: usar el UUID del dispositivo para comprobar el acceso y prescindir de guardar nada en localStorage
     import axios from 'axios';
     import {
         API_PATH
