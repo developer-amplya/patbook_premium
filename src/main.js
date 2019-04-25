@@ -25,6 +25,7 @@ import App from './app';
 Vue.use(Framework7Vue, Framework7);
 
 import VeeValidate from 'vee-validate';
+
 Vue.use(VeeValidate);
 
 // Init App
@@ -38,7 +39,15 @@ const baseApp = new Vue({
     framework7: {
         id: 'com.patbook.app', // App bundle ID
         name: 'Patbook', // App name
-        theme: 'auto', // Automatic theme detection
+        theme: 'auto', // Automatic theme detection,
+        touch: {
+            tapHold: true,
+            fastClicks: true,
+            materialRipple: true,
+            activeState: true,
+            disableContextMenu: false
+
+        },
         // App routes
         routes: Routes
     },
