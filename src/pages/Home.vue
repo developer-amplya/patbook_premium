@@ -13,7 +13,7 @@
             <!-- USER PIC -->
             <div class="col">
                 <div class="user-pic">
-                    <img :src="USER_IMAGES_PATH + getUserProfileImg"/>
+                    <img ref="userProfileImg" src="../assets/profile_photo.png"/>
                 </div>
             </div>
 
@@ -87,10 +87,16 @@
         name: 'Home',
         data() {
             return {
-                USER_IMAGES_PATH: USER_IMAGES_PATH
+                USER_IMAGES_PATH: USER_IMAGES_PATH,
+                img_src: '../assets/profile_photo.png'
             };
         },
-        computed: mapGetters(['getUserName', 'getUserProfileImg', 'getDocumentCounting'])
+        computed: mapGetters(['getUserName', 'getUserProfileImg', 'getDocumentCounting']),
+        mounted() {
+            if (this.getUserProfileImg !== '') {
+                this.$refs.userProfileImg.src = USER_IMAGES_PATH + this.getUserProfileImg;
+            }
+        }
     };
 </script>
 
