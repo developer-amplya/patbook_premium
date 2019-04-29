@@ -326,7 +326,7 @@
                 options.httpMethod = "POST";
                 options.chunkedMode = true;
                 options.params = {
-                    id: record_id
+                    id: this.id
                 };
 
                 var ft = new FileTransfer();
