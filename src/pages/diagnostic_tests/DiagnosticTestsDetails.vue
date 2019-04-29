@@ -314,7 +314,7 @@
                     });
             },
             updateImage(path) {
-                let uri = encodeURI(API_PATH + 'medicines/update-image');
+                let uri = encodeURI(API_PATH + 'diagnostic-tests/update-image');
                 let options = new FileUploadOptions();
                 options.fileKey = "file";
                 options.fileName = path.substr(path.lastIndexOf('/') + 1);
