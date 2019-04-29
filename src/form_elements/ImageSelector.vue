@@ -4,7 +4,7 @@
 
         <!-- Image -->
         <div class="image" @click="$refs.EditImagePopover.open()">
-            <img ref="currentImage" :src="imagepath"/>
+            <img ref="currentImage" :src="getImgUrl(imagepath)"/>
         </div>
 
         <!-- Popover -->
@@ -21,24 +21,22 @@
 </template>
 
 <script>
-    import {
-        USER_IMAGES_PATH
-    } from '../config.js';
-
     export default {
         name: 'ImageSelector',
-        props: {
-            imagepath: {
-                default: '../assets/placeholder_img.png',
-                type: String
-            }
-        },
+        props: ['imagepath'],
         data() {
             return {
-                USER_IMAGES_PATH: USER_IMAGES_PATH
+                //
             };
         },
         methods: {
+            getImgUrl(img) {
+                if (img === undefined) {
+                    return require('../assets/placeholder_img.png');
+                } else {
+                    return img;
+                }
+            },
             // From camera
             getPictureFromCamera() {
                 if (navigator.camera) {
