@@ -23,10 +23,14 @@
 <script>
     export default {
         name: 'ImageSelector',
+        props: ['imagepath'],
         data() {
             return {
                 //
             };
+        },
+        mounted() {
+            console.log(this.imagepath)
         },
         methods: {
             // From camera
@@ -44,7 +48,7 @@
                     });
                 } else {
                     // If the navigator.camera is not available display generic error to the user.
-                    alert('Cámara no disponible');
+                    this.$f7.dialog.alert('Cámara no disponible', 'Atención');
                 }
             },
             // From library
@@ -60,7 +64,7 @@
                     });
                 } else {
                     // If the navigator.camera is not available display generic error to the user.
-                    alert('Cámara no disponible');
+                    this.$f7.dialog.alert('Galería no disponible', 'Atención');
                 }
             },
             showPicture(imageURI) {
