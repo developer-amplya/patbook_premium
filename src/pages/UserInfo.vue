@@ -341,4 +341,8 @@
         padding-left: 39px !important;
     }
 
+    .md .navbar {
+        background-color: #1ABAD4 !important;
+    }
+
 </style>
