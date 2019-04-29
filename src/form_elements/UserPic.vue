@@ -6,7 +6,7 @@
         <div class="col">
             <i class="icon material-icons">edit</i>
             <div class="user-pic" @click="$refs.EditUserPicPopover.open()">
-                <img ref="userProfileImg" :src="USER_IMAGES_PATH + getUserProfileImg"/>
+                <img ref="userProfileImg" src="../assets/profile_photo.png"/>
             </div>
         </div>
 
@@ -40,6 +40,11 @@
         },
         computed: {
             ...mapGetters(['getUserProfileImg', 'getUserID'])
+        },
+        mounted() {
+            if (this.getUserProfileImg !== '') {
+                this.$refs.userProfileImg.src = USER_IMAGES_PATH + this.getUserProfileImg;
+            }
         },
         methods: {
             // From camera
@@ -119,6 +124,7 @@
                 //console.log(response);
                 response = JSON.parse(response.response);
                 this.$store.dispatch('setUserProfileImg', response.image_name);
+                this.$refs.userProfileImg.src = USER_IMAGES_PATH + this.getUserProfileImg;
 
                 // Close popover
                 this.$refs.EditUserPicPopover.close();
