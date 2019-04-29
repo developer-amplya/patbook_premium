@@ -4,7 +4,7 @@
 
         <!-- Image -->
         <div class="image" @click="$refs.EditImagePopover.open()">
-            <img ref="currentImage" src="../assets/placeholder_img.png"/>
+            <img ref="currentImage" :src="imagepath"/>
         </div>
 
         <!-- Popover -->
@@ -21,16 +21,22 @@
 </template>
 
 <script>
+    import {
+        USER_IMAGES_PATH
+    } from '../config.js';
+
     export default {
         name: 'ImageSelector',
-        props: ['imagepath'],
+        props: {
+            imagepath: {
+                default: '../assets/placeholder_img.png',
+                type: String
+            }
+        },
         data() {
             return {
-                //
+                USER_IMAGES_PATH: USER_IMAGES_PATH
             };
-        },
-        mounted() {
-            console.log(this.imagepath)
         },
         methods: {
             // From camera

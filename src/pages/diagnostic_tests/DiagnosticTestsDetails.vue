@@ -91,7 +91,13 @@
                         <span>{{ details.results }}</span>
                     </f7-list-item>
 
-                    <!-- IMAGE -->
+                    <!-- Image -->
+                    <f7-list-item>
+                        <f7-label>Imagen</f7-label>
+                    </f7-list-item>
+                    <f7-list-item>
+                        <image-selector :imagepath="details.image" @image_selected="updateImage"></image-selector>
+                    </f7-list-item>
                 </f7-list>
             </f7-card>
 
@@ -154,13 +160,15 @@
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
         name: 'DiagnosticTestsDetails',
         components: {
             SelectList,
             TextInput,
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'image-selector': ImageSelector
         },
         props: [
             'id'
@@ -298,6 +306,27 @@
                     .catch(function (error) {
                         //console.log(error);
                     });
+            },
+            updateImage(path) {
+                let uri = encodeURI(API_PATH + 'medicines/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = path.substr(path.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: this.id
+                };
+
+                var ft = new FileTransfer();
+                ft.upload(path, uri, this.success, this.error, options);
+            },
+            success(response) {
+                //console.log(response);
+            },
+            error(response) {
+                //console.log(response);
             }
         }
     }

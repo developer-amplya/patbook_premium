@@ -21,7 +21,7 @@
                         <f7-label>Imagen</f7-label>
                     </f7-list-item>
                     <f7-list-item>
-                        <image-selector @image_selected="updateImage"></image-selector>
+                        <image-selector :imagepath="imagepath" @image_selected="updateImage"></image-selector>
                     </f7-list-item>
 
                     <!-- Laboratory name -->
@@ -164,7 +164,7 @@
 <script>
     import axios from 'axios';
     import {
-        API_PATH
+        API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
@@ -177,7 +177,7 @@
             SelectList,
             TextInput,
             'create-custom-field': CreateCustomField,
-            'image-selector': ImageSelector,
+            'image-selector': ImageSelector
         },
         props: [
             'id'
@@ -192,10 +192,12 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null
+                schema_active_index: null,
+                imagepath: undefined
             };
         },
         mounted() {
+            // Get the record details
             axios
                 .get(API_PATH + 'medicines/' + this.id, {
                     params: {
@@ -206,6 +208,11 @@
                 .then(response => {
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
+
+                    // Check the image
+                    if (this.details.image !== null) {
+                        this.imagepath = USER_IMAGES_PATH + this.details.image;
+                    }
                 });
         },
         methods: {
