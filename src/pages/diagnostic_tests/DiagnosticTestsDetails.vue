@@ -94,6 +94,10 @@
                     <!-- Image -->
                     <f7-list-item>
                         <f7-label>Imagen</f7-label>
+                        <span class="zoom-in"
+                              @click="zoomImage">
+                            <f7-icon material="zoom_in"></f7-icon>
+                        </span>
                     </f7-list-item>
                     <f7-list-item>
                         <image-selector  :imagepath="imagepath" @image_selected="updateImage"></image-selector>
@@ -206,6 +210,11 @@
                 });
         },
         methods: {
+            zoomImage() {
+                if (this.details.image !== null) {
+                    PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
+                }
+            },
             openInputPopover($event, type, label, name, value) {
                 //console.log('@openInputPopover');
                 this.field.type = type;
@@ -363,5 +372,12 @@
 
     .navbar {
         background-color: #FF3183;
+    }
+
+    .zoom-in {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 5px
     }
 </style>
