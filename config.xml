@@ -88,6 +88,7 @@
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
     <plugin name="cordova-plugin-file" spec="~4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.0" />
+    <plugin name="com-sarriaroman-photoviewer" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-whitelist" />
 
     <engine name="android" spec="^8.0.0" />

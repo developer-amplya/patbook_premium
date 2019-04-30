@@ -96,6 +96,8 @@
             if (this.getUserProfileImg !== '') {
                 this.$refs.userProfileImg.src = USER_IMAGES_PATH + this.getUserProfileImg;
             }
+
+            PhotoViewer.show(USER_IMAGES_PATH + this.getUserProfileImg, 'Optional Title');
         }
     };
 </script>
