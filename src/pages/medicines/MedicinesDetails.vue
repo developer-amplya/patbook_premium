@@ -19,7 +19,7 @@
                     <!-- Image -->
                     <f7-list-item>
                         <f7-label>Imagen</f7-label>
-                        <span class="zoom-in" style="display: block; position: absolute; right: 10px; top: 5px"
+                        <span class="zoom-in"
                               @click="zoomImage">
                             <f7-icon material="zoom_in"></f7-icon>
                         </span>
@@ -382,5 +382,12 @@
 
     .navbar {
         background-color: #F2BE4C;
+    }
+
+    .zoom-in {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 5px
     }
 </style>
