@@ -2,7 +2,13 @@
 
     <f7-page>
 
-        <f7-navbar title="PREPARACIÓN VISITA MÉDICA" back-link="Volver">
+        <f7-navbar>
+            <f7-nav-left>
+                <f7-link href="/medical-visit-preparation">
+                    <f7-icon material="arrow_back"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+            <f7-nav-title title="PREPARACIÓN VISITA MÉDICA"></f7-nav-title>
             <f7-nav-right>
                 <span
                         class="navbar-icon-right"
