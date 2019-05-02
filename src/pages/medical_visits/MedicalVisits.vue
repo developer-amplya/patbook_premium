@@ -21,11 +21,13 @@
                         :footer="listItem.date"></f7-list-item>
             </f7-list>
         </f7-block>
-        <f7-toolbar bottom-md :class="getMainColor">
-            <f7-link>&nbsp;</f7-link>
-            <f7-link href="/medical-visits/insert">+</f7-link>
-            <f7-link>&nbsp;</f7-link>
-        </f7-toolbar>
+
+        <!-- Add new record -->
+        <div class="fab fab-right-bottom">
+            <a href="/medical-visits/insert" class="orange">
+                <i class="icon f7-icons">add</i>
+            </a>
+        </div>
     </f7-page>
 </template>
 <script>
