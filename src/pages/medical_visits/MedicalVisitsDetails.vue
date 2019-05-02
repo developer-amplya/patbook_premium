@@ -4,7 +4,7 @@
 
         <f7-navbar>
             <f7-nav-left>
-                <f7-link href="/medical-visit">
+                <f7-link href="/medical-visits">
                     <f7-icon material="arrow_back"></f7-icon>
                 </f7-link>
             </f7-nav-left>
@@ -393,6 +393,15 @@
 
                             // Incrementing counting state
                             this.$store.dispatch('incrementDocumentCounting', 'medical_visits');
+
+                            let notification = this.$f7.toast.create({
+                                position: 'top',
+                                text: '¡Registro replicado! Ya puedes editarlo',
+                                cssClass: "success",
+                                icon: '<i class="icon material-icons">done</i>',
+                                closeTimeout: 2000
+                            });
+                            notification.open();
                         });
                 });
             },

@@ -292,6 +292,15 @@
 
                             // Incrementing counting state
                             this.$store.dispatch('incrementDocumentCounting', 'allergies');
+
+                            let notification = this.$f7.toast.create({
+                                position: 'top',
+                                text: '¡Registro replicado! Ya puedes editarlo',
+                                cssClass: "success",
+                                icon: '<i class="icon material-icons">done</i>',
+                                closeTimeout: 2000
+                            });
+                            notification.open();
                         });
                 });
             },
