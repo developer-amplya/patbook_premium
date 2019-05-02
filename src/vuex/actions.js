@@ -21,6 +21,7 @@ import {
     SET_DEVICE_CODE,
     SET_DOCUMENT_COUNTING,
     INCREMENT_DOCUMENT_COUNTING,
+    DECREMENT_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR
 } from './mutations';
 
@@ -89,6 +90,9 @@ export default {
     },
     incrementDocumentCounting({commit}, category) {
         commit(INCREMENT_DOCUMENT_COUNTING, category);
+    },
+    decrementDocumentCounting({commit}, category) {
+        commit(DECREMENT_DOCUMENT_COUNTING, category);
     },
     setMainColor({commit}, mainColor) {
         commit(SET_CURRENT_MAIN_COLOR, mainColor);

@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page>
+    <f7-page hide-toolbar-on-scroll>
 
         <f7-navbar>
             <f7-nav-left>
@@ -132,6 +132,13 @@
             </f7-card>
 
         </f7-block>
+
+        <!-- Delete -->
+        <f7-toolbar bottom-md>
+            <f7-link></f7-link>
+            <f7-link @click="deleteRecord"><f7-icon material="delete"></f7-icon></f7-link>
+            <f7-link></f7-link>
+        </f7-toolbar>
 
         <!-- Input popover -->
         <f7-popover ref="EditInputField" :close="isSchema = false">
@@ -372,6 +379,43 @@
                             this.$store.dispatch('incrementDocumentCounting', 'diagnostic_tests');
                         });
                 });
+            },
+            deleteRecord() {
+                this.$f7.dialog.confirm('Esta acción no puede deshacerse', '¿Borrar este registro?', () => {
+                    axios
+                        .delete(API_PATH + 'diagnostic-tests/' + this.id, {
+                            params: {
+                                // device_code: sessionStorage.device_code,
+                                // user_id: sessionStorage.user_id
+                            }
+                        })
+                        .then(response => {
+                            if (response.data.result === 'OK') {
+                                // Incrementing counting state
+                                this.$store.dispatch('decrementDocumentCounting', 'diagnostic_tests');
+
+                                let notification = this.$f7.toast.create({
+                                    position: 'top',
+                                    text: '¡Registro borrado!',
+                                    cssClass: "success",
+                                    icon: '<i class="icon material-icons">done</i>',
+                                    closeTimeout: 2000
+                                });
+                                notification.open();
+
+                                // Returning to list
+                                setTimeout(() => {
+                                    this.$f7router.navigate('/diagnostic-tests');
+                                }, 2000);
+                            } else {
+                                this.$f7.dialog.alert('No se ha podido borrar el registro', "Error");
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            this.$f7.dialog.alert('Ha ocurrido un error', "Error");
+                        });
+                });
             }
         }
     }
@@ -400,7 +444,7 @@
         z-index: 10;
     }
 
-    .navbar {
+    .navbar, .toolbar {
         background-color: #FF3183;
     }
 
