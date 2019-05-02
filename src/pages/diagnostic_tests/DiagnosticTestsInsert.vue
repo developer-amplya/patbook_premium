@@ -7,18 +7,8 @@
             <f7-card title="REGISTRO DE PRUEBA DIAGNÓSTICA">
                 <f7-list no-hairlines no-hairlines-between>
                     <!-- Name -->
-                    <f7-list-item>
-                        <f7-label>Nombre de la prueba</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="name"
-                                @input="name = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
-
-                    <!-- Test -->
-                    <f7-list-item smart-select title="Prueba" :smart-select-params="{ closeOnSelect: true }">
-                        <select :name="test" v-model="test">
+                    <f7-list-item smart-select title="Nombre" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="name" v-model="name">
                             <option v-for="(item, index) in testsList"
                                     :key="index"
                                     :value="item"
@@ -188,7 +178,6 @@
             return {
                 testsList: ['Análisis de sangre', 'Análisis de orina', 'Endoscopia', 'Mamografía', 'Rayos X', 'TAC', 'PET', 'Colonoscopia', 'Densiometría ósea', 'IRM', 'ECG', 'EEF', 'Ultrasonido', 'Espirometría', 'Otros'],
                 name: '',
-                test: '',
                 date: '',
                 time: '',
                 cause: '',
@@ -213,7 +202,6 @@
                     },*/
                     user_id: this.getUserID,
                     name: this.name,
-                    test: this.test,
                     date: this.date,
                     time: this.time,
                     cause: this.cause,

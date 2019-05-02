@@ -22,16 +22,9 @@
 
                     <!-- Name -->
                     <f7-list-item header="Nombre"
-                                  @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
+                                  @click="openSelectPopover($event, 'testsList', 'Nombre', 'name', details.name)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ details.name }}</span>
-                    </f7-list-item>
-
-                    <!-- TEST -->
-                    <f7-list-item header="Prueba"
-                                  @click="openSelectPopover($event, 'testsList', 'Prueba', 'test', details.test)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.test }}</span>
                     </f7-list-item>
 
                     <!-- Date -->
