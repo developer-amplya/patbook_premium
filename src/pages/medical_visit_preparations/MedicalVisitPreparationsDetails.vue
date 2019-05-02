@@ -299,6 +299,9 @@
                             this.id = response.data._id; // The ID of the new record
                             this.details = response.data;
                             this.schema = JSON.parse(response.data.schema);
+
+                            // Incrementing counting state
+                            this.$store.dispatch('incrementDocumentCounting', 'medical_visit_preparations');
                         });
                 });
             }
