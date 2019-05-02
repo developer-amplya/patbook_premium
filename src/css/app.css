@@ -56,6 +56,17 @@
     background-color: #1ABAD4 !important;
 }
 
+.navbar-icon-right {
+    width: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.navbar-icon-right img {
+    width: 100%;
+}
+
 /* COLORS */
 .purple {
     background-color: #c36eb5 !important;

@@ -48,6 +48,10 @@ const baseApp = new Vue({
             disableContextMenu: false
 
         },
+        dialog: {
+            buttonOk: 'ACEPTAR',
+            buttonCancel: 'CANCELAR'
+        },
         // App routes
         routes: Routes
     },

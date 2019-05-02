@@ -2,7 +2,18 @@
 
     <f7-page>
 
-        <f7-navbar title="MEDICAMENTO" back-link="Volver"></f7-navbar>
+        <f7-navbar title="MEDICAMENTO" back-link="Volver">
+            <f7-nav-right>
+                <span
+                        class="navbar-icon-right"
+                        @click="replicateRecord"
+                ><img src="../../assets/ic_content_copy_white_24dp.png"></span>
+                <span
+                        class="navbar-icon-right"
+                        @click=""
+                ><img src="../../assets/ic_share_white_24dp.png"></span>
+            </f7-nav-right>
+        </f7-navbar>
 
         <f7-block inner>
 
@@ -184,10 +195,11 @@
             'image-selector': ImageSelector
         },
         props: [
-            'id'
+            'record_id'
         ],
         data() {
             return {
+                id: this.record_id,
                 field: {
                     type: '',
                     label: '',
@@ -353,6 +365,22 @@
             },
             error(response) {
                 //console.log(response);
+            },
+            replicateRecord() {
+                this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
+                    axios
+                        .get(API_PATH + 'medicines/replicate/' + this.id, {
+                            params: {
+                                // device_code: sessionStorage.device_code,
+                                // user_id: sessionStorage.user_id
+                            }
+                        })
+                        .then(response => {
+                            this.id = response.data._id; // The ID of the new record
+                            this.details = response.data;
+                            this.schema = JSON.parse(response.data.schema);
+                        });
+                });
             }
         }
     };

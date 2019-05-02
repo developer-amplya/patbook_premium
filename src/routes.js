@@ -90,7 +90,7 @@ export default [
         component: AllergiesInsert
     },
     {
-        path: '/allergies/:id',
+        path: '/allergies/:record_id',
         component: AllergiesDetails,
         props: true
     },
@@ -103,7 +103,7 @@ export default [
         component: MedicinesInsert
     },
     {
-        path: '/medicines/:id',
+        path: '/medicines/:record_id',
         component: MedicinesDetails,
         props: true
     },
@@ -116,7 +116,7 @@ export default [
         component: MedicalVisitPreparationsInsert
     },
     {
-        path: '/medical-visit-preparations/:id',
+        path: '/medical-visit-preparations/:record_id',
         component: MedicalVisitPreparationsDetails,
         props: true
     },
@@ -129,7 +129,7 @@ export default [
         component: MedicalVisitsInsert
     },
     {
-        path: '/medical-visits/:id',
+        path: '/medical-visits/:record_id',
         component: MedicalVisitsDetails,
         props: true
     },
@@ -142,7 +142,7 @@ export default [
         component: DiagnosticTestsInsert
     },
     {
-        path: '/diagnostic-tests/:id',
+        path: '/diagnostic-tests/:record_id',
         component: DiagnosticTestsDetails,
         props: true
     },
