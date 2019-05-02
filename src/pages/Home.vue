@@ -19,7 +19,7 @@
 
             <!-- MORE FUNCTIONS -->
             <div class="col">
-                <f7-link href="#" icon-only class="more">
+                <f7-link panel-open="right" icon-only class="more">
                     <f7-icon material="more_vert"></f7-icon>
                 </f7-link>
             </div>
@@ -74,6 +74,7 @@
 
             </f7-list>
         </f7-block>
+
     </f7-page>
 </template>
 

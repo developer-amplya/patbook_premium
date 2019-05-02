@@ -14,9 +14,14 @@
 
 <script>
     import store from './vuex/store';
+    import rightPanel from './RightPanel.vue';
+
     export default {
         name: 'App',
         store,
+        components: {
+            rightPanel
+        },
         methods: {
             handleBackButton() {
                 // NOTE: The back button will behave differently depending on circumstance
