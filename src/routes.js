@@ -11,6 +11,10 @@ import Home from './pages/Home.vue';
 import NotFoundPage from './pages/not-found.vue';
 import UserInfo from './pages/UserInfo.vue';
 import EmergenciesData from './pages/emergencies';
+import Agenda from './pages/agenda/Agenda.vue';
+import AgendaEntryInsert from './pages/agenda/AgendaEntryInsert.vue';
+import AgendaEntryDetails from './pages/agenda/AgendaEntryDetails.vue';
+import AgendaEntryEdit from './pages/agenda/AgendaEntryEdit.vue';
 import Allergies from './pages/allergies/Allergies.vue';
 import AllergiesInsert from './pages/allergies/AllergiesInsert.vue';
 import AllergiesDetails from './pages/allergies/AllergiesDetails.vue';
@@ -80,6 +84,24 @@ export default [
     {
         path: '/emergencies',
         component: EmergenciesData
+    },
+    {
+        path: '/agenda',
+        component: Agenda
+    },
+    {
+        path: '/agenda/insert',
+        component: AgendaEntryInsert
+    },
+    {
+        path: '/agenda/:record_id',
+        component: AgendaEntryDetails,
+        props: true
+    },
+    {
+        path: '/agenda/edit/:record_id',
+        component: AgendaEntryEdit,
+        props: true
     },
     {
         path: '/allergies',

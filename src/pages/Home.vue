@@ -75,6 +75,18 @@
             </f7-list>
         </f7-block>
 
+        <!-- Toolbar -->
+        <f7-toolbar bottom-md>
+            <f7-link class="agenda" href="/agenda">
+                <span><img src="../assets/icono_agenda.png"></span>
+                <span>AGENDA</span>
+            </f7-link>
+            <f7-link class="emergencia" href="">
+                <span><img src="../assets/icono_emergencias.png"></span>
+                <span>EMERGENCIA</span>
+            </f7-link>
+        </f7-toolbar>
+
     </f7-page>
 </template>
 
@@ -165,5 +177,23 @@
     .user-name {
         text-align: center;
         color: #1ABAD4;
+    }
+
+    .agenda, .emergencia {
+        width: 50%;
+    }
+
+    .agenda > span:first-child, .emergencia > span:first-child {
+        display: flex;
+        align-items: center;
+        width: 35px;
+    }
+
+    .agenda > span > img, .emergencia > span > img {
+        width: 100%;
+    }
+
+    .emergencia {
+        background-color: #ff0000;
     }
 </style>
