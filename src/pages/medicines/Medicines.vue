@@ -17,7 +17,8 @@
                         v-for="listItem in list"
                         :key="listItem._id"
                         :link="/medicines/ + listItem._id"
-                        :title="listItem.name"></f7-list-item>
+                        :title="listItem.name"
+                        :footer="listItem.start"></f7-list-item>
             </f7-list>
         </f7-block>
 
@@ -63,7 +64,7 @@
                     }
                 })
                 .then(response => (this.list = response.data))
-                //.catch(error => (console.log(error)));
+            //.catch(error => (console.log(error)));
         }
     }
     ;

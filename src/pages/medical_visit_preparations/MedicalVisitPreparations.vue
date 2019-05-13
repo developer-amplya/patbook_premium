@@ -17,7 +17,8 @@
                         v-for="listItem in list"
                         :key="listItem._id"
                         :link="/medical-visit-preparations/ + listItem._id"
-                        :title="listItem.symptoms_description"></f7-list-item>
+                        :title="listItem.symptoms_description"
+                        :footer="listItem.date"></f7-list-item>
             </f7-list>
         </f7-block>
 
