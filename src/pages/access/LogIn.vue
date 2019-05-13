@@ -62,10 +62,10 @@
         data() {
             return {
                 log_in: {
-                    email: '',
-                    password: '',
-                    //email: 'reezooh@gmail.com',
-                    //password: '123456',
+                    //email: '',
+                    //password: '',
+                    email: 'reezooh@gmail.com',
+                    password: '123456',
                     token: ''
                 }
             };
@@ -95,8 +95,6 @@
                         this.$f7router.navigate('/new-device/' + this.log_in.email + '/' + this.log_in.password);
                         return;
                     }
-                } else { // innecesario? siempre se crea en mounted
-                    this.$f7router.navigate('/new-device');
                 }
 
                 axios.post(API_PATH + 'login', {
