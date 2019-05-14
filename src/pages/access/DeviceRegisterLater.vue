@@ -2,14 +2,7 @@
     <f7-page>
 
         <!-- Navbar -->
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/login">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="Registro de dispositivo"></f7-nav-title>
-        </f7-navbar>
+        <f7-navbar back-link title="Registro de dispositivo"></f7-navbar>
 
         <f7-block inner>
 
@@ -20,31 +13,35 @@
             <f7-list form no-hairlines>
 
                 <!-- EMAIL  -->
-                <f7-list-item>
-                    <f7-label>Email</f7-label>
-                    <f7-input type="email" :value="email"
-                              @input="email = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="email"
+                        label="Email"
+                        :value="email"
+                        @input="email = $event.target.value"
+                ></f7-list-input>
 
                 <!-- PASSWORD -->
-                <f7-list-item>
-                    <f7-label>Contraseña</f7-label>
-                    <f7-input type="password" :value="password"
-                              @input="password = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="password"
+                        label="Contraseña"
+                        :value="password"
+                        @input="password = $event.target.value"
+                ></f7-list-input>
 
                 <!-- Device code -->
-                <f7-list-item>
-                    <f7-label>Código</f7-label>
-                    <f7-input type="text" :value="device_code"
-                              @input="device_code = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="text"
+                        label="Código"
+                        :value="device_code"
+                        @input="device_code = $event.target.value"
+                ></f7-list-input>
 
             </f7-list>
 
             <!-- Submit -->
             <f7-list>
-                <f7-button big fill @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO</f7-button>
+                <f7-button large raised fill @click="checkDeviceCode" no-fast-click>REGISTRAR ESTE DISPOSITIVO
+                </f7-button>
             </f7-list>
 
             <p>

@@ -8,31 +8,30 @@
             <f7-card>
                 <f7-list>
                     <!-- Name -->
-                    <f7-list-item>
-                        <f7-label>Nombre</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="details.name"
-                                @input="details.name = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Nombre"
+                            :value="details.name"
+                            @input="details.name = $event.target.value"
+                    ></f7-list-input>
 
                     <!-- Date & Time -->
                     <f7-list-item>
-                        <f7-label>Fecha / Hora</f7-label>
                         <f7-row>
                             <f7-col>
                                 <calendar
                                         id="agenda_entry_date"
+                                        label="Fecha"
                                         @change="details.date = setDate($event)">
                                 </calendar>
                             </f7-col>
                             <f7-col>
-                                <f7-input
+                                <f7-list-input
                                         type="time"
+                                        label="Hora"
                                         :value="details.time"
                                         @input="details.time = $event.target.value"
-                                ></f7-input>
+                                ></f7-list-input>
                             </f7-col>
                         </f7-row>
                     </f7-list-item>
@@ -45,15 +44,13 @@
                     -->
 
                     <!-- Description -->
-                    <f7-list-item>
-                        <f7-label>Descripción</f7-label>
-                        <f7-input
-                                type="textarea"
-                                resizable
-                                :value="details.description"
-                                @input="details.description = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Descripción"
+                            resizable
+                            :value="details.description"
+                            @input="details.description = $event.target.value"
+                    ></f7-list-input>
                 </f7-list>
             </f7-card>
 
@@ -62,8 +59,8 @@
 
             <!-- Cancel & Submit -->
             <f7-segmented round raised>
-                <f7-button round @click="cancel()">Cancelar</f7-button>
-                <f7-button round @click="update()">Guardar</f7-button>
+                <f7-button round large @click="cancel()">Cancelar</f7-button>
+                <f7-button round large fill @click="update()">Guardar</f7-button>
             </f7-segmented>
 
         </f7-block>

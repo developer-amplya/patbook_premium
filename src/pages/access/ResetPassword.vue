@@ -2,14 +2,7 @@
     <f7-page>
 
         <!-- Navbar -->
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/reset-password">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="Nueva contraseña"></f7-nav-title>
-        </f7-navbar>
+        <f7-navbar back-link title="Nueva contraseña"></f7-navbar>
 
         <f7-block inner>
 
@@ -19,29 +12,32 @@
             <f7-list form no-hairlines>
 
                 <!-- Password reset code -->
-                <f7-list-item>
-                    <f7-label>Código</f7-label>
-                    <f7-input type="text" :value="password_reset_code"
-                              @input="password_reset_code = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="text"
+                        label="Código"
+                        :value="password_reset_code"
+                        @input="password_reset_code = $event.target.value"
+                ></f7-list-input>
 
                 <!-- New password -->
-                <f7-list-item>
-                    <f7-label>Contraseña</f7-label>
-                    <f7-input type="password" :value="new_password"
-                              @input="new_password = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="password"
+                        label="Contraseña"
+                        :value="new_password"
+                        @input="new_password = $event.target.value"
+                ></f7-list-input>
 
                 <!-- Reset password -->
-                <f7-list-item>
-                    <f7-label>Confirmar contraseña</f7-label>
-                    <f7-input type="password" :value="password_confirmation"
-                              @input="password_confirmation = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="password"
+                        label="Confirmar contraseña"
+                        :value="password_confirmation"
+                        @input="password_confirmation = $event.target.value"
+                ></f7-list-input>
             </f7-list>
 
             <f7-list>
-                <f7-button big fill @click="ResetPassword" no-fast-click>CREAR NUEVA CONTRASEÑA</f7-button>
+                <f7-button large raised fill @click="ResetPassword" no-fast-click>CREAR NUEVA CONTRASEÑA</f7-button>
             </f7-list>
 
             <p>

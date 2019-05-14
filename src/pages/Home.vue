@@ -76,12 +76,12 @@
         </f7-block>
 
         <!-- Toolbar -->
-        <f7-toolbar bottom-md>
-            <f7-link class="agenda" href="/agenda">
+        <f7-toolbar position="bottom">
+            <f7-link class="agenda no-ripple" href="/agenda">
                 <span><img src="../assets/icono_agenda.png"></span>
                 <span>AGENDA</span>
             </f7-link>
-            <f7-link class="emergencia" href="">
+            <f7-link class="emergencia no-ripple" href="">
                 <span><img src="../assets/icono_emergencias.png"></span>
                 <span>EMERGENCIA</span>
             </f7-link>
@@ -193,7 +193,13 @@
         width: 100%;
     }
 
+    .agenda {
+        background-color: var(--f7-theme-color);
+        color: #ffffff;
+    }
+
     .emergencia {
         background-color: #ff0000;
+        color: #ffffff;
     }
 </style>

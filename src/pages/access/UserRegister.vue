@@ -2,14 +2,7 @@
     <f7-page>
 
         <!-- Navbar -->
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/login">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="Nuevo usuario"></f7-nav-title>
-        </f7-navbar>
+        <f7-navbar back-link title="Nuevo usuario"></f7-navbar>
 
         <f7-block inner>
 
@@ -26,37 +19,41 @@
             <f7-list form no-hairlines>
 
                 <!-- USER NAME -->
-                <f7-list-item>
-                    <f7-label>Usuario</f7-label>
-                    <f7-input type="text" :value="register.name"
-                              @input="register.name = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="text"
+                        label="Nombre"
+                        :value="register.name"
+                        @input="register.name = $event.target.value"
+                ></f7-list-input>
 
                 <!-- EMAIL -->
-                <f7-list-item>
-                    <f7-label>Email</f7-label>
-                    <f7-input type="email" :value="register.email"
-                              @input="register.email = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="email"
+                        label="Email"
+                        :value="register.email"
+                        @input="register.email = $event.target.value"
+                ></f7-list-input>
 
                 <!-- PASSWORD -->
-                <f7-list-item>
-                    <f7-label>Contraseña (mínimo 6 caracteres)</f7-label>
-                    <f7-input type="password" :value="register.password"
-                              @input="register.password = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="password"
+                        label="Contraseña (mínimo 6 caracteres)"
+                        :value="register.password"
+                        @input="register.password = $event.target.value"
+                ></f7-list-input>
 
                 <!-- CONFIRM PASSWORD -->
-                <f7-list-item>
-                    <f7-label>Confirmar contraseña</f7-label>
-                    <f7-input type="password" :value="register.password_confirmation"
-                              @input="register.password_confirmation = $event.target.value"></f7-input>
-                </f7-list-item>
+                <f7-list-input
+                        type="password"
+                        label="Confirmar contraseña"
+                        :value="register.password_confirmation"
+                        @input="register.password_confirmation = $event.target.value"
+                ></f7-list-input>
             </f7-list>
 
             <!-- SUBMIT -->
             <f7-list>
-                <f7-button big fill  @click="signIn">REGISTRAR</f7-button>
+                <f7-button fill large raised @click="signIn">REGISTRAR</f7-button>
             </f7-list>
 
 

@@ -8,12 +8,20 @@
             <f7-list form no-hairlines>
 
                 <!-- EMAIL  -->
-                    <f7-list-input type="email" label="Email" :value="log_in.email"
-                              @input="log_in.email = $event.target.value"></f7-list-input>
+                <f7-list-input
+                        type="email"
+                        label="Email"
+                        :value="log_in.email"
+                        @input="log_in.email = $event.target.value"
+                ></f7-list-input>
 
                 <!-- PASSWORD -->
-                    <f7-list-input type="password" label="Contraseña" :value="log_in.password"
-                              @input="log_in.password = $event.target.value"></f7-list-input>
+                <f7-list-input
+                        type="password"
+                        label="Contraseña"
+                        :value="log_in.password"
+                        @input="log_in.password = $event.target.value"
+                ></f7-list-input>
             </f7-list>
 
             <!-- Submit -->
@@ -38,7 +46,9 @@
 
         </f7-block>
 
-        <div style="position: absolute; bottom: 10px; right: 10px"><small>1.0.113</small></div>
+        <div style="position: absolute; bottom: 10px; right: 10px">
+            <small>1.0.113</small>
+        </div>
 
     </f7-page>
 </template>
