@@ -1,55 +1,40 @@
 <template>
-    <!-- App -->
-    <div id="app">
+  <!-- App -->
+  <f7-app :params="f7params">
 
-        <!-- Statusbar -->
-        <f7-statusbar></f7-statusbar>
+    <!-- Statusbar -->
+    <f7-statusbar></f7-statusbar>
 
-        <!-- Main View -->
-        <f7-view id="main-view" url="/" main></f7-view>
+    <!-- Right Panel -->
+    <f7-panel right cover theme-dark>
+      <f7-view url="/panel-right/"></f7-view>
+    </f7-panel>
 
+    <!-- Main View -->
+    <f7-view id="main-view" url="/" main class="safe-areas"></f7-view>
 
-    </div>
+  </f7-app>
 </template>
 
 <script>
-    import store from './vuex/store';
-    import rightPanel from './RightPanel.vue';
+// Import Routes
+import routes from './routes.js'
+// Import store
+import store from './vuex/store'
 
-    export default {
-        name: 'App',
-        store,
-        components: {
-            rightPanel
-        },
-        methods: {
-            handleBackButton() {
-                // NOTE: The back button will behave differently depending on circumstance
-                // If the side panel is open, close it
-                if (document.querySelector('.panel-left.panel-active')) {
-                    // This will do nothing when the split-view is open
-                    return this.$f7.panel.close();
-                }
-                // Close modals
-                // @TODO How to handle modals we shouldn't close like a login-screen?
-                if (document.querySelector('.modal-in')) {
-                    return this.$f7.popover.close();
-                }
-                // If we have a back button, we want it to go back
-                if (this.$f7.views.main.router.history.length > 1) {
-                    return this.$f7.views.main.router.back();
-                }
-                // Default to closing the app
-                return window.navigator.app.exitApp();
-            }
-        },
-        computed: {
-            isiOS() {
-                return window.isiOS;
-            }
-        },
-        created() {
-            document.addEventListener('backbutton', this.handleBackButton);
-        }
-    };
+export default {
+  store,
+  data() {
+    return {
+      // Framework7 parameters here
+      f7params: {
+        id: 'es.patbook.app.free', // App bundle ID
+        name: 'Patbook', // App name
+        theme: 'auto', // Automatic theme detection
+        // App routes
+        routes: routes,
+      },
+    }
+  }
+}
 </script>

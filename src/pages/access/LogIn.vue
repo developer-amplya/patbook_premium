@@ -8,23 +8,17 @@
             <f7-list form no-hairlines>
 
                 <!-- EMAIL  -->
-                <f7-list-item>
-                    <f7-label>Email</f7-label>
-                    <f7-input type="email" :value="log_in.email"
-                              @input="log_in.email = $event.target.value"></f7-input>
-                </f7-list-item>
+                    <f7-list-input type="email" label="Email" :value="log_in.email"
+                              @input="log_in.email = $event.target.value"></f7-list-input>
 
                 <!-- PASSWORD -->
-                <f7-list-item>
-                    <f7-label>Contraseña</f7-label>
-                    <f7-input type="password" :value="log_in.password"
-                              @input="log_in.password = $event.target.value"></f7-input>
-                </f7-list-item>
+                    <f7-list-input type="password" label="Contraseña" :value="log_in.password"
+                              @input="log_in.password = $event.target.value"></f7-list-input>
             </f7-list>
 
             <!-- Submit -->
             <f7-list>
-                <f7-button big fill @click="do_login">ACCEDER</f7-button>
+                <f7-button large raised fill @click="do_login">ACCEDER</f7-button>
             </f7-list>
 
             <!-- Forgot password -->

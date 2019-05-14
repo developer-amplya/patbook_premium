@@ -20,6 +20,10 @@
     border-color: #bee5eb;
 }
 
+.calendar {
+    z-index: 15000 !important;
+}
+
 .center {
     text-align: center;
 }
@@ -32,6 +36,10 @@
 .md input, .md textarea {
     background-color: #efefef;
     padding: 0 5px;
+}
+
+.md .list .item-header {
+    color: #7f7f7f !important;
 }
 
 .navbar,

@@ -8,7 +8,6 @@ import DeviceRegisterLater from './pages/access/DeviceRegisterLater.vue';
 import ForgotPassword from './pages/access/ForgotPassword.vue';
 import ResetPassword from './pages/access/ResetPassword.vue';
 import Home from './pages/Home.vue';
-import NotFoundPage from './pages/not-found.vue';
 import UserInfo from './pages/UserInfo.vue';
 import EmergenciesData from './pages/emergencies';
 import Agenda from './pages/agenda/Agenda.vue';
@@ -31,150 +30,162 @@ import DiagnosticTests from './pages/diagnostic_tests/DiagnosticTests.vue';
 import DiagnosticTestsInsert from './pages/diagnostic_tests/DiagnosticTestsInsert.vue';
 import DiagnosticTestsDetails from './pages/diagnostic_tests/DiagnosticTestsDetails.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
+import DynamicRoutePage from './pages/dynamic-route.vue';
+import NotFoundPage from './pages/not-found.vue';
+
+import PanelRightPage from './pages/panel-right.vue';
 
 export default [
-    {
-        path: '/',
-        component: Cover
-    },
-    {
-        path: '/use-guide',
-        component: UseGuide
-    },
-    {
-        path: '/login',
-        component: LogIn
-    },
-    {
-        path: '/new-device/:email/:password',
-        component: NewDevice,
-        props: true
-    },
-    {
-        path: '/user-register',
-        component: UserRegister
-    },
-    {
-        path: '/device-register/:email/:password',
-        component: DeviceRegister,
-        props: true
-    },
-    {
-        path: '/device-register-later',
-        component: DeviceRegisterLater
-    },
-    {
-        path: '/forgot-password',
-        component: ForgotPassword
-    },
-    {
-        path: '/reset-password/:email',
-        component: ResetPassword,
-        props: true
-    },
-    {
-        path: '/home',
-        component: Home
-    },
-    {
-        path: '/user-info',
-        component: UserInfo,
-        props: true
-    },
-    {
-        path: '/emergencies',
-        component: EmergenciesData
-    },
-    {
-        path: '/agenda',
-        component: Agenda
-    },
-    {
-        path: '/agenda/insert',
-        component: AgendaEntryInsert
-    },
-    {
-        path: '/agenda/:record_id',
-        component: AgendaEntryDetails,
-        props: true
-    },
-    {
-        path: '/agenda/edit/:record_id',
-        component: AgendaEntryEdit,
-        props: true
-    },
-    {
-        path: '/allergies',
-        component: Allergies
-    },
-    {
-        path: '/allergies/insert',
-        component: AllergiesInsert
-    },
-    {
-        path: '/allergies/:record_id',
-        component: AllergiesDetails,
-        props: true
-    },
-    {
-        path: '/medicines',
-        component: Medicines
-    },
-    {
-        path: '/medicines/insert',
-        component: MedicinesInsert
-    },
-    {
-        path: '/medicines/:record_id',
-        component: MedicinesDetails,
-        props: true
-    },
-    {
-        path: '/medical-visit-preparations',
-        component: MedicalVisitPreparations
-    },
-    {
-        path: '/medical-visit-preparations/insert',
-        component: MedicalVisitPreparationsInsert
-    },
-    {
-        path: '/medical-visit-preparations/:record_id',
-        component: MedicalVisitPreparationsDetails,
-        props: true
-    },
-    {
-        path: '/medical-visits',
-        component: MedicalVisits
-    },
-    {
-        path: '/medical-visits/insert',
-        component: MedicalVisitsInsert
-    },
-    {
-        path: '/medical-visits/:record_id',
-        component: MedicalVisitsDetails,
-        props: true
-    },
-    {
-        path: '/diagnostic-tests',
-        component: DiagnosticTests
-    },
-    {
-        path: '/diagnostic-tests/insert',
-        component: DiagnosticTestsInsert
-    },
-    {
-        path: '/diagnostic-tests/:record_id',
-        component: DiagnosticTestsDetails,
-        props: true
-    },
-    {
-        path: '/create-custom-field',
-        component: CreateCustomField,
-        props: true
-    },
-    {
-        path: '(.*)',
-        component: NotFoundPage
-    }
+  {
+      path: '/',
+      component: Cover
+  },
+  {
+      path: '/use-guide',
+      component: UseGuide
+  },
+  {
+      path: '/login',
+      component: LogIn
+  },
+  {
+      path: '/new-device/:email/:password',
+      component: NewDevice,
+      props: true
+  },
+  {
+      path: '/user-register',
+      component: UserRegister
+  },
+  {
+      path: '/device-register/:email/:password',
+      component: DeviceRegister,
+      props: true
+  },
+  {
+      path: '/device-register-later',
+      component: DeviceRegisterLater
+  },
+  {
+      path: '/forgot-password',
+      component: ForgotPassword
+  },
+  {
+      path: '/reset-password/:email',
+      component: ResetPassword,
+      props: true
+  },
+  {
+      path: '/home',
+      component: Home
+  },
+  {
+      path: '/user-info',
+      component: UserInfo,
+      props: true
+  },
+  {
+      path: '/emergencies',
+      component: EmergenciesData
+  },
+  {
+      path: '/agenda',
+      component: Agenda
+  },
+  {
+      path: '/agenda/insert',
+      component: AgendaEntryInsert
+  },
+  {
+      path: '/agenda/:record_id',
+      component: AgendaEntryDetails,
+      props: true
+  },
+  {
+      path: '/agenda/edit/:record_id',
+      component: AgendaEntryEdit,
+      props: true
+  },
+  {
+      path: '/allergies',
+      component: Allergies
+  },
+  {
+      path: '/allergies/insert',
+      component: AllergiesInsert
+  },
+  {
+      path: '/allergies/:record_id',
+      component: AllergiesDetails,
+      props: true
+  },
+  {
+      path: '/medicines',
+      component: Medicines
+  },
+  {
+      path: '/medicines/insert',
+      component: MedicinesInsert
+  },
+  {
+      path: '/medicines/:record_id',
+      component: MedicinesDetails,
+      props: true
+  },
+  {
+      path: '/medical-visit-preparations',
+      component: MedicalVisitPreparations
+  },
+  {
+      path: '/medical-visit-preparations/insert',
+      component: MedicalVisitPreparationsInsert
+  },
+  {
+      path: '/medical-visit-preparations/:record_id',
+      component: MedicalVisitPreparationsDetails,
+      props: true
+  },
+  {
+      path: '/medical-visits',
+      component: MedicalVisits
+  },
+  {
+      path: '/medical-visits/insert',
+      component: MedicalVisitsInsert
+  },
+  {
+      path: '/medical-visits/:record_id',
+      component: MedicalVisitsDetails,
+      props: true
+  },
+  {
+      path: '/diagnostic-tests',
+      component: DiagnosticTests
+  },
+  {
+      path: '/diagnostic-tests/insert',
+      component: DiagnosticTestsInsert
+  },
+  {
+      path: '/diagnostic-tests/:record_id',
+      component: DiagnosticTestsDetails,
+      props: true
+  },
+  {
+      path: '/create-custom-field',
+      component: CreateCustomField,
+      props: true
+  },
+  {
+    path: '/panel-right/',
+    component: PanelRightPage,
+  },
+  {
+    path: '/dynamic-route/blog/:blogId/post/:postId/',
+    component: DynamicRoutePage,
+  },
+  {
+    path: '(.*)',
+    component: NotFoundPage,
+  },
 ];

@@ -54,7 +54,8 @@
             <br>
             <f7-button big fill round @click="proceed">CONTINUAR</f7-button>
 
-            <f7-list simple-list>
+            <!-- Toggle -->
+            <f7-list simple-list class="toggle-holder">
                 <f7-list-item>
                     <span>No volver a mostrar esta página *</span>
                     <f7-toggle
@@ -73,7 +74,6 @@
 </template>
 
 <script>
-    import F7Toggle from "framework7-vue/src/components/toggle";
 
     export default {
         name: 'UseGuide',
@@ -109,5 +109,9 @@
 
     .button-fill {
         border: 1px solid #ffffff;
+    }
+
+    .toggle-holder li {
+        background-color: #1ABAD4 !important;
     }
 </style>
