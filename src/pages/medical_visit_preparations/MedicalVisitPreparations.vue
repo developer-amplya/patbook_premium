@@ -2,7 +2,13 @@
     <f7-page @page:afterin="retrieveData">
 
         <!-- Navbar -->
-        <f7-navbar :class="getMainColor" back-link title="PREPARACIÓN VISITA MÉDICA"></f7-navbar>
+        <f7-navbar
+                :class="getMainColor"
+                back-link
+                back-link-force
+                back-link-url="/home"
+                title="PREPARACIÓN VISITA MÉDICA">
+        </f7-navbar>
 
         <f7-block inner>
             <f7-list>

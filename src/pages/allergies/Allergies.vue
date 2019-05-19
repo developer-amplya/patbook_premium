@@ -2,7 +2,13 @@
     <f7-page @page:afterin="retrieveData">
 
         <!-- Navbar -->
-        <f7-navbar :class="getMainColor" back-link title="ALERGIAS"></f7-navbar>
+        <f7-navbar
+                :class="getMainColor"
+                back-link
+                back-link-force
+                back-link-url="/home"
+                title="ALERGIAS">
+        </f7-navbar>
 
         <f7-block inner>
             <f7-list>
