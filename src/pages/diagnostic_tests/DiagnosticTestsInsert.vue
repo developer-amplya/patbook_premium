@@ -6,6 +6,7 @@
 
             <f7-card title="REGISTRO DE PRUEBA DIAGNÓSTICA">
                 <f7-list no-hairlines no-hairlines-between>
+
                     <!-- Name -->
                     <f7-list-item smart-select title="Nombre" :smart-select-params="{ closeOnSelect: true }">
                         <select :name="name" v-model="name">
@@ -19,103 +20,96 @@
 
                     <!-- Date & Time -->
                     <f7-list-item>
-                        <f7-label>Fecha / Hora</f7-label>
                         <f7-row>
                             <f7-col>
-                                <f7-input
-                                        type="date"
-                                        :value="date"
-                                        @input="date = $event.target.value"
-                                        clear-button></f7-input>
+                                <calendar
+                                        id="diagnostic_test_date"
+                                        label="Fecha"
+                                        @change="date = setDate($event)">
+                                </calendar>
                             </f7-col>
                             <f7-col>
-                                <f7-input
+                                <f7-list-input
                                         type="time"
+                                        label="Hora"
                                         :value="time"
                                         @input="time = $event.target.value"
-                                        clear-button></f7-input>
+                                ></f7-list-input>
                             </f7-col>
                         </f7-row>
                     </f7-list-item>
 
                     <!-- Cause -->
-                    <f7-list-item>
-                        <f7-label>Motivo</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="cause"
-                                @input="cause = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Motivo"
+                            :value="cause"
+                            @input="cause = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Requirements -->
-                    <f7-list-item>
-                        <f7-label>Requisitos previos</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="requirements"
-                                @input="requirements = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Requisitos previos"
+                            :value="requirements"
+                            @input="requirements = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Location -->
-                    <f7-list-item>
-                        <f7-label>Lugar</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="location"
-                                @input="location = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Lugar"
+                            :value="location"
+                            @input="location = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Address -->
-                    <f7-list-item>
-                        <f7-label>Dirección</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="address"
-                                @input="address = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Dirección"
+                            :value="address"
+                            @input="address = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Phone -->
-                    <f7-list-item>
-                        <f7-label>Teléfono</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="phone"
-                                @input="phone = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Teléfono"
+                            :value="phone"
+                            @input="phone = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Doctor -->
-                    <f7-list-item>
-                        <f7-label>Médico</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="doctor"
-                                @input="doctor = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Médico"
+                            :value="doctor"
+                            @input="doctor = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
                 </f7-list>
             </f7-card>
+
+            <br>
 
             <f7-card title="RESULTADOS">
                 <f7-list>
                     <!-- Results -->
-                    <f7-list-item>
-                        <f7-label>Resultados</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="results"
-                                @input="results = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Resultados"
+                            :value="results"
+                            @input="results = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- Image -->
-                    <f7-list-item>
-                        <f7-label>Imagen</f7-label>
-                    </f7-list-item>
+                    <f7-list-item title="Imagen"></f7-list-item>
                     <f7-list-item>
                         <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
@@ -123,18 +117,20 @@
                 </f7-list>
             </f7-card>
 
+            <br>
+
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list>
                     <!-- SCHEMA -->
-                    <f7-list-item v-for="(field, index) in schema"
-                                  :key="index">
-                        <f7-label>{{ field.label }}</f7-label>
-                        <f7-input
-                                :type="field.type"
-                                :value="field.value"
-                                @input="field.value = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            v-for="(field, index) in schema"
+                            :key="index"
+                            :label="field.label"
+                            :type="field.type"
+                            :value="field.value"
+                            @input="field.value = $event.target.value"
+                    >
+                    </f7-list-input>
 
                 </f7-list>
 
@@ -142,13 +138,9 @@
             </f7-card>
 
             <br>
-            <br>
 
-            <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round @click="cancel()">Cancelar</f7-button>
-                <f7-button round @click="insert()">Guardar</f7-button>
-            </f7-segmented>
+            <!-- Submit -->
+            <f7-button large raised fill class="pink" @click="insert()">Guardar</f7-button>
 
         </f7-block>
 
@@ -167,12 +159,14 @@
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import ImageSelector from '../../form_elements/ImageSelector';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'DiagnosticTestsInsert',
         components: {
             'create-custom-field': CreateCustomField,
-            'image-selector': ImageSelector
+            'image-selector': ImageSelector,
+            'calendar': Calendar
         },
         data() {
             return {
@@ -193,6 +187,13 @@
         },
         computed: mapGetters(['getUserID']),
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             insert() {
                 axios.post(API_PATH + 'diagnostic-tests', {
                     /*params: {
@@ -202,7 +203,7 @@
                     },*/
                     user_id: this.getUserID,
                     name: this.name,
-                    date: this.date,
+                    date: this.reverseDate(this.date),
                     time: this.time,
                     cause: this.cause,
                     requirements: this.requirements,
@@ -230,8 +231,9 @@
                         //console.log(error);
                     });
             },
-            cancel() {
-                this.$f7Router.navigate('/diagnostic-tests');
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
             },
             setImageURI(e) {
                 //console.log('@setImageURI');
@@ -257,7 +259,7 @@
             },
             error(response) {
                 //console.log(response);
-            }
+            },
         }
     };
 </script>

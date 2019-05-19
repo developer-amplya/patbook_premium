@@ -6,53 +6,44 @@
 
             <f7-card title="REGISTRO DE MEDICACIÓN">
                 <f7-list no-hairlines no-hairlines-between>
+
                     <!-- Name -->
-                    <f7-list-item>
-                        <f7-label>Nombre</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="name"
-                                @input="name = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Nombre"
+                            :value="name"
+                            @input="name = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Image -->
-                    <f7-list-item>
-                        <f7-label>Imagen</f7-label>
-                    </f7-list-item>
+                    <f7-list-item title="Imagen"></f7-list-item>
                     <f7-list-item>
                         <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
 
                     <!-- Laboratory -->
-                    <f7-list-item>
-                        <f7-label>Laboratorio</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="lab"
-                                @input="lab = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Laboratorio"
+                            :value="lab"
+                            @input="lab = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Content -->
-                    <f7-list-item>
-                        <f7-label>Miligramos/Mililitros</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="content"
-                                @input="content = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Miligramos/Mililitros"
+                            :value="content"
+                            @input="content = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Dose -->
-                    <f7-list-item>
-                        <f7-label>Dosis</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="dose"
-                                @input="dose = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Dosis"
+                            :value="dose"
+                            @input="dose = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Frequency -->
                     <f7-list-item smart-select title="Frecuencia" :smart-select-params="{ closeOnSelect: true }">
@@ -66,14 +57,12 @@
                     </f7-list-item>
 
                     <!-- Time -->
-                    <f7-list-item>
-                        <f7-label>Hora/Pauta</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="time"
-                                @input="time = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Hora/Pauta"
+                            :value="time"
+                            @input="time = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Day time -->
                     <f7-list-item smart-select title="Momento del día" :smart-select-params="{ closeOnSelect: true }">
@@ -87,9 +76,7 @@
                     </f7-list-item>
 
                     <!-- Start date -->
-                    <f7-list-item class="test">
-                        <f7-label>Fecha de inicio</f7-label>
-                    </f7-list-item>
+                    <f7-list-item class="test" title="Fecha de inicio"></f7-list-item>
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_start"
@@ -98,9 +85,7 @@
                     </f7-list-item>
 
                     <!-- Ending date -->
-                    <f7-list-item>
-                        <f7-label>Fecha de fin</f7-label>
-                    </f7-list-item>
+                    <f7-list-item class="test" title="Fecha de fin"></f7-list-item>
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_end"
@@ -109,72 +94,63 @@
                     </f7-list-item>
 
                     <!-- Cause -->
-                    <f7-list-item>
-                        <f7-label>Motivo</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="cause"
-                                @input="cause = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Motivo"
+                            :value="cause"
+                            @input="cause = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Effects -->
-                    <f7-list-item>
-                        <f7-label>Efectos</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="effects"
-                                @input="effects = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Efectos"
+                            :value="effects"
+                            @input="effects = $event.target.value">
+                    </f7-list-input>
 
                     <!-- Notes -->
-                    <f7-list-item>
-                        <f7-label>Notas</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="notes"
-                                @input="notes = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Notas"
+                            :value="notes"
+                            @input="notes = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- Doctor -->
-                    <f7-list-item>
-                        <f7-label>Médico</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="doctor"
-                                @input="doctor = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Médico"
+                            :value="doctor"
+                            @input="doctor = $event.target.value">
+                    </f7-list-input>
                 </f7-list>
             </f7-card>
+
+            <br>
 
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list>
                     <!-- SCHEMA -->
-                    <f7-list-item v-for="(field, index) in schema"
-                                  :key="index">
-                        <f7-label>{{ field.label }}</f7-label>
-                        <f7-input
-                                :type="field.type"
-                                :value="field.value"
-                                @input="field.value = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            v-for="(field, index) in schema"
+                            :key="index"
+                            :label="field.label"
+                            :type="field.type"
+                            :value="field.value"
+                            @input="field.value = $event.target.value"
+                    >
+                    </f7-list-input>
                 </f7-list>
 
                 <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
             </f7-card>
 
             <br>
-            <br>
 
-            <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round @click="cancel()">Cancelar</f7-button>
-                <f7-button round @click="insert()">Guardar</f7-button>
-            </f7-segmented>
+            <!-- Submit -->
+            <f7-button large raised fill class="yellow" @click="insert()">Guardar</f7-button>
 
         </f7-block>
 

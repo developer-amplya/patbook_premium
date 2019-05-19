@@ -7,53 +7,47 @@
                 <f7-list>
 
                     <!-- DESCRIPTION -->
-                    <f7-list-item>
-                        <f7-label>Descripción</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="description"
-                                @input="description = $event.target.value"></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Descripción"
+                            :value="description"
+                            @input="description = $event.target.value">
+                    </f7-list-input>
 
                     <!-- DOCTOR -->
-                    <f7-list-item>
-                        <f7-label>Médico</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="doctor"
-                                @input="doctor = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Médico"
+                            :value="doctor"
+                            @input="doctor = $event.target.value">
+                    </f7-list-input>
 
                     <!-- LOCATION -->
-                    <f7-list-item>
-                        <f7-label>Centro</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="location"
-                                @input="location = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Centro"
+                            :value="location"
+                            @input="location = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- ADDRESS -->
-                    <f7-list-item>
-                        <f7-label>Dirección</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="address"
-                                @input="address = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Dirección"
+                            :value="address"
+                            @input="address = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- PHONE -->
-                    <f7-list-item>
-                        <f7-label>Teléfono</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="phone"
-                                @input="phone = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Teléfono"
+                            :value="phone"
+                            @input="phone = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- SPECIALITY -->
                     <f7-list-item smart-select title="Especialidad" :smart-select-params="{ closeOnSelect: true }">
@@ -68,164 +62,147 @@
 
                     <!-- Date & Time -->
                     <f7-list-item>
-                        <f7-label>Fecha / Hora</f7-label>
                         <f7-row>
                             <f7-col>
-                                <f7-input
-                                        type="date"
-                                        :value="date"
-                                        @input="date = $event.target.value"
-                                        clear-button></f7-input>
+                                <calendar
+                                        id="medical_visit_date"
+                                        label="Fecha"
+                                        @change="date = setDate($event)">
+                                </calendar>
                             </f7-col>
                             <f7-col>
-                                <f7-input
+                                <f7-list-input
                                         type="time"
+                                        label="Hora"
                                         :value="time"
                                         @input="time = $event.target.value"
-                                        clear-button></f7-input>
+                                ></f7-list-input>
                             </f7-col>
                         </f7-row>
                     </f7-list-item>
 
-                    <!-- CAUSE -->
-                    <f7-list-item>
-                        <f7-label>Motivo</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="cause"
-                                @input="cause = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <!-- Cause -->
+                    <f7-list-input
+                            type="text"
+                            label="Motivo"
+                            :value="cause"
+                            @input="cause = $event.target.value">
+                    </f7-list-input>
 
                     <!-- CONTRIBUTED -->
-                    <f7-list-item>
-                        <f7-label>Pruebas e informes aportados</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="contributed"
-                                @input="contributed = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Pruebas e informes aportados"
+                            :value="contributed"
+                            @input="contributed = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- PRESCRIPTION -->
-                    <f7-list-item>
-                        <f7-label>Prescripción - Medicación</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="prescription"
-                                @input="prescription = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Prescripción - Medicación"
+                            :value="prescription"
+                            @input="prescription = $event.target.value">
+                    </f7-list-input>
 
                     <!-- TREATMENT -->
-                    <f7-list-item>
-                        <f7-label>Prescripción - Tratamiento</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="treatment"
-                                @input="treatment = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Prescripción - Tratamiento"
+                            :value="treatment"
+                            @input="treatment = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- DIAGNOSTIC TESTS -->
-                    <f7-list-item>
-                        <f7-label>Prescripción - Pruebas diagnósticas</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="diagnostic_tests"
-                                @input="diagnostic_tests = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Prescripción - Pruebas diagnósticas"
+                            :value="diagnostic_tests"
+                            @input="diagnostic_tests = $event.target.value">
+                    </f7-list-input>
 
                     <!-- RECOMENDATIONS -->
-                    <f7-list-item>
-                        <f7-label>Recomendaciones</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="recomendations"
-                                @input="recomendations = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Recomendaciones"
+                            :value="recomendations"
+                            @input="recomendations = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- DIAGNOSTIC -->
-                    <f7-list-item>
-                        <f7-label>Diagnóstico</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="diagnostic"
-                                @input="diagnostic = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Diagnóstico"
+                            :value="diagnostic"
+                            @input="diagnostic = $event.target.value">
+                    </f7-list-input>
 
                     <!-- DISEASE -->
-                    <f7-list-item>
-                        <f7-label>Enfermedad</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="disease"
-                                @input="disease = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Enfermedad"
+                            :value="disease"
+                            @input="disease = $event.target.value">
+                    </f7-list-input>
 
                     <!-- COMMENTS -->
-                    <f7-list-item>
-                        <f7-label>Comentarios</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="comments"
-                                @input="comments = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Comentarios"
+                            :value="comments"
+                            @input="comments = $event.target.value"
+                    >
+                    </f7-list-input>
 
-                    <!-- Next visit Date & Time -->
+                    <!-- Date & Time -->
                     <f7-list-item>
-                        <f7-label>Próxima visita</f7-label>
                         <f7-row>
                             <f7-col>
-                                <f7-input
-                                        type="date"
-                                        :value="nex_visit_date"
-                                        @input="nex_visit_date = $event.target.value"
-                                        clear-button></f7-input>
+                                <calendar
+                                        id="next_medical_visit_date"
+                                        label="Fecha próx. visita"
+                                        @change="nex_visit_date = setDate($event)">
+                                </calendar>
                             </f7-col>
                             <f7-col>
-                                <f7-input
+                                <f7-list-input
                                         type="time"
+                                        label="Hora"
                                         :value="next_visit_time"
                                         @input="next_visit_time = $event.target.value"
-                                        clear-button></f7-input>
+                                ></f7-list-input>
                             </f7-col>
                         </f7-row>
                     </f7-list-item>
                 </f7-list>
             </f7-card>
 
+            <br>
+
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list>
                     <!-- SCHEMA -->
-                    <f7-list-item v-for="(field, index) in schema"
-                                  :key="index">
-                        <f7-label>{{ field.label }}</f7-label>
-                        <f7-input
-                                :type="field.type"
-                                :value="field.value"
-                                @input="field.value = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
-
+                    <f7-list-input
+                            v-for="(field, index) in schema"
+                            :key="index"
+                            :label="field.label"
+                            :type="field.type"
+                            :value="field.value"
+                            @input="field.value = $event.target.value"
+                    >
+                    </f7-list-input>
                 </f7-list>
 
                 <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
             </f7-card>
 
             <br>
-            <br>
 
-            <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round @click="cancel()">Cancelar</f7-button>
-                <f7-button round @click="insert()">Guardar</f7-button>
-            </f7-segmented>
+            <!-- Submit -->
+            <f7-button large raised fill class="orange" @click="insert()">Guardar</f7-button>
 
         </f7-block>
 
@@ -243,11 +220,13 @@
     } from '../../config.js';
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'MedicalVisitsInsert',
         components: {
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'calendar': Calendar
         },
         data() {
             return {
@@ -276,6 +255,13 @@
         },
         computed: mapGetters(['getUserID']),
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             insert() {
                 axios.post(API_PATH + 'medical-visits', {
                     /*params: {
@@ -290,7 +276,7 @@
                     address: this.address,
                     phone: this.phone,
                     speciality: this.speciality,
-                    date: this.date,
+                    date: this.reverseDate(this.date),
                     time: this.time,
                     cause: this.cause,
                     contributed: this.contributed,
@@ -315,9 +301,10 @@
                         //console.log(error);
                     });
             },
-            cancel() {
-                this.$f7Router.navigate('/medical-visits');
-            }
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
+            },
         }
     };
 </script>

@@ -9,15 +9,14 @@
             <f7-list>
 
                 <!-- Name -->
-                <f7-list-item>
-                    <f7-label>Nombre</f7-label>
-                    <f7-input
+                <f7-list-input
                             type="text"
+                            label="Nombre"
                             :name="name"
                             :value="name"
                             @input="name = $event.target.value"
-                            clear-button></f7-input>
-                </f7-list-item>
+                            clear-button>
+                </f7-list-input>
 
                 <!-- Type -->
                 <f7-list-item radio title="Campo de texto" :name="type" value="text" checked
@@ -35,9 +34,9 @@
             <br>
 
             <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round popup-close>Cancelar</f7-button><!-- TODO: add cancel functionality -->
-                <f7-button round @click="insert()">Crear</f7-button>
+            <f7-segmented raised>
+                <f7-button large popup-close>Cancelar</f7-button>
+                <f7-button large fill :class="getMainColor" @click="insert()">Crear</f7-button>
             </f7-segmented>
 
         </f7-block>

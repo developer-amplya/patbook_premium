@@ -8,31 +8,31 @@
             <f7-card>
                 <f7-list>
                     <!-- Name -->
-                    <f7-list-item>
-                        <f7-label>Nombre</f7-label>
-                        <f7-input
-                                type="text"
-                                :value="name"
-                                @input="name = $event.target.value"
-                                clear-button></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="text"
+                            label="Nombre"
+                            :value="name"
+                            @input="name = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Date & Time -->
                     <f7-list-item>
-                        <f7-label>Fecha / Hora</f7-label>
                         <f7-row>
                             <f7-col>
                                 <calendar
                                         id="agenda_entry_date"
+                                        label="Fecha"
                                         @change="date = setDate($event)">
                                 </calendar>
                             </f7-col>
                             <f7-col>
-                                <f7-input
+                                <f7-list-input
                                         type="time"
+                                        label="Hora"
                                         :value="time"
                                         @input="time = $event.target.value"
-                                ></f7-input>
+                                ></f7-list-input>
                             </f7-col>
                         </f7-row>
                     </f7-list-item>
@@ -49,25 +49,20 @@
                     </f7-list-item>
 
                     <!-- Description -->
-                    <f7-list-item>
-                        <f7-label>Descripción</f7-label>
-                        <f7-input
-                                type="textarea"
-                                :value="description"
-                                @input="description = $event.target.value"
-                        ></f7-input>
-                    </f7-list-item>
+                    <f7-list-input
+                            type="textarea"
+                            label="Descripción"
+                            resizable
+                            :value="description"
+                            @input="description = $event.target.value"
+                    ></f7-list-input>
                 </f7-list>
             </f7-card>
 
             <br>
-            <br>
 
-            <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round @click="cancel()">Cancelar</f7-button>
-                <f7-button round @click="insert()">Guardar</f7-button>
-            </f7-segmented>
+            <!-- Submit -->
+            <f7-button large raised fill @click="insert()">Guardar</f7-button>
 
         </f7-block>
 
@@ -115,7 +110,7 @@
                     },*/
                     user_id: this.getUserID,
                     name: this.name,
-                    date: this.reorderDate(this.date),
+                    date: this.reverseDate(this.date),
                     time: this.time,
                     type: this.type,
                     description: this.description
@@ -128,18 +123,10 @@
                         //console.log(error);
                     });
             },
-            cancel() {
-                this.$f7Router.navigate('/agenda');
-            },
-            reorderDate(payload) {
+            reverseDate(payload) {
                 let date = payload.split("-");
-                let reorderedDate = [];
-                reorderedDate[0] = date[1];
-                reorderedDate[1] = date[0];
-                reorderedDate[2] = date[2];
-                reorderedDate = reorderedDate.join("-");
-                return reorderedDate;
-            }
+                return date.reverse().join("-");
+            },
         }
     };
 </script>
