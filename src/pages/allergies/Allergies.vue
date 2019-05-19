@@ -1,15 +1,8 @@
 <template>
-    <f7-page>
+    <f7-page @page:afterin="retrieveData">
 
         <!-- Navbar -->
-        <f7-navbar :class="getMainColor">
-            <f7-nav-left>
-                <f7-link href="/home">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="ALERGIAS"></f7-nav-title>
-        </f7-navbar>
+        <f7-navbar :class="getMainColor" back-link title="ALERGIAS"></f7-navbar>
 
         <f7-block inner>
             <f7-list>
@@ -50,22 +43,38 @@
                 list: []
             };
         },
-        methods: mapActions(['setMainColor']),
+        methods: {
+            retrieveData() {
+                // Preloader On
+                this.$f7.dialog.preloader("Cargando...");
+                // Fetch data
+                axios
+                    .get(API_PATH + 'allergies', {
+                        params: {
+                            device_code: this.getDeviceCode,
+                            user_id: this.getUserID
+                            // TODO: encriptar las credenciales?
+                        }
+                    })
+                    .then(response => {
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.list = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido recuperar la información", "Error");
+                    });
+            },
+            ...mapActions(['setMainColor']),
+        },
         computed: {
             ...mapGetters(['getUserID', 'getDeviceCode', 'getMainColor'])
         },
         mounted() {
             this.setMainColor('purple');
-            axios
-                .get(API_PATH + 'allergies', {
-                    params: {
-                        device_code: this.getDeviceCode,
-                        user_id: this.getUserID
-                        // TODO: encriptar las credenciales?
-                    }
-                })
-                .then(response => (this.list = response.data))
-                //.catch(error => (console.log(error)));
         }
     }
     ;
