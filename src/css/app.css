@@ -91,23 +91,32 @@
     width: 100%;
 }
 
+.item-title.item-label {
+    font-size: 16px;
+}
+
 /* COLORS */
 .purple {
     background-color: #c36eb5 !important;
+    color: #ffffff;
 }
 
 .yellow {
     background-color: #F2BE4C !important;
+    color: #ffffff;
 }
 
 .stone {
     background-color: #6F715E !important;
+    color: #ffffff;
 }
 
 .orange {
     background-color: #FF7E3A !important;
+    color: #ffffff;
 }
 
 .pink {
     background-color: #FF3183 !important;
+    color: #ffffff;
 }
