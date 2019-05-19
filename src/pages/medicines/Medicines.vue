@@ -50,10 +50,10 @@
         methods: {
             retrieveData() {
                 // Preloader On
-                this.$f7.dialog.preloader("medicines...");
+                this.$f7.dialog.preloader("Cargando...");
                 // Fetch data
                 axios
-                    .get(API_PATH + 'allergies', {
+                    .get(API_PATH + 'medicines', {
                         params: {
                             device_code: this.getDeviceCode,
                             user_id: this.getUserID
