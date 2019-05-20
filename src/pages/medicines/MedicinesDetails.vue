@@ -17,6 +17,14 @@
 
         <f7-block inner>
 
+            <!-- Info -->
+            <div class="alert alert-info" v-if="copyMsg">
+                <p class="center">
+                    <f7-icon material="info"></f7-icon>
+                </p>
+                <p class="center">Copia de "{{ details.name }}"</p>
+            </div>
+
             <f7-card title="REGISTRO DE MEDICACIÓN">
                 <f7-list media-list>
 
@@ -26,15 +34,16 @@
                     </f7-list-item>
 
                     <!-- Image -->
-                    <f7-list-item title="Imagen"></f7-list-item>
-                    <f7-list-item>
+                    <f7-list-item title="Imagen">
                         <span class="zoom-in"
                               @click="zoomImage">
                             <f7-icon material="zoom_in"></f7-icon>
                         </span>
                     </f7-list-item>
                     <f7-list-item>
-                        <image-selector :imagepath="imagepath" @image_selected="updateImage"></image-selector>
+                        <div class="image-holder">
+                            <img :src="imagepath"/>
+                        </div>
                     </f7-list-item>
 
                     <!-- Laboratory name -->
@@ -118,7 +127,9 @@
         <!-- Delete -->
         <f7-toolbar bottom-md>
             <f7-link></f7-link>
-            <f7-link @click="deleteRecord"><f7-icon material="delete"></f7-icon></f7-link>
+            <f7-link @click="deleteRecord">
+                <f7-icon material="delete"></f7-icon>
+            </f7-link>
             <f7-link></f7-link>
         </f7-toolbar>
 
@@ -159,7 +170,7 @@
                 })
                 .then(response => {
                     this.details = response.data;
-                    if(response.data.schema !== "[]") {
+                    if (response.data.schema !== "[]") {
                         this.there_is_schema = true;
                         this.schema = JSON.parse(response.data.schema);
                     }
@@ -189,6 +200,7 @@
                             this.id = response.data._id; // The ID of the new record
                             this.details = response.data;
                             this.schema = JSON.parse(response.data.schema);
+                            this.copyMsg = true;
 
                             // Incrementing counting state
                             this.$store.dispatch('incrementDocumentCounting', 'medicines');
@@ -252,6 +264,10 @@
 
     .navbar, .toolbar {
         background-color: #F2BE4C;
+    }
+
+    .image-holder img {
+        width: 100%;
     }
 
     .zoom-in {
