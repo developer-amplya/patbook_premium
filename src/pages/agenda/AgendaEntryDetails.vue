@@ -171,27 +171,6 @@
 </script>
 
 <style scoped>
-
-    .md .list .item-header {
-        padding-left: 39px !important;
-    }
-
-    li i.icon {
-        /*position: absolute;
-        left: 15px;
-        top: 20px;*/
-        color: #9a9a9a !important;
-        background: #eeeeee;
-        padding: 5px;
-        border-radius: 50%;
-        opacity: .65;
-    }
-
-    li span {
-        position: relative;
-        z-index: 10;
-    }
-
     .copy-msg {
         text-align: center;
     }
