@@ -4,11 +4,11 @@
 
         <f7-navbar>
             <f7-nav-left>
-                <f7-link href="/allergies">
+                <f7-link href="/medical-visit-preparations">
                     <f7-icon material="arrow_back"></f7-icon>
                 </f7-link>
             </f7-nav-left>
-            <f7-nav-title title="ALERGIAS"></f7-nav-title>
+            <f7-nav-title title="PREPARACIÓN VISITA MÉDICA"></f7-nav-title>
             <f7-nav-right>
                 <span
                         class="navbar-icon-right"
@@ -23,43 +23,73 @@
 
         <f7-block inner>
 
-            <f7-card title="REGISTRO DE ALERGIA">
+            <f7-card title="REGISTRO DE SÍNTOMAS">
                 <f7-list media-list>
-
-                    <!-- NAME -->
-                    <f7-list-item header="Nombre"
-                                  @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
+                    <!-- Symptoms description -->
+                    <f7-list-item header="Descripción de los síntomas"
+                                  @click="openInputPopover($event, 'textarea', 'Descripción de los síntomas', 'symptoms_description', details.symptoms_description)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.name }}</span>
+                        <span>{{ details.symptoms_description }}</span>
                     </f7-list-item>
 
-                    <!-- TYPE -->
-                    <f7-list-item header="Tipo"
-                                  @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
+                    <!-- Intensity -->
+                    <f7-list-item header="Intensidad"
+                                  @click="openSelectPopover($event, 'intensityList', 'Intensidad', 'intensity', details.intensity)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.type }}</span>
+                        <span>{{ details.intensity }}</span>
                     </f7-list-item>
 
-                    <!-- DEGREE -->
-                    <f7-list-item header="Grado"
-                                  @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
+                    <!-- Frequency -->
+                    <f7-list-item header="Frecuencia"
+                                  @click="openInputPopover($event, 'text', 'Frecuencia', 'frequency', details.frequency)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.degree }}</span>
+                        <span>{{ details.frequency }}</span>
                     </f7-list-item>
 
-                    <!-- REACTION -->
-                    <f7-list-item header="Reacción"
-                                  @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
-                                  resizable>
+                    <!-- Date -->
+                    <f7-list-item header="Fecha"
+                                  @click="openInputPopover($event, 'date', 'Fecha', 'date', details.date)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.reaction }}</span>
+                        <span>{{ details.date }}</span>
+                    </f7-list-item>
+
+                    <!-- Actions -->
+                    <f7-list-item header="Acciones preventivas"
+                                  @click="openInputPopover($event, 'textarea', 'Acciones preventivas', 'actions', details.actions)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.actions }}</span>
+                    </f7-list-item>
+
+                    <!-- Notes -->
+                    <f7-list-item header="Notas"
+                                  @click="openInputPopover($event, 'textarea', 'Notas', 'notes', details.notes)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.notes }}</span>
+                    </f7-list-item>
+                </f7-list>
+            </f7-card>
+
+            <f7-card title="PREGUNTAS AL MÉDICO">
+                <f7-list media-list>
+                    <!-- Doctor -->
+                    <f7-list-item header="Médico"
+                                  @click="openInputPopover($event, 'text', 'Médico', 'doctor', details.doctor)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.doctor }}</span>
+                    </f7-list-item>
+
+                    <!-- Questions -->
+                    <f7-list-item header="Preguntas"
+                                  @click="openInputPopover($event, 'textarea', 'Preguntas', 'questions', details.questions)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.questions }}</span>
                     </f7-list-item>
                 </f7-list>
             </f7-card>
 
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list media-list>
-                    <!-- SCHEMA -->
+                    <!-- Schema -->
                     <f7-list-item v-for="(field, index) in schema"
                                   :key="index"
                                   :header="field.label"
@@ -78,9 +108,7 @@
         <!-- Delete -->
         <f7-toolbar bottom-md>
             <f7-link></f7-link>
-            <f7-link @click="deleteRecord">
-                <f7-icon material="delete"></f7-icon>
-            </f7-link>
+            <f7-link @click="deleteRecord"><f7-icon material="delete"></f7-icon></f7-link>
             <f7-link></f7-link>
         </f7-toolbar>
 
@@ -127,7 +155,7 @@
     import CreateCustomField from '../../form_elements/CreateCustomField';
 
     export default {
-        name: 'AllergiesDetails',
+        name: 'MedicalVisitPreparationsDetails',
         components: {
             SelectList,
             TextInput,
@@ -151,11 +179,8 @@
             };
         },
         mounted() {
-            //console.log('-> AllergiesDetails');
-            //console.log('@mounted');
-
             axios
-                .get(API_PATH + 'allergies/' + this.id, {
+                .get(API_PATH + 'medical-visit-preparations/' + this.id, {
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -184,7 +209,6 @@
                 this.$refs.EditSelectField.open();
             },
             openEditSchema($event, index, field) {
-                //console.log('@openEditSchema');
 
                 this.schema_active_index = index;
 
@@ -216,14 +240,14 @@
             updateInfo() {
                 //console.log('@updateInfo');
 
-                /* We need to create first an object and then to assign the key name as an array key, because assigning
+                /* We need to create first an object an then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
                 let data = {};
                 data[this.field.name] = this.field.value;
 
                 axios({
                     method: 'PUT',
-                    url: API_PATH + 'allergies/' + this.id,
+                    url: API_PATH + 'medical-visit-preparations/' + this.id,
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -245,7 +269,6 @@
                     });
             },
             updateInfoSchema(index) {
-                //console.log('@updateInfoSchema');
 
                 this.schema_active_index = null;
 
@@ -255,7 +278,7 @@
                     "value": this.field.value
                 };
 
-                axios.put(API_PATH + 'allergies/' + this.id, {
+                axios.put(API_PATH + 'medical-visit-preparations/' + this.id, {
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -279,7 +302,7 @@
             replicateRecord() {
                 this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
                     axios
-                        .get(API_PATH + 'allergies/replicate/' + this.id, {
+                        .get(API_PATH + 'medical-visit-preparations/replicate/' + this.id, {
                             params: {
                                 // device_code: sessionStorage.device_code,
                                 // user_id: sessionStorage.user_id
@@ -291,7 +314,7 @@
                             this.schema = JSON.parse(response.data.schema);
 
                             // Incrementing counting state
-                            this.$store.dispatch('incrementDocumentCounting', 'allergies');
+                            this.$store.dispatch('incrementDocumentCounting', 'medical_visit_preparations');
 
                             let notification = this.$f7.toast.create({
                                 position: 'top',
@@ -307,7 +330,7 @@
             deleteRecord() {
                 this.$f7.dialog.confirm('Esta acción no puede deshacerse', '¿Borrar este registro?', () => {
                     axios
-                        .delete(API_PATH + 'allergies/' + this.id, {
+                        .delete(API_PATH + 'medical-visit-preparations/' + this.id, {
                             params: {
                                 // device_code: sessionStorage.device_code,
                                 // user_id: sessionStorage.user_id
@@ -316,7 +339,7 @@
                         .then(response => {
                             if (response.data.result === 'OK') {
                                 // Incrementing counting state
-                                this.$store.dispatch('decrementDocumentCounting', 'allergies');
+                                this.$store.dispatch('decrementDocumentCounting', 'medical_visit_preparations');
 
                                 let notification = this.$f7.toast.create({
                                     position: 'top',
@@ -329,7 +352,7 @@
 
                                 // Returning to list
                                 setTimeout(() => {
-                                    this.$f7router.navigate('/allergies');
+                                    this.$f7router.navigate('/medical-visit-preparations');
                                 }, 2000);
                             } else {
                                 this.$f7.dialog.alert('No se ha podido borrar el registro', "Error");
@@ -342,7 +365,8 @@
                 });
             }
         }
-    };
+    }
+    ;
 </script>
 
 <style scoped>
@@ -368,6 +392,6 @@
     }
 
     .navbar, .toolbar {
-        background-color: #c36eb5;
+        background-color: #6F715E;
     }
 </style>

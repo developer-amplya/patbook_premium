@@ -17,18 +17,23 @@ import AgendaEntryEdit from './pages/agenda/AgendaEntryEdit.vue';
 import Allergies from './pages/allergies/Allergies.vue';
 import AllergiesInsert from './pages/allergies/AllergiesInsert.vue';
 import AllergiesDetails from './pages/allergies/AllergiesDetails.vue';
+import AllergiesEdit from './pages/allergies/AllergiesEdit.vue';
 import Medicines from './pages/medicines/Medicines.vue';
 import MedicinesInsert from './pages/medicines/MedicinesInsert.vue';
 import MedicinesDetails from './pages/medicines/MedicinesDetails.vue';
+import MedicinesEdit from './pages/medicines/MedicinesEdit.vue';
 import MedicalVisitPreparations from './pages/medical_visit_preparations/MedicalVisitPreparations.vue';
 import MedicalVisitPreparationsInsert from './pages/medical_visit_preparations/MedicalVisitPreparationsInsert.vue';
 import MedicalVisitPreparationsDetails from './pages/medical_visit_preparations/MedicalVisitPreparationsDetails.vue';
+import MedicalVisitPreparationsEdit from './pages/medical_visit_preparations/MedicalVisitPreparationsEdit.vue';
 import MedicalVisits from './pages/medical_visits/MedicalVisits.vue';
 import MedicalVisitsInsert from './pages/medical_visits/MedicalVisitsInsert.vue';
 import MedicalVisitsDetails from './pages/medical_visits/MedicalVisitsDetails.vue';
+import MedicalVisitsEdit from './pages/medical_visits/MedicalVisitsEdit.vue';
 import DiagnosticTests from './pages/diagnostic_tests/DiagnosticTests.vue';
 import DiagnosticTestsInsert from './pages/diagnostic_tests/DiagnosticTestsInsert.vue';
 import DiagnosticTestsDetails from './pages/diagnostic_tests/DiagnosticTestsDetails.vue';
+import DiagnosticTestsEdit from './pages/diagnostic_tests/DiagnosticTestsEdit.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -119,6 +124,11 @@ export default [
       component: AllergiesDetails,
       props: true
   },
+    {
+        path: '/allergies/edit/:record_id',
+        component: AllergiesEdit,
+        props: true
+    },
   {
       path: '/medicines',
       component: Medicines
@@ -132,6 +142,11 @@ export default [
       component: MedicinesDetails,
       props: true
   },
+    {
+        path: '/medicines/edit/:record_id',
+        component: MedicinesEdit,
+        props: true
+    },
   {
       path: '/medical-visit-preparations',
       component: MedicalVisitPreparations
@@ -145,6 +160,11 @@ export default [
       component: MedicalVisitPreparationsDetails,
       props: true
   },
+    {
+        path: '/medical-visit-preparations/edit/:record_id',
+        component: MedicalVisitPreparationsEdit,
+        props: true
+    },
   {
       path: '/medical-visits',
       component: MedicalVisits
@@ -158,6 +178,11 @@ export default [
       component: MedicalVisitsDetails,
       props: true
   },
+    {
+        path: '/medical-visits/edit/:record_id',
+        component: MedicalVisitsEdit,
+        props: true
+    },
   {
       path: '/diagnostic-tests',
       component: DiagnosticTests
@@ -171,6 +196,11 @@ export default [
       component: DiagnosticTestsDetails,
       props: true
   },
+    {
+        path: '/diagnostic-tests/edit/:record_id',
+        component: DiagnosticTestsEdit,
+        props: true
+    },
   {
       path: '/create-custom-field',
       component: CreateCustomField,

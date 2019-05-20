@@ -4,6 +4,9 @@
 
         <f7-navbar back-link title="PRUEBAS DIAGNÓSTICAS">
             <f7-nav-right>
+                <span class="navbar-icon-right">
+                    <a :href="'/diagnostic-tests/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>
+                </span>
                 <span
                         class="navbar-icon-right"
                         @click="replicateRecord"

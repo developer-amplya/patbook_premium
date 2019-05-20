@@ -4,6 +4,9 @@
 
         <f7-navbar back-link title="PREPARACIÓN VISITA MÉDICA">
             <f7-nav-right>
+                <span class="navbar-icon-right">
+                    <a :href="'/medical-visit-preparations/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>
+                </span>
                 <span
                         class="navbar-icon-right"
                         @click="replicateRecord"

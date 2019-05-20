@@ -4,11 +4,11 @@
 
         <f7-navbar>
             <f7-nav-left>
-                <f7-link href="/allergies">
+                <f7-link href="/medicines">
                     <f7-icon material="arrow_back"></f7-icon>
                 </f7-link>
             </f7-nav-left>
-            <f7-nav-title title="ALERGIAS"></f7-nav-title>
+            <f7-nav-title title="MEDICAMENTO"></f7-nav-title>
             <f7-nav-right>
                 <span
                         class="navbar-icon-right"
@@ -23,43 +23,117 @@
 
         <f7-block inner>
 
-            <f7-card title="REGISTRO DE ALERGIA">
+            <f7-card title="REGISTRO DE MEDICACIÓN">
                 <f7-list media-list>
 
-                    <!-- NAME -->
+                    <!-- Name -->
                     <f7-list-item header="Nombre"
                                   @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ details.name }}</span>
                     </f7-list-item>
 
-                    <!-- TYPE -->
-                    <f7-list-item header="Tipo"
-                                  @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.type }}</span>
+                    <!-- Image -->
+                    <f7-list-item>
+                        <f7-label>Imagen</f7-label>
+                        <span class="zoom-in"
+                              @click="zoomImage">
+                            <f7-icon material="zoom_in"></f7-icon>
+                        </span>
+                    </f7-list-item>
+                    <f7-list-item>
+                        <image-selector :imagepath="imagepath" @image_selected="updateImage"></image-selector>
                     </f7-list-item>
 
-                    <!-- DEGREE -->
-                    <f7-list-item header="Grado"
-                                  @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
+                    <!-- Laboratory name -->
+                    <f7-list-item header="Nombre del laboratorio"
+                                  @click="openInputPopover($event, 'text', 'Nombre del laboratorio', 'lab', details.lab)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.degree }}</span>
+                        <span>{{ details.lab }}</span>
                     </f7-list-item>
 
-                    <!-- REACTION -->
-                    <f7-list-item header="Reacción"
-                                  @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
-                                  resizable>
+                    <!-- Content -->
+                    <f7-list-item header="Miligramos/Mililitros"
+                                  @click="openInputPopover($event, 'text', 'Miligramos/Mililitros', 'content', details.content)">
                         <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.reaction }}</span>
+                        <span>{{ details.content }}</span>
+                    </f7-list-item>
+
+                    <!-- Dose -->
+                    <f7-list-item header="Dosis"
+                                  @click="openInputPopover($event, 'text', 'Dosis', 'dose', details.dose)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.dose }}</span>
+                    </f7-list-item>
+
+                    <!-- Frequency -->
+                    <f7-list-item header="Frecuencia"
+                                  @click="openSelectPopover($event, 'frequencyList', 'Frecuencia', 'frequency', details.frequency)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.frequency }}</span>
+                    </f7-list-item>
+
+                    <!-- Time -->
+                    <f7-list-item header="Hora/Pauta"
+                                  @click="openInputPopover($event, 'text', 'Hora/Pauta', 'time', details.time)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.time }}</span>
+                    </f7-list-item>
+
+                    <!-- Day time -->
+                    <f7-list-item header="Momento del día"
+                                  @click="openSelectPopover($event, 'dayTimeList', 'Momento del día', 'day_time', details.day_time)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.day_time }}</span>
+                    </f7-list-item>
+
+                    <!-- Start date -->
+                    <f7-list-item header="Fecha de inicio"
+                                  @click="openInputPopover($event, 'date', 'Fecha de inicio', 'start', details.start)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.start }}</span>
+                    </f7-list-item>
+
+                    <!-- Ending date -->
+                    <f7-list-item header="Fecha de fin"
+                                  @click="openInputPopover($event, 'date', 'Fecha de fin', 'end', details.end)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.end }}</span>
+                    </f7-list-item>
+
+                    <!-- Cause -->
+                    <f7-list-item header="Motivo"
+                                  @click="openInputPopover($event, 'text', 'Motivo', 'cause', details.cause)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.cause }}</span>
+                    </f7-list-item>
+
+                    <!-- Effects -->
+                    <f7-list-item header="Efectos"
+                                  @click="openInputPopover($event, 'textarea', 'Efectos', 'effects', details.effects)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.effects }}</span>
+                    </f7-list-item>
+
+                    <!-- Notes -->
+                    <f7-list-item header="Notas"
+                                  @click="openInputPopover($event, 'textarea', 'Notas', 'notes', details.notes)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.notes }}</span>
+                    </f7-list-item>
+
+                    <!-- Doctor -->
+                    <f7-list-item header="Médico"
+                                  @click="openInputPopover($event, 'text', 'Médico', 'doctor', details.doctor)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ details.doctor }}</span>
                     </f7-list-item>
                 </f7-list>
             </f7-card>
 
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list media-list>
-                    <!-- SCHEMA -->
+                    <!-- Schema -->
                     <f7-list-item v-for="(field, index) in schema"
                                   :key="index"
                                   :header="field.label"
@@ -78,9 +152,7 @@
         <!-- Delete -->
         <f7-toolbar bottom-md>
             <f7-link></f7-link>
-            <f7-link @click="deleteRecord">
-                <f7-icon material="delete"></f7-icon>
-            </f7-link>
+            <f7-link @click="deleteRecord"><f7-icon material="delete"></f7-icon></f7-link>
             <f7-link></f7-link>
         </f7-toolbar>
 
@@ -120,18 +192,20 @@
 <script>
     import axios from 'axios';
     import {
-        API_PATH
+        API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
-        name: 'AllergiesDetails',
+        name: 'MedicinesDetails',
         components: {
             SelectList,
             TextInput,
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'image-selector': ImageSelector
         },
         props: [
             'record_id'
@@ -147,15 +221,14 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null
+                schema_active_index: null,
+                imagepath: undefined
             };
         },
         mounted() {
-            //console.log('-> AllergiesDetails');
-            //console.log('@mounted');
-
+            // Get the record details
             axios
-                .get(API_PATH + 'allergies/' + this.id, {
+                .get(API_PATH + 'medicines/' + this.id, {
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -164,9 +237,19 @@
                 .then(response => {
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
+
+                    // Check the image
+                    if (this.details.image !== null) {
+                        this.imagepath = USER_IMAGES_PATH + this.details.image;
+                    }
                 });
         },
         methods: {
+            zoomImage() {
+                if (this.details.image !== null) {
+                    PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
+                }
+            },
             openInputPopover($event, type, label, name, value) {
                 //console.log('@openInputPopover');
                 this.field.type = type;
@@ -184,7 +267,6 @@
                 this.$refs.EditSelectField.open();
             },
             openEditSchema($event, index, field) {
-                //console.log('@openEditSchema');
 
                 this.schema_active_index = index;
 
@@ -216,14 +298,14 @@
             updateInfo() {
                 //console.log('@updateInfo');
 
-                /* We need to create first an object and then to assign the key name as an array key, because assigning
+                /* We need to create first an object an then to assign the key name as an array key, because assigning
                  dynamic key names in an object does not work */
                 let data = {};
                 data[this.field.name] = this.field.value;
 
                 axios({
                     method: 'PUT',
-                    url: API_PATH + 'allergies/' + this.id,
+                    url: API_PATH + 'medicines/' + this.id,
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -255,7 +337,7 @@
                     "value": this.field.value
                 };
 
-                axios.put(API_PATH + 'allergies/' + this.id, {
+                axios.put(API_PATH + 'medicines/' + this.id, {
                     params: {
                         // device_code: sessionStorage.device_code,
                         // user_id: sessionStorage.user_id
@@ -276,10 +358,31 @@
                         //console.log(error);
                     });
             },
+            updateImage(path) {
+                let uri = encodeURI(API_PATH + 'medicines/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = path.substr(path.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: this.id
+                };
+
+                var ft = new FileTransfer();
+                ft.upload(path, uri, this.success, this.error, options);
+            },
+            success(response) {
+                //console.log(response);
+            },
+            error(response) {
+                //console.log(response);
+            },
             replicateRecord() {
                 this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
                     axios
-                        .get(API_PATH + 'allergies/replicate/' + this.id, {
+                        .get(API_PATH + 'medicines/replicate/' + this.id, {
                             params: {
                                 // device_code: sessionStorage.device_code,
                                 // user_id: sessionStorage.user_id
@@ -291,7 +394,7 @@
                             this.schema = JSON.parse(response.data.schema);
 
                             // Incrementing counting state
-                            this.$store.dispatch('incrementDocumentCounting', 'allergies');
+                            this.$store.dispatch('incrementDocumentCounting', 'medicines');
 
                             let notification = this.$f7.toast.create({
                                 position: 'top',
@@ -307,7 +410,7 @@
             deleteRecord() {
                 this.$f7.dialog.confirm('Esta acción no puede deshacerse', '¿Borrar este registro?', () => {
                     axios
-                        .delete(API_PATH + 'allergies/' + this.id, {
+                        .delete(API_PATH + 'medicines/' + this.id, {
                             params: {
                                 // device_code: sessionStorage.device_code,
                                 // user_id: sessionStorage.user_id
@@ -316,7 +419,7 @@
                         .then(response => {
                             if (response.data.result === 'OK') {
                                 // Incrementing counting state
-                                this.$store.dispatch('decrementDocumentCounting', 'allergies');
+                                this.$store.dispatch('decrementDocumentCounting', 'medicines');
 
                                 let notification = this.$f7.toast.create({
                                     position: 'top',
@@ -329,7 +432,7 @@
 
                                 // Returning to list
                                 setTimeout(() => {
-                                    this.$f7router.navigate('/allergies');
+                                    this.$f7router.navigate('/medicines');
                                 }, 2000);
                             } else {
                                 this.$f7.dialog.alert('No se ha podido borrar el registro', "Error");
@@ -368,6 +471,13 @@
     }
 
     .navbar, .toolbar {
-        background-color: #c36eb5;
+        background-color: #F2BE4C;
+    }
+
+    .zoom-in {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 5px
     }
 </style>
