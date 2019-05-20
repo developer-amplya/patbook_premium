@@ -17,6 +17,14 @@
 
         <f7-block inner>
 
+            <!-- Info -->
+            <div class="alert alert-info" v-if="copyMsg">
+                <p class="center">
+                    <f7-icon material="info"></f7-icon>
+                </p>
+                <p class="center">Copia de "{{ details.name }}"</p>
+            </div>
+
             <f7-card title="REGISTRO DE VISITA MÉDICA">
                 <f7-list media-list>
 
@@ -106,6 +114,19 @@
                         <span>{{ details.comments }}</span>
                     </f7-list-item>
 
+                    <!-- Image -->
+                    <f7-list-item title="Imagen">
+                        <span class="zoom-in"
+                              @click="zoomImage">
+                            <f7-icon material="zoom_in"></f7-icon>
+                        </span>
+                    </f7-list-item>
+                    <f7-list-item>
+                        <div class="image-holder">
+                            <img :src="imagepath"/>
+                        </div>
+                    </f7-list-item>
+
                     <!-- Date -->
                     <f7-list-item header="Fecha">
                         <span>{{ details.nex_visit_date }}</span>
@@ -149,7 +170,7 @@
 <script>
     import axios from 'axios';
     import {
-        API_PATH
+        API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
 
     export default {
@@ -165,6 +186,7 @@
                 schema_active_index: null,
                 there_is_schema: false,
                 copyMsg: false,
+                imagepath: undefined,
             };
         },
         mounted() {
@@ -181,9 +203,19 @@
                         this.there_is_schema = true;
                         this.schema = JSON.parse(response.data.schema);
                     }
+
+                    // Check the image
+                    if (this.details.image !== null) {
+                        this.imagepath = USER_IMAGES_PATH + this.details.image;
+                    }
                 });
         },
         methods: {
+            zoomImage() {
+                if (this.details.image !== null) {
+                    PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
+                }
+            },
             replicateRecord() {
                 this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
                     axios
@@ -197,6 +229,7 @@
                             this.id = response.data._id; // The ID of the new record
                             this.details = response.data;
                             this.schema = JSON.parse(response.data.schema);
+                            this.copyMsg = true;
 
                             // Incrementing counting state
                             this.$store.dispatch('incrementDocumentCounting', 'medical_visits');
@@ -261,5 +294,16 @@
 
     .navbar, .toolbar {
         background-color: #FF7E3A;
+    }
+
+    .image-holder img {
+        width: 100%;
+    }
+
+    .zoom-in {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 5px
     }
 </style>
