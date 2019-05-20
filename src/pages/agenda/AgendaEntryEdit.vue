@@ -55,13 +55,9 @@
             </f7-card>
 
             <br>
-            <br>
 
-            <!-- Cancel & Submit -->
-            <f7-segmented round raised>
-                <f7-button round large @click="cancel()">Cancelar</f7-button>
-                <f7-button round large fill @click="update()">Guardar</f7-button>
-            </f7-segmented>
+            <!-- Submit -->
+            <f7-button large raised fill @click="insert()">Guardar</f7-button>
 
         </f7-block>
 
@@ -164,7 +160,7 @@
                     data: {
                         user_id: this.getUserID,
                         name: this.details.name,
-                        date: this.details.date,
+                        date: this.reverseDate(this.details.date),
                         time: this.details.time,
                         type: this.details.type,
                         description: this.details.description
@@ -172,6 +168,7 @@
                 })
                     .then((response) => {
                         if (response.data.result === 'OK') {
+                            console.log(response.data.result);
                             // redirect
                             this.$f7Router.navigate('/agenda/' + this.id);
                         } else {
@@ -182,9 +179,10 @@
                         //console.log(error);
                     });
             },
-            cancel() {
-                this.$f7Router.navigate('/agenda/' + this.id);
-            }
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
+            },
         }
     };
 </script>
