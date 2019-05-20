@@ -249,9 +249,6 @@
                         //console.log(error);
                     });
             },
-            cancel() {
-                this.$f7Router.navigate('/medicines');
-            },
             setImageURI(e) {
                 //console.log('@setImageURI');
                 this.image = e;
