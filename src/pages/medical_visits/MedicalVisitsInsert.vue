@@ -157,6 +157,12 @@
                     >
                     </f7-list-input>
 
+                    <!-- Image -->
+                    <f7-list-item title="Imagen"></f7-list-item>
+                    <f7-list-item>
+                        <image-selector @image_selected="setImageURI"></image-selector>
+                    </f7-list-item>
+
                     <!-- Date & Time -->
                     <f7-list-item>
                         <f7-row>
@@ -221,11 +227,13 @@
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import Calendar from '../../form_elements/Calendar';
+    import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
         name: 'MedicalVisitsInsert',
         components: {
             'create-custom-field': CreateCustomField,
+            'image-selector': ImageSelector,
             'calendar': Calendar
         },
         data() {
@@ -248,6 +256,7 @@
                 diagnostic: '',
                 disease: '',
                 comments: '',
+                image: '',
                 nex_visit_date: '',
                 next_visit_time: '',
                 schema: []
@@ -287,6 +296,7 @@
                     diagnostic: this.diagnostic,
                     disease: this.disease,
                     comments: this.comments,
+                    image: this.image,
                     nex_visit_date: this.nex_visit_date,
                     next_visit_time: this.next_visit_time,
                     schema: JSON.stringify(this.schema)
@@ -294,6 +304,12 @@
                     .then((response) => {
                         // Incrementing counting state
                         this.$store.dispatch('incrementDocumentCounting', 'medical_visits');
+
+                        // After insert check the existence of an image
+                        if (this.image !== '') {
+                            this.uploadImage(response.data.recordID.$oid);
+                        }
+
                         // Returning to list
                         this.$f7router.navigate('/medical-visits');
                     })
@@ -305,6 +321,31 @@
                 let date = payload.split("-");
                 return date.reverse().join("-");
             },
+            setImageURI(e) {
+                //console.log('@setImageURI');
+                this.image = e;
+            },
+            uploadImage(record_id) {
+                let uri = encodeURI(API_PATH + 'medicines/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = this.image.substr(this.image.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: record_id
+                };
+
+                var ft = new FileTransfer();
+                ft.upload(this.image, uri, this.success, this.error, options);
+            },
+            success(response) {
+                //console.log(response);
+            },
+            error(response) {
+                //console.log(response);
+            }
         }
     };
 </script>
