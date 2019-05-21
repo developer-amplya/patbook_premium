@@ -63,7 +63,7 @@
 
                     <!-- Date -->
                     <f7-list-item header="Fecha">
-                        <span>{{ details.date }}</span>
+                        <span>{{ transformDate(details.date) }}</span>
                     </f7-list-item>
 
                     <!-- Time -->
@@ -132,12 +132,12 @@
 
                     <!-- Date -->
                     <f7-list-item header="Fecha">
-                        <span>{{ details.nex_visit_date }}</span>
+                        <span>{{ transformDate(details.nex_visit_date) }}</span>
                     </f7-list-item>
 
                     <!-- Time -->
                     <f7-list-item header="Hora">
-                        <span>{{ details.next_visit_time }}</span>
+                        <span>{{ transformDate(details.next_visit_time) }}</span>
                     </f7-list-item>
 
                 </f7-list>
@@ -190,6 +190,20 @@
                 there_is_schema: false,
                 copyMsg: false,
                 imagepath: undefined,
+                months: [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre"
+                ],
             };
         },
         mounted() {
@@ -218,6 +232,14 @@
                 if (this.details.image !== null) {
                     PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
                 }
+            },
+            transformDate: function(payload) {
+                let rawDate = new Date(payload);
+                let dd = String(rawDate.getDate());
+                let mm = this.months[String(rawDate.getMonth())]; // January is 0!
+                //const mm = rawDate.toLocaleString('es-es', { month: 'long' }).toUpperCase();
+                let yyyy = rawDate.getFullYear();
+                return dd + " " + mm + " " + yyyy;
             },
             replicateRecord() {
                 this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {

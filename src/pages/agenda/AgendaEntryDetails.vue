@@ -40,7 +40,7 @@
 
                     <!-- Date -->
                     <f7-list-item header="Fecha">
-                        <span>{{ details.date }}</span>
+                        <span>{{ transformDate(details.date) }}</span>
                     </f7-list-item>
 
                     <!-- Time -->
@@ -90,7 +90,21 @@
             return {
                 id: this.record_id,
                 details: [],
-                copyMsg: false
+                copyMsg: false,
+                months: [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre"
+                ],
             };
         },
         mounted() {
@@ -165,7 +179,15 @@
                             this.$f7.dialog.alert('Ha ocurrido un error', "Error");
                         });
                 });
-            }
+            },
+            transformDate: function(payload) {
+                let rawDate = new Date(payload);
+                let dd = String(rawDate.getDate());
+                let mm = this.months[String(rawDate.getMonth())]; // January is 0!
+                //const mm = rawDate.toLocaleString('es-es', { month: 'long' }).toUpperCase();
+                let yyyy = rawDate.getFullYear();
+                return dd + " " + mm + " " + yyyy;
+            },
         }
     };
 </script>

@@ -81,12 +81,12 @@
 
                     <!-- Start date -->
                     <f7-list-item header="Fecha de inicio">
-                        <span>{{ details.start }}</span>
+                        <span>{{ transformDate(details.start) }}</span>
                     </f7-list-item>
 
                     <!-- Ending date -->
                     <f7-list-item header="Fecha de fin">
-                        <span>{{ details.end }}</span>
+                        <span>{{ transformDate(details.end) }}</span>
                     </f7-list-item>
 
                     <!-- Cause -->
@@ -159,7 +159,21 @@
                 schema_active_index: null,
                 there_is_schema: false,
                 copyMsg: false,
-                imagepath: undefined
+                imagepath: undefined,
+                months: [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre"
+                ],
             };
         },
         mounted() {
@@ -189,6 +203,14 @@
                 if (this.details.image !== null) {
                     PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
                 }
+            },
+            transformDate: function(payload) {
+                let rawDate = new Date(payload);
+                let dd = String(rawDate.getDate());
+                let mm = this.months[String(rawDate.getMonth())]; // January is 0!
+                //const mm = rawDate.toLocaleString('es-es', { month: 'long' }).toUpperCase();
+                let yyyy = rawDate.getFullYear();
+                return dd + " " + mm + " " + yyyy;
             },
             replicateRecord() {
                 this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
