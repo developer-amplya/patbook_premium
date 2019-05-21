@@ -18,7 +18,7 @@
                         :link="/allergies/ + listItem._id"
                         :header="listItem.type"
                         :title="listItem.name"
-                        :footer="listItem.degree"></f7-list-item>
+                        :footer="transformDate(listItem.symptoms_start)"></f7-list-item>
             </f7-list>
         </f7-block>
 
@@ -46,7 +46,21 @@
         props: [],
         data() {
             return {
-                list: []
+                list: [],
+                months: [
+                    "ENERO",
+                    "FEBRERO",
+                    "MARZO",
+                    "ABRIL",
+                    "MAYO",
+                    "JUNIO",
+                    "JULIO",
+                    "AGOSTO",
+                    "SEPTIEMBRE",
+                    "OCTUBRE",
+                    "NOVIEMBRE",
+                    "DICIEMBRE"
+                ]
             };
         },
         methods: {
@@ -73,6 +87,14 @@
                         this.$f7.dialog.close();
                         this.$f7.dialog.alert("No se ha podido recuperar la información", "Error");
                     });
+            },
+            transformDate: function(payload) {
+                let rawDate = new Date(payload);
+                let dd = String(rawDate.getDate()).padStart(2, "0");
+                let mm = this.months[String(rawDate.getMonth())]; // January is 0!
+                //const mm = rawDate.toLocaleString('es-es', { month: 'long' }).toUpperCase();
+                let yyyy = rawDate.getFullYear();
+                return dd + " " + mm + " " + yyyy;
             },
             ...mapActions(['setMainColor']),
         },
