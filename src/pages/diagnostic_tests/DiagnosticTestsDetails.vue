@@ -73,6 +73,7 @@
 
                     <!-- Doctor -->
                     <f7-list-item header="Médico">
+                        <span>{{ details.doctor }}</span>
                     </f7-list-item>
 
                 </f7-list>
