@@ -25,7 +25,7 @@
                 <p class="center">
                     <f7-icon material="info"></f7-icon>
                 </p>
-                <p class="center">Copia de "{{ details.name }}"</p>
+                <p class="center">Copia</p>
             </div>
 
             <f7-card title="REGISTRO DE VISITA MÉDICA">
@@ -137,7 +137,7 @@
 
                     <!-- Time -->
                     <f7-list-item header="Hora">
-                        <span>{{ transformDate(details.next_visit_time) }}</span>
+                        <span>{{ details.next_visit_time }}</span>
                     </f7-list-item>
 
                 </f7-list>
