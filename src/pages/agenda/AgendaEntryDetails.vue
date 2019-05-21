@@ -2,21 +2,15 @@
 
     <f7-page hide-toolbar-on-scroll>
 
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/agenda">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="AGENDA"></f7-nav-title>
+        <f7-navbar back-link back-link-force back-link-url="/agenda" title="AGENDA">
             <f7-nav-right>
+                <span class="navbar-icon-right">
+                    <a :href="'/agenda/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>
+                </span>
                 <span
                         class="navbar-icon-right"
                         @click="replicateRecord"
                 ><img src="../../assets/ic_content_copy_white_24dp.png"></span>
-                <span class="navbar-icon-right">
-                    <a :href="'/agenda/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>
-                </span>
             </f7-nav-right>
         </f7-navbar>
 

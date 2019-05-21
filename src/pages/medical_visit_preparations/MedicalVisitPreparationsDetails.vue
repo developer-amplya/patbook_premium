@@ -2,7 +2,7 @@
 
     <f7-page hide-toolbar-on-scroll>
 
-        <f7-navbar back-link title="PREPARACIÓN VISITA MÉDICA">
+        <f7-navbar back-link back-link-force back-link-url="/medical-visit-preparations" title="PREPARACIÓN VISITA MÉDICA">
             <f7-nav-right>
                 <span class="navbar-icon-right">
                     <a :href="'/medical-visit-preparations/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>

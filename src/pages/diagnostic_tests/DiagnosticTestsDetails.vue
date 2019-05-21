@@ -2,7 +2,7 @@
 
     <f7-page hide-toolbar-on-scroll>
 
-        <f7-navbar back-link title="PRUEBAS DIAGNÓSTICAS">
+        <f7-navbar back-link back-link-force back-link-url="/diagnostic-tests" title="PRUEBAS DIAGNÓSTICAS">
             <f7-nav-right>
                 <span class="navbar-icon-right">
                     <a :href="'/diagnostic-tests/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>

@@ -2,7 +2,7 @@
 
     <f7-page hide-toolbar-on-scroll>
 
-        <f7-navbar back-link title="ALERGIAS">
+        <f7-navbar back-link back-link-force back-link-url="/allergies" title="ALERGIAS">
             <f7-nav-right>
                 <span class="navbar-icon-right">
                     <a :href="'/allergies/edit/' + id"><img src="../../assets/ic_mode_edit_white_24dp.png"></a>
