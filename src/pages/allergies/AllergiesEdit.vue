@@ -1,112 +1,91 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page>
 
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/allergies">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="ALERGIAS"></f7-nav-title>
-            <f7-nav-right>
-                <span
-                        class="navbar-icon-right"
-                        @click="replicateRecord"
-                ><img src="../../assets/ic_content_copy_white_24dp.png"></span>
-                <span
-                        class="navbar-icon-right"
-                        @click=""
-                ><img src="../../assets/ic_share_white_24dp.png"></span>
-            </f7-nav-right>
-        </f7-navbar>
+        <f7-navbar back-link title="ALERGIAS"></f7-navbar>
 
         <f7-block inner>
 
             <f7-card title="REGISTRO DE ALERGIA">
-                <f7-list media-list>
+                <f7-list>
 
-                    <!-- NAME -->
-                    <f7-list-item header="Nombre"
-                                  @click="openInputPopover($event, 'text', 'Nombre', 'name', details.name)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.name }}</span>
+                    <!-- Name -->
+                    <f7-list-input
+                            type="text"
+                            label="Nombre"
+                            :value="details.name"
+                            @input="details.name = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
+
+                    <!-- Type -->
+                    <f7-list-item smart-select title="Tipo" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="details.type" v-model="details.type">
+                            <option v-for="(item, index) in typeList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                        <div class="type item-after"></div>
                     </f7-list-item>
 
-                    <!-- TYPE -->
-                    <f7-list-item header="Tipo"
-                                  @click="openSelectPopover($event, 'allergiesTypeList', 'Tipo', 'type', details.type)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.type }}</span>
+                    <!-- Degree -->
+                    <f7-list-item smart-select title="Grado" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="details.degree" v-model="details.degree">
+                            <option v-for="(item, index) in degreeList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                        <div class="degree item-after"></div>
                     </f7-list-item>
 
-                    <!-- DEGREE -->
-                    <f7-list-item header="Grado"
-                                  @click="openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.degree }}</span>
+                    <!-- Reaction -->
+                    <f7-list-input
+                            type="textarea"
+                            label="Reacción"
+                            resizable
+                            :value="details.reaction"
+                            @input="details.reaction = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
+
+                    <!-- Image -->
+                    <f7-list-item title="Imagen"></f7-list-item>
+                    <f7-list-item>
+                        <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
 
-                    <!-- REACTION -->
-                    <f7-list-item header="Reacción"
-                                  @click="openInputPopover($event, 'textarea', 'Reacción', 'reaction', details.reaction)"
-                                  resizable>
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.reaction }}</span>
-                    </f7-list-item>
                 </f7-list>
             </f7-card>
+
+            <br>
 
             <f7-card title="CAMPOS PERSONALIZADOS">
                 <f7-list media-list>
                     <!-- SCHEMA -->
-                    <f7-list-item v-for="(field, index) in schema"
-                                  :key="index"
-                                  :header="field.label"
-                                  @click="openEditSchema($event, index, field)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ field.value }}</span>
-                    </f7-list-item>
+                    <f7-list-input
+                            v-for="(field, index) in schema"
+                            :key="index"
+                            :label="field.label"
+                            :type="field.type"
+                            :value="field.value"
+                            @input="field.value = $event.target.value">
+                    </f7-list-input>
 
                 </f7-list>
 
                 <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
             </f7-card>
 
+            <br>
+
+            <!-- Submit -->
+            <f7-button large raised fill @click="update" class="purple">Guardar</f7-button>
+
         </f7-block>
-
-        <!-- Delete -->
-        <f7-toolbar bottom-md>
-            <f7-link></f7-link>
-            <f7-link @click="deleteRecord">
-                <f7-icon material="delete"></f7-icon>
-            </f7-link>
-            <f7-link></f7-link>
-        </f7-toolbar>
-
-        <!-- Input popover -->
-        <f7-popover ref="EditInputField" :close="isSchema = false">
-            <text-input :type="field.type"
-                        :label="field.label"
-                        :name="field.name"
-                        :value="field.value"
-                        @input="setInputValue"></text-input>
-            <f7-block>
-                <f7-segmented round raised>
-                    <f7-button round @click="$refs.EditInputField.close()">Cancelar</f7-button>
-                    <f7-button round @click="update">Guardar</f7-button>
-                </f7-segmented>
-            </f7-block>
-        </f7-popover>
-
-        <!-- Select popup -->
-        <f7-popup ref="EditSelectField" :close="isSchema = false">
-            <select-list :type="field.type"
-                         :label="field.label"
-                         :name="field.name"
-                         :value="field.value"
-                         @select="setSelectValue"></select-list>
-        </f7-popup>
 
         <!-- Custom field popup -->
         <f7-popup class="custom-field">
@@ -120,17 +99,19 @@
 <script>
     import axios from 'axios';
     import {
-        API_PATH
+        API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
     import SelectList from '../../form_elements/SelectList';
     import TextInput from '../../form_elements/TextInput';
     import CreateCustomField from '../../form_elements/CreateCustomField';
+    import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
-        name: 'AllergiesDetails',
+        name: 'AllergiesEdit',
         components: {
             SelectList,
             TextInput,
+            'image-selector': ImageSelector,
             'create-custom-field': CreateCustomField
         },
         props: [
@@ -138,6 +119,8 @@
         ],
         data() {
             return {
+                typeList: ['Alimentaria', 'Ambiental', 'Estacional', 'Medicamentos', 'Química', 'Otras'],
+                degreeList: ['Leve', 'Moderado', 'Severo'],
                 id: this.record_id,
                 field: {
                     type: '',
@@ -147,13 +130,11 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null
+                initial_image: null
             };
         },
         mounted() {
-            //console.log('-> AllergiesDetails');
-            //console.log('@mounted');
-
+            // Fetch data
             axios
                 .get(API_PATH + 'allergies/' + this.id, {
                     params: {
@@ -164,183 +145,76 @@
                 .then(response => {
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
+
+                    // Manually modifying DOM, otherwise select lists don't show the selected value because when data is
+                    // mounted there is not fetched data yet
+                    this.$$('.type').html(this.details.type);
+                    this.$$('.degree').html(this.details.degree);
+
+                    // Setting the initial image value so we can know later if the image was updated
+                    this.initial_image = this.details.image;
+
+                    //
+                    if(this.details.image !== '') {
+                        console.log('test')
+                        this.$$('.image img').attr('src', USER_IMAGES_PATH + this.details.image)
+                    }
                 });
         },
         methods: {
-            openInputPopover($event, type, label, name, value) {
-                //console.log('@openInputPopover');
-                this.field.type = type;
-                this.field.label = label;
-                this.field.name = name;
-                this.field.value = value;
-                this.$refs.EditInputField.open();
-            },
-            openSelectPopover($event, type, label, name, value) {
-                //console.log('@openSelectPopover');
-                this.field.type = type;
-                this.field.label = label;
-                this.field.name = name;
-                this.field.value = value;
-                this.$refs.EditSelectField.open();
-            },
-            openEditSchema($event, index, field) {
-                //console.log('@openEditSchema');
-
-                this.schema_active_index = index;
-
-                if (field.type === 'select') {
-                    //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
-                } else {
-                    // Using 'schema" word as 'name' to identify schema fields
-                    this.openInputPopover($event, field.type, field.label, 'schema', field.value);
-                }
-            },
-            setInputValue(e) {
-                //console.log('@setInputValue');
-                this.field.value = e;
-            },
-            setSelectValue(e) {
-                //console.log('@setSelectValue');
-                this.field.value = e;
-                this.updateInfo(event, this.field.name);
-                this.$refs.EditSelectField.close();
-            },
             update() {
-                //console.log('@update');
-                if (this.field.name === 'schema') {
-                    this.updateInfoSchema(this.schema_active_index);
-                } else {
-                    this.updateInfo();
-                }
-            },
-            updateInfo() {
-                //console.log('@updateInfo');
+                axios.put(API_PATH + 'allergies/' + this.id, {
+                /*params: {
+                    device_code: sessionStorage.device_code,
+                    user_id: sessionStorage.user_id
+                    // TODO: encriptar las credenciales?
+                },*/
+                name: this.details.name,
+                type: this.details.type,
+                degree: this.details.degree,
+                reaction: this.details.reaction,
+                image: this.details.image,
+                schema: JSON.stringify(this.schema)
+            })
+                .then((response) => {
 
-                /* We need to create first an object and then to assign the key name as an array key, because assigning
-                 dynamic key names in an object does not work */
-                let data = {};
-                data[this.field.name] = this.field.value;
+                    // After insert check the existence of an image and different from the initial one
+                    if (this.details.image !== '' && this.details.image !== this.initial_image) {
+                        this.uploadImage();
+                    }
 
-                axios({
-                    method: 'PUT',
-                    url: API_PATH + 'allergies/' + this.id,
-                    params: {
-                        // device_code: sessionStorage.device_code,
-                        // user_id: sessionStorage.user_id
-                    },
-                    data: data
+                    // Returning to list
+                    this.$f7router.navigate('/allergies/' + this.id);
                 })
-                    .then((response) => {
-                        if (response.data.result === 'OK') {
-                            // Update details
-                            this.details[this.field.name] = this.field.value;
-                            // Close popover
-                            this.$refs.EditInputField.close();
-                        } else {
-                            // TODO ??
-                        }
-                    })
-                    .catch(function (error) {
-                        //console.log(error);
-                    });
+                .catch(function (error) {
+                    //console.log(error);
+                });
             },
-            updateInfoSchema(index) {
-                //console.log('@updateInfoSchema');
-
-                this.schema_active_index = null;
-
-                this.schema[index] = {
-                    "label": this.field.label,
-                    "type": this.field.type,
-                    "value": this.field.value
+            setImageURI(e) {
+                //console.log('@setImageURI');
+                this.details.image = e;
+            },
+            uploadImage(record_id) {
+                let uri = encodeURI(API_PATH + 'allergies/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = this.details.image.substr(this.details.image.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: this.id
                 };
 
-                axios.put(API_PATH + 'allergies/' + this.id, {
-                    params: {
-                        // device_code: sessionStorage.device_code,
-                        // user_id: sessionStorage.user_id
-                    },
-                    schema: JSON.stringify(this.schema)
-                })
-                    .then((response) => {
-                        if (response.data.result === 'OK') {
-                            // Update schema
-                            this.$forceUpdate();
-                            // Close popover
-                            this.$refs.EditInputField.close();
-                        } else {
-                            // TODO ??
-                        }
-                    })
-                    .catch(function (error) {
-                        //console.log(error);
-                    });
+                var ft = new FileTransfer();
+                ft.upload(this.details.image, uri, this.success, this.error, options);
             },
-            replicateRecord() {
-                this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
-                    axios
-                        .get(API_PATH + 'allergies/replicate/' + this.id, {
-                            params: {
-                                // device_code: sessionStorage.device_code,
-                                // user_id: sessionStorage.user_id
-                            }
-                        })
-                        .then(response => {
-                            this.id = response.data._id; // The ID of the new record
-                            this.details = response.data;
-                            this.schema = JSON.parse(response.data.schema);
-
-                            // Incrementing counting state
-                            this.$store.dispatch('incrementDocumentCounting', 'allergies');
-
-                            let notification = this.$f7.toast.create({
-                                position: 'top',
-                                text: '¡Registro replicado! Ya puedes editarlo',
-                                cssClass: "success",
-                                icon: '<i class="icon material-icons">done</i>',
-                                closeTimeout: 2000
-                            });
-                            notification.open();
-                        });
-                });
+            success(response) {
+                //console.log(response);
             },
-            deleteRecord() {
-                this.$f7.dialog.confirm('Esta acción no puede deshacerse', '¿Borrar este registro?', () => {
-                    axios
-                        .delete(API_PATH + 'allergies/' + this.id, {
-                            params: {
-                                // device_code: sessionStorage.device_code,
-                                // user_id: sessionStorage.user_id
-                            }
-                        })
-                        .then(response => {
-                            if (response.data.result === 'OK') {
-                                // Incrementing counting state
-                                this.$store.dispatch('decrementDocumentCounting', 'allergies');
-
-                                let notification = this.$f7.toast.create({
-                                    position: 'top',
-                                    text: '¡Registro borrado!',
-                                    cssClass: "success",
-                                    icon: '<i class="icon material-icons">done</i>',
-                                    closeTimeout: 2000
-                                });
-                                notification.open();
-
-                                // Returning to list
-                                setTimeout(() => {
-                                    this.$f7router.navigate('/allergies');
-                                }, 2000);
-                            } else {
-                                this.$f7.dialog.alert('No se ha podido borrar el registro', "Error");
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            this.$f7.dialog.alert('Ha ocurrido un error', "Error");
-                        });
-                });
-            }
+            error(response) {
+                //console.log(response);
+            },
         }
     };
 </script>

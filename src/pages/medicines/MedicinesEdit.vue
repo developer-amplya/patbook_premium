@@ -2,24 +2,7 @@
 
     <f7-page hide-toolbar-on-scroll>
 
-        <f7-navbar>
-            <f7-nav-left>
-                <f7-link href="/medicines">
-                    <f7-icon material="arrow_back"></f7-icon>
-                </f7-link>
-            </f7-nav-left>
-            <f7-nav-title title="MEDICAMENTO"></f7-nav-title>
-            <f7-nav-right>
-                <span
-                        class="navbar-icon-right"
-                        @click="replicateRecord"
-                ><img src="../../assets/ic_content_copy_white_24dp.png"></span>
-                <span
-                        class="navbar-icon-right"
-                        @click=""
-                ><img src="../../assets/ic_share_white_24dp.png"></span>
-            </f7-nav-right>
-        </f7-navbar>
+        <f7-navbar back-link=""></f7-navbar>
 
         <f7-block inner>
 
@@ -200,7 +183,7 @@
     import ImageSelector from '../../form_elements/ImageSelector';
 
     export default {
-        name: 'MedicinesDetails',
+        name: 'MedicinesEdit',
         components: {
             SelectList,
             TextInput,
