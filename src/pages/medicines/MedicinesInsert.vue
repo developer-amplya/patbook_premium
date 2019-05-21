@@ -76,7 +76,7 @@
                     </f7-list-item>
 
                     <!-- Start date -->
-                    <f7-list-item class="test" title="Fecha de inicio"></f7-list-item>
+                    <f7-list-item title="Fecha de inicio"></f7-list-item>
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_start"
@@ -85,7 +85,7 @@
                     </f7-list-item>
 
                     <!-- Ending date -->
-                    <f7-list-item class="test" title="Fecha de fin"></f7-list-item>
+                    <f7-list-item title="Fecha de fin"></f7-list-item>
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_end"
@@ -225,8 +225,8 @@
                     frequency: this.frequency,
                     time: this.time,
                     day_time: this.day_time,
-                    start: this.start,
-                    end: this.end,
+                    start: this.reverseDate(this.start),
+                    end: this.reverseDate(this.end),
                     cause: this.cause,
                     effects: this.effects,
                     notes: this.notes,
@@ -248,6 +248,10 @@
                     .catch(function (error) {
                         //console.log(error);
                     });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
             },
             setImageURI(e) {
                 //console.log('@setImageURI');

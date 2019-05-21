@@ -297,8 +297,8 @@
                     disease: this.disease,
                     comments: this.comments,
                     image: this.image,
-                    nex_visit_date: this.nex_visit_date,
-                    next_visit_time: this.next_visit_time,
+                    nex_visit_date: this.reverseDate(this.nex_visit_date),
+                    next_visit_time: this.reverseDate(this.next_visit_time),
                     schema: JSON.stringify(this.schema)
                 })
                     .then((response) => {

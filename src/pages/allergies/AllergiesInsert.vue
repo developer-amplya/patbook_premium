@@ -36,6 +36,15 @@
                         </select>
                     </f7-list-item>
 
+                    <!-- Start date -->
+                    <f7-list-item title="Fecha de inicio"></f7-list-item>
+                    <f7-list-item class="date-picker">
+                        <calendar
+                                id="symptoms_start"
+                                @change="symptoms_start = setDate($event)">
+                        </calendar>
+                    </f7-list-item>
+
                     <!-- Reaction -->
                     <f7-list-input
                             type="textarea"
@@ -94,12 +103,14 @@
     import {mapGetters} from 'vuex';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import ImageSelector from '../../form_elements/ImageSelector';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'AllergiesInsert',
         components: {
             'create-custom-field': CreateCustomField,
             'image-selector': ImageSelector,
+            'calendar': Calendar
         },
         data() {
             return {
@@ -108,6 +119,7 @@
                 name: '',
                 type: '',
                 degree: '',
+                symptoms_start: '',
                 reaction: '',
                 image: '',
                 schema: []
@@ -115,6 +127,13 @@
         },
         computed: mapGetters(['getUserID']),
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             insert() {
                 axios.post(API_PATH + 'allergies', {
                     /*params: {
@@ -126,6 +145,7 @@
                     name: this.name,
                     type: this.type,
                     degree: this.degree,
+                    symptoms_start: this.reverseDate(this.symptoms_start),
                     reaction: this.reaction,
                     image: this.image,
                     schema: JSON.stringify(this.schema)
@@ -145,6 +165,10 @@
                     .catch(function (error) {
                         //console.log(error);
                     });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
             },
             setImageURI(e) {
                 //console.log('@setImageURI');
