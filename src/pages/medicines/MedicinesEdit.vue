@@ -12,8 +12,8 @@
                     <f7-list-input
                             type="text"
                             label="Nombre"
-                            :value="name"
-                            @input="name = $event.target.value">
+                            :value="details.name"
+                            @input="details.name = $event.target.value">
                     </f7-list-input>
 
                     <!-- Image -->
@@ -26,54 +26,56 @@
                     <f7-list-input
                             type="text"
                             label="Laboratorio"
-                            :value="lab"
-                            @input="lab = $event.target.value">
+                            :value="details.lab"
+                            @input="details.lab = $event.target.value">
                     </f7-list-input>
 
                     <!-- Content -->
                     <f7-list-input
                             type="text"
                             label="Miligramos/Mililitros"
-                            :value="content"
-                            @input="content = $event.target.value">
+                            :value="details.content"
+                            @input="details.content = $event.target.value">
                     </f7-list-input>
 
                     <!-- Dose -->
                     <f7-list-input
                             type="text"
                             label="Dosis"
-                            :value="dose"
-                            @input="dose = $event.target.value">
+                            :value="details.dose"
+                            @input="details.dose = $event.target.value">
                     </f7-list-input>
 
                     <!-- Frequency -->
                     <f7-list-item smart-select title="Frecuencia" :smart-select-params="{ closeOnSelect: true }">
-                        <select :name="frequency" v-model="frequency">
+                        <select :name="details.frequency" v-model="details.frequency">
                             <option v-for="(item, index) in frequencyList"
                                     :key="index"
                                     :value="item"
                             >{{ item }}
                             </option>
                         </select>
+                        <div class="frequency item-after"></div>
                     </f7-list-item>
 
                     <!-- Time -->
                     <f7-list-input
                             type="text"
                             label="Hora/Pauta"
-                            :value="time"
-                            @input="time = $event.target.value">
+                            :value="details.time"
+                            @input="details.time = $event.target.value">
                     </f7-list-input>
 
                     <!-- Day time -->
                     <f7-list-item smart-select title="Momento del día" :smart-select-params="{ closeOnSelect: true }">
-                        <select :name="day_time" v-model="day_time">
+                        <select :name="details.day_time" v-model="details.day_time">
                             <option v-for="(item, index) in dayTimeList"
                                     :key="index"
                                     :value="item"
                             >{{ item }}
                             </option>
                         </select>
+                        <div class="day_time item-after"></div>
                     </f7-list-item>
 
                     <!-- Start date -->
@@ -81,7 +83,7 @@
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_start"
-                                @change="start = setDate($event)">
+                                @change="details.start = setDate($event)">
                         </calendar>
                     </f7-list-item>
 
@@ -90,7 +92,7 @@
                     <f7-list-item class="date-picker">
                         <calendar
                                 id="medicines_end"
-                                @change="end = setDate($event)">
+                                @change="details.end = setDate($event)">
                         </calendar>
                     </f7-list-item>
 
@@ -98,24 +100,24 @@
                     <f7-list-input
                             type="text"
                             label="Motivo"
-                            :value="cause"
-                            @input="cause = $event.target.value">
+                            :value="details.cause"
+                            @input="details.cause = $event.target.value">
                     </f7-list-input>
 
                     <!-- Effects -->
                     <f7-list-input
                             type="textarea"
                             label="Efectos"
-                            :value="effects"
-                            @input="effects = $event.target.value">
+                            :value="details.effects"
+                            @input="details.effects = $event.target.value">
                     </f7-list-input>
 
                     <!-- Notes -->
                     <f7-list-input
                             type="textarea"
                             label="Notas"
-                            :value="notes"
-                            @input="notes = $event.target.value"
+                            :value="details.notes"
+                            @input="details.notes = $event.target.value"
                     >
                     </f7-list-input>
 
@@ -123,8 +125,8 @@
                     <f7-list-input
                             type="text"
                             label="Médico"
-                            :value="doctor"
-                            @input="doctor = $event.target.value">
+                            :value="details.doctor"
+                            @input="details.doctor = $event.target.value">
                     </f7-list-input>
                 </f7-list>
             </f7-card>
@@ -151,7 +153,7 @@
             <br>
 
             <!-- Submit -->
-            <f7-button large raised fill class="yellow" @click="insert()">Guardar</f7-button>
+            <f7-button large raised fill class="yellow" @click="update">Guardar</f7-button>
 
         </f7-block>
 
@@ -177,13 +179,16 @@
         name: 'MedicinesEdit',
         components: {
             'create-custom-field': CreateCustomField,
-            'image-selector': ImageSelector
+            'image-selector': ImageSelector,
+            'calendar': Calendar,
         },
         props: [
             'record_id'
         ],
         data() {
             return {
+                frequencyList: ['Diaria', 'Semanal', 'Mensual', 'Bimensual', 'Trimestral', 'Otros'],
+                dayTimeList: ['Mañana', 'Tarde', 'Noche'],
                 id: this.record_id,
                 field: {
                     type: '',
@@ -193,8 +198,7 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null,
-                imagepath: undefined
+                initial_image: null
             };
         },
         mounted() {
@@ -210,20 +214,77 @@
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
 
-                    // Check the image
-                    if (this.details.image !== null) {
-                        this.imagepath = USER_IMAGES_PATH + this.details.image;
+                    this.$$('.frequency').html(this.details.frequency);
+                    this.$$('.day_time').html(this.details.day_time);
+
+                    //
+                    this.details.start = this.reverseDate(this.details.start);
+                    this.$$('#medicines_start').attr('value', this.details.start);
+                    //
+                    this.details.end = this.reverseDate(this.details.end);
+                    this.$$('#medicines_end').attr('value', this.details.end);
+
+                    // Setting the initial image value so we can know later if the image was updated
+                    this.initial_image = this.details.image;
+
+                    //
+                    if(this.details.image !== '' && this.details.image !== null) {
+                        this.$$('.image img').attr('src', USER_IMAGES_PATH + this.details.image)
                     }
                 });
         },
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             update() {
-                //console.log('@update');
-                if (this.field.name === 'schema') {
-                    this.updateInfoSchema(this.schema_active_index);
-                } else {
-                    this.updateInfo();
-                }
+                axios.put(API_PATH + 'medicines/' + this.id, {
+                    /*params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    },*/
+                    name: this.details.name,
+                    image: this.details.image,
+                    lab: this.details.lab,
+                    content: this.details.content,
+                    dose: this.details.dose,
+                    frequency: this.details.frequency,
+                    time: this.details.time,
+                    day_time: this.details.day_time,
+                    start: this.reverseDate(this.details.start),
+                    end: this.reverseDate(this.details.end),
+                    cause: this.details.cause,
+                    effects: this.details.effects,
+                    notes: this.details.notes,
+                    doctor: this.details.doctor,
+                    schema: JSON.stringify(this.schema)
+                })
+                    .then((response) => {
+
+                        // After insert check the existence of an image and different from the initial one
+                        if (this.details.image !== '' && this.details.image !== this.initial_image) {
+                            this.updateImage();
+                        }
+
+                        // Returning to details
+                        this.$f7router.navigate('/medicines/' + this.id);
+                    })
+                    .catch(function (error) {
+                        //console.log(error);
+                    });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
+            },
+            setImageURI(e) {
+                //console.log('@setImageURI');
+                this.details.image = e;
             },
             updateImage(path) {
                 let uri = encodeURI(API_PATH + 'medicines/update-image');
@@ -237,7 +298,7 @@
                     id: this.id
                 };
 
-                var ft = new FileTransfer();
+                let ft = new FileTransfer();
                 ft.upload(path, uri, this.success, this.error, options);
             },
             success(response) {

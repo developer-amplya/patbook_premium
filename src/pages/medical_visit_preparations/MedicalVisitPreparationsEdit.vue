@@ -10,28 +10,29 @@
                     <f7-list-input
                             type="textarea"
                             label="Descripción de los síntomas"
-                            :value="symptoms_description"
-                            @input="symptoms_description = $event.target.value"
+                            :value="details.symptoms_description"
+                            @input="details.symptoms_description = $event.target.value"
                     >
                     </f7-list-input>
 
                     <!-- Intensity -->
                     <f7-list-item smart-select title="Intensidad" :smart-select-params="{ closeOnSelect: true }">
-                        <select :name="intensity" v-model="intensity">
+                        <select :name="details.intensity" v-model="details.intensity">
                             <option v-for="(item, index) in intensityList"
                                     :key="index"
                                     :value="item"
                             >{{ item }}
                             </option>
                         </select>
+                        <div class="intensity item-after"></div>
                     </f7-list-item>
 
                     <!-- Frequency -->
                     <f7-list-input
                             type="text"
                             label="Frecuencia"
-                            :value="frequency"
-                            @input="frequency = $event.target.value">
+                            :value="details.frequency"
+                            @input="details.frequency = $event.target.value">
                     </f7-list-input>
 
                     <!-- Date & Time -->
@@ -41,15 +42,15 @@
                                 <calendar
                                         id="medical_visit_preparation_date"
                                         label="Fecha"
-                                        @change="date = setDate($event)">
+                                        @change="details.date = setDate($event)">
                                 </calendar>
                             </f7-col>
                             <f7-col>
                                 <f7-list-input
                                         type="time"
                                         label="Hora"
-                                        :value="time"
-                                        @input="time = $event.target.value"
+                                        :value="details.time"
+                                        @input="details.time = $event.target.value"
                                 ></f7-list-input>
                             </f7-col>
                         </f7-row>
@@ -59,8 +60,8 @@
                     <f7-list-input
                             type="textarea"
                             label="Acciones preventivas"
-                            :value="actions"
-                            @input="actions = $event.target.value"
+                            :value="details.actions"
+                            @input="details.actions = $event.target.value"
                     >
                     </f7-list-input>
 
@@ -68,8 +69,8 @@
                     <f7-list-input
                             type="textarea"
                             label="Notas"
-                            :value="notes"
-                            @input="notes = $event.target.value"
+                            :value="details.notes"
+                            @input="details.notes = $event.target.value"
                     >
                     </f7-list-input>
 
@@ -89,16 +90,16 @@
                     <f7-list-input
                             type="text"
                             label="Médico"
-                            :value="doctor"
-                            @input="doctor = $event.target.value">
+                            :value="details.doctor"
+                            @input="details.doctor = $event.target.value">
                     </f7-list-input>
 
                     <!-- Questions -->
                     <f7-list-input
                             type="textarea"
                             label="Preguntas"
-                            :value="questions"
-                            @input="questions = $event.target.value">
+                            :value="details.questions"
+                            @input="details.questions = $event.target.value">
                     </f7-list-input>
                 </f7-list>
             </f7-card>
@@ -125,7 +126,7 @@
             <br>
 
             <!-- Submit -->
-            <f7-button large raised fill class="stone" @click="insert()">Guardar</f7-button>
+            <f7-button large raised fill class="stone" @click="update">Guardar</f7-button>
 
         </f7-block>
 
@@ -151,13 +152,15 @@
         name: 'MedicalVisitPreparationsEdit',
         components: {
             'image-selector': ImageSelector,
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'calendar': Calendar,
         },
         props: [
             'record_id'
         ],
         data() {
             return {
+                intensityList: ['Leve', 'Moderada', 'Severa'],
                 id: this.record_id,
                 field: {
                     type: '',
@@ -167,7 +170,7 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null
+                initial_image: null
             };
         },
         mounted() {
@@ -181,16 +184,91 @@
                 .then(response => {
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
+
+                    this.$$('.intensity').html(this.details.intensity);
+
+                    //
+                    this.details.date = this.reverseDate(this.details.date);
+                    this.$$('#medical_visit_preparation_date').attr('value', this.details.date);
+
+                    // Setting the initial image value so we can know later if the image was updated
+                    this.initial_image = this.details.image;
+
+                    //
+                    if(this.details.image !== '' && this.details.image !== null) {
+                        this.$$('.image img').attr('src', USER_IMAGES_PATH + this.details.image)
+                    }
                 });
         },
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             update() {
-                //console.log('@update');
-                if (this.field.name === 'schema') {
-                    this.updateInfoSchema(this.schema_active_index);
-                } else {
-                    this.updateInfo();
-                }
+                axios.put(API_PATH + 'medical-visit-preparations/' + this.id, {
+                    /*params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    },*/
+                    symptoms_description: this.details.symptoms_description,
+                    intensity: this.details.intensity,
+                    frequency: this.details.frequency,
+                    date: this.reverseDate(this.details.date),
+                    time: this.details.time,
+                    actions: this.details.actions,
+                    notes: this.details.notes,
+                    image: this.details.image,
+                    doctor: this.details.doctor,
+                    questions: this.details.questions,
+                    schema: JSON.stringify(this.schema)
+                })
+                    .then((response) => {
+
+                        // After insert check the existence of an image and different from the initial one
+                        if (this.details.image !== '' && this.details.image !== this.initial_image) {
+                            this.updateImage();
+                        }
+
+                        // Returning to details
+                        this.$f7router.navigate('/medical-visit-preparations/' + this.id);
+                    })
+                    .catch(function (error) {
+                        //console.log(error);
+                    });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
+            },
+            setImageURI(e) {
+                //console.log('@setImageURI');
+                this.details.image = e;
+            },
+            updateImage(record_id) {
+                let uri = encodeURI(API_PATH + 'medical-visit-preparations/update-image');
+                let options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = this.details.image.substr(this.details.image.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.httpMethod = "POST";
+                options.chunkedMode = true;
+                options.params = {
+                    id: this.id
+                };
+
+                let ft = new FileTransfer();
+                ft.upload(this.details.image, uri, this.success, this.error, options);
+            },
+            success(response) {
+                //console.log(response);
+            },
+            error(response) {
+                //console.log(response);
             },
         }
     }

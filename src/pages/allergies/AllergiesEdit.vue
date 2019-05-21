@@ -198,7 +198,7 @@
 
                     // After insert check the existence of an image and different from the initial one
                     if (this.details.image !== '' && this.details.image !== this.initial_image) {
-                        this.uploadImage();
+                        this.updateImage();
                     }
 
                     // Returning to details
@@ -216,7 +216,7 @@
                 //console.log('@setImageURI');
                 this.details.image = e;
             },
-            uploadImage(record_id) {
+            updateImage(record_id) {
                 let uri = encodeURI(API_PATH + 'allergies/update-image');
                 let options = new FileUploadOptions();
                 options.fileKey = "file";
@@ -228,7 +228,7 @@
                     id: this.id
                 };
 
-                var ft = new FileTransfer();
+                let ft = new FileTransfer();
                 ft.upload(this.details.image, uri, this.success, this.error, options);
             },
             success(response) {

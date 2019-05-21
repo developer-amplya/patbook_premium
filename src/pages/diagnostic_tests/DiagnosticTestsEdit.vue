@@ -187,8 +187,7 @@
                 },
                 details: [],
                 schema: [],
-                schema_active_index: null,
-                imagepath: undefined
+                initial_image: null
             };
         },
         mounted() {
@@ -210,20 +209,64 @@
                     this.details.date = this.reverseDate(this.details.date);
                     this.$$('#diagnostic_test_date').attr('value', this.details.date);
 
-                    // Check the image
-                    if (this.details.image !== null) {
-                        this.imagepath = USER_IMAGES_PATH + this.details.image;
+                    // Setting the initial image value so we can know later if the image was updated
+                    this.initial_image = this.details.image;
+
+                    //
+                    if(this.details.image !== '' && this.details.image !== null) {
+                        this.$$('.image img').attr('src', USER_IMAGES_PATH + this.details.image)
                     }
                 });
         },
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             update() {
-                //console.log('@update');
-                if (this.field.name === 'schema') {
-                    this.updateInfoSchema(this.schema_active_index);
-                } else {
-                    this.updateInfo();
-                }
+                axios.put(API_PATH + 'diagnostic-tests/' + this.id, {
+                    /*params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    },*/
+                    name: this.details.name,
+                    date: this.reverseDate(this.details.date),
+                    time: this.details.time,
+                    cause: this.details.cause,
+                    requirements: this.details.requirements,
+                    location: this.details.location,
+                    address: this.details.address,
+                    phone: this.details.phone,
+                    doctor: this.details.doctor,
+                    results: this.details.results,
+                    image: this.details.image,
+                    schema: JSON.stringify(this.schema)
+                })
+                    .then((response) => {
+
+                        // After insert check the existence of an image and different from the initial one
+                        if (this.details.image !== '' && this.details.image !== this.initial_image) {
+                            this.updateImage();
+                        }
+
+                        // Returning to details
+                        this.$f7router.navigate('/diagnostic-tests/' + this.id);
+                    })
+                    .catch(function (error) {
+                        //console.log(error);
+                    });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
+            },
+            setImageURI(e) {
+                //console.log('@setImageURI');
+                this.details.image = e;
             },
             updateImage(path) {
                 let uri = encodeURI(API_PATH + 'diagnostic-tests/update-image');
@@ -237,7 +280,7 @@
                     id: this.id
                 };
 
-                var ft = new FileTransfer();
+                let ft = new FileTransfer();
                 ft.upload(path, uri, this.success, this.error, options);
             },
             success(response) {
