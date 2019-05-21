@@ -212,6 +212,9 @@
                 }
             },
             transformDate: function(payload) {
+                if(payload === undefined || payload === null) {
+                    return;
+                }
                 let rawDate = new Date(payload);
                 let dd = String(rawDate.getDate());
                 let mm = this.months[String(rawDate.getMonth())]; // January is 0!
