@@ -42,14 +42,14 @@
                     </f7-list-item>
 
                     <!-- Weight -->
-                    <f7-list-item header="Peso"
+                    <f7-list-item header="Peso (en gramos)"
                                   @click="openInputPopover($event, 'number', 'Peso', 'weight', getUserWeight)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ getUserWeight }}</span>
                     </f7-list-item>
 
                     <!-- Height -->
-                    <f7-list-item header="Altura"
+                    <f7-list-item header="Altura (en centímetros)"
                                   @click="openInputPopover($event, 'number', 'Altura', 'height', getUserHeight)">
                         <f7-icon material="edit"></f7-icon>
                         <span>{{ getUserHeight }}</span>

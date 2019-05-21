@@ -66,10 +66,10 @@
         data() {
             return {
                 log_in: {
-                    email: '',
-                    password: '',
-                    //email: 'reezooh@gmail.com',
-                    //password: '123456',
+                    //email: '',
+                    //password: '',
+                    email: 'reezooh@gmail.com',
+                    password: '123456',
                     token: ''
                 }
             };
