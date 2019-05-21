@@ -76,7 +76,7 @@
 
                     <!-- Day time -->
                     <f7-list-item header="Momento del día">
-                        <span>{{ details.day_time }}</span>
+                        <span id="day-time"></span>
                     </f7-list-item>
 
                     <!-- Start date -->
@@ -196,6 +196,13 @@
                     if (this.details.image !== null) {
                         this.imagepath = USER_IMAGES_PATH + this.details.image;
                     }
+
+                    //
+                    var dayTimeStr = '';
+                    (this.details.day_time).forEach((item) => {
+                        dayTimeStr += item + ' ';
+                    });
+                    this.$$('#day-time').html(dayTimeStr);
                 });
         },
         methods: {

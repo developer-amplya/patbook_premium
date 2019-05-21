@@ -209,6 +209,9 @@
                 });
             },
             reverseDate(payload) {
+                if(payload === undefined || payload === null) {
+                    return;
+                }
                 let date = payload.split("-");
                 return date.reverse().join("-");
             },

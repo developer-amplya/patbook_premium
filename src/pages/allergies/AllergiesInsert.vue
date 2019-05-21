@@ -167,6 +167,9 @@
                     });
             },
             reverseDate(payload) {
+                if(payload === undefined || payload === null) {
+                    return;
+                }
                 let date = payload.split("-");
                 return date.reverse().join("-");
             },
@@ -202,5 +205,9 @@
 <style scoped>
     .navbar {
         background-color: #c36eb5;
+    }
+
+    #framework7-root > .main-view > .page.smart-select-page > .navbar {
+        background-color: #c36eb5 !important;
     }
 </style>

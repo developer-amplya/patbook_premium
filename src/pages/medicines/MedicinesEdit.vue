@@ -67,8 +67,8 @@
                     </f7-list-input>
 
                     <!-- Day time -->
-                    <f7-list-item smart-select title="Momento del día" :smart-select-params="{ closeOnSelect: true }">
-                        <select :name="details.day_time" v-model="details.day_time">
+                    <f7-list-item smart-select title="Momento del día" :smart-select-params="{}">
+                        <select :name="details.day_time" v-model="details.day_time" multiple>
                             <option v-for="(item, index) in dayTimeList"
                                     :key="index"
                                     :value="item"
@@ -279,6 +279,9 @@
                     });
             },
             reverseDate(payload) {
+                if(payload === undefined || payload === null) {
+                    return;
+                }
                 let date = payload.split("-");
                 return date.reverse().join("-");
             },
