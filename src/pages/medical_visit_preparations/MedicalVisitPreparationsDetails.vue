@@ -25,7 +25,7 @@
                 <p class="center">
                     <f7-icon material="info"></f7-icon>
                 </p>
-                <p class="center">Copia de "{{ details.name }}"</p>
+                <p class="center">Copia</p>
             </div>
 
             <f7-card title="REGISTRO DE SÍNTOMAS">
