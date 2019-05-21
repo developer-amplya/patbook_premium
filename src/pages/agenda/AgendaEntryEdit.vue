@@ -37,11 +37,16 @@
                     </f7-list-item>
 
                     <!-- Type -->
-                    <!--
                     <f7-list-item smart-select title="Tipo" :smart-select-params="{ closeOnSelect: true }">
-                        <span v-html="selectHtml"></span>
+                        <select :name="details.type" v-model="details.type">
+                            <option v-for="(item, index) in agendaEntryTypeList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                        <div class="type item-after"></div>
                     </f7-list-item>
-                    -->
 
                     <!-- Description -->
                     <f7-list-input
@@ -57,7 +62,7 @@
             <br>
 
             <!-- Submit -->
-            <f7-button large raised fill @click="insert()">Guardar</f7-button>
+            <f7-button large raised fill @click="update">Guardar</f7-button>
 
         </f7-block>
 
@@ -85,7 +90,6 @@
                 id: this.record_id,
                 details: [],
                 agendaEntryTypeList: ['Cita médica', 'Prueba diagnóstica'],
-                selectHtml: null
             };
         },
         computed: {
@@ -101,16 +105,10 @@
                 })
                 .then(response => {
                     this.details = response.data;
-
-                    this.selectHtml = `
-                    <select :name="details.type" v-model="details.type">
-                            <option v-for="(item, index) in agendaEntryTypeList"
-                                    :key="index"
-                                    :value="item"
-                            >{{ item }}
-                            </option>
-                        </select>
-                    `;
+                    this.$$('.type').html(this.details.type);
+                    //
+                    this.details.date = this.reverseDate(this.details.date);
+                    this.$$('#agenda_entry_date').attr('value', this.details.date);
                 });
 
             let calendar = this.$f7.calendar.create({
@@ -186,6 +184,3 @@
         }
     };
 </script>
-
-<style scoped>
-</style>

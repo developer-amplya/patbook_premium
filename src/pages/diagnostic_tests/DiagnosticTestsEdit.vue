@@ -7,145 +7,145 @@
         <f7-block inner>
 
             <f7-card title="REGISTRO DE PRUEBA DIAGNÓSTICA">
-                <f7-list media-list>
+                <f7-list no-hairlines no-hairlines-between>
 
                     <!-- Name -->
-                    <f7-list-item header="Nombre"
-                                  @click="openSelectPopover($event, 'testsList', 'Nombre', 'name', details.name)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.name }}</span>
+                    <f7-list-item smart-select title="Nombre" :smart-select-params="{ closeOnSelect: true }">
+                        <select :name="details.name" v-model="details.name">
+                            <option v-for="(item, index) in testsList"
+                                    :key="index"
+                                    :value="item"
+                            >{{ item }}
+                            </option>
+                        </select>
+                        <div class="dt-name item-after"></div>
                     </f7-list-item>
 
-                    <!-- Date -->
-                    <f7-list-item header="Fecha"
-                                  @click="openInputPopover($event, 'date', 'Fecha', 'date', details.date)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.date }}</span>
+                    <!-- Date & Time -->
+                    <f7-list-item>
+                        <f7-row>
+                            <f7-col>
+                                <calendar
+                                        id="diagnostic_test_date"
+                                        label="Fecha"
+                                        @change="details.date = setDate($event)">
+                                </calendar>
+                            </f7-col>
+                            <f7-col>
+                                <f7-list-input
+                                        type="time"
+                                        label="Hora"
+                                        :value="details.time"
+                                        @input="details.time = $event.target.value"
+                                ></f7-list-input>
+                            </f7-col>
+                        </f7-row>
                     </f7-list-item>
 
-                    <!-- Time -->
-                    <f7-list-item header="Hora"
-                                  @click="openInputPopover($event, 'time', 'Hora', 'time', details.time)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.time }}</span>
-                    </f7-list-item>
+                    <!-- Cause -->
+                    <f7-list-input
+                            type="text"
+                            label="Motivo"
+                            :value="details.cause"
+                            @input="details.cause = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
-                    <!-- CAUSE -->
-                    <f7-list-item header="Motivo"
-                                  @click="openInputPopover($event, 'text', 'Motivo', 'cause', details.cause)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.cause }}</span>
-                    </f7-list-item>
+                    <!-- Requirements -->
+                    <f7-list-input
+                            type="text"
+                            label="Requisitos previos"
+                            :value="details.requirements"
+                            @input="details.requirements = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
-                    <!-- REQUIREMENTS -->
-                    <f7-list-item header="Requisitos previos"
-                                  @click="openInputPopover($event, 'text', 'Requisitos previos', 'requirements', details.requirements)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.requirements }}</span>
-                    </f7-list-item>
+                    <!-- Location -->
+                    <f7-list-input
+                            type="text"
+                            label="Lugar"
+                            :value="details.location"
+                            @input="details.location = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
-                    <!-- LOCATION -->
-                    <f7-list-item header="Lugar"
-                                  @click="openInputPopover($event, 'text', 'Lugar', 'location', details.location)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.location }}</span>
-                    </f7-list-item>
+                    <!-- Address -->
+                    <f7-list-input
+                            type="text"
+                            label="Dirección"
+                            :value="details.address"
+                            @input="details.address = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
-                    <!-- ADDRESS -->
-                    <f7-list-item header="Dirección"
-                                  @click="openInputPopover($event, 'text', 'Dirección', 'address', details.address)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.address }}</span>
-                    </f7-list-item>
-
-                    <!-- PHONE -->
-                    <f7-list-item header="Teléfono"
-                                  @click="openInputPopover($event, 'text', 'Teléfono', 'phone', details.phone)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.phone }}</span>
-                    </f7-list-item>
+                    <!-- Phone -->
+                    <f7-list-input
+                            type="text"
+                            label="Teléfono"
+                            :value="details.phone"
+                            @input="details.phone = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
 
                     <!-- Doctor -->
-                    <f7-list-item header="Médico"
-                                  @click="openInputPopover($event, 'text', 'Médico', 'doctor', details.doctor)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.doctor }}</span>
-                    </f7-list-item>
-
+                    <f7-list-input
+                            type="text"
+                            label="Médico"
+                            :value="details.doctor"
+                            @input="details.doctor = $event.target.value"
+                            clear-button>
+                    </f7-list-input>
                 </f7-list>
             </f7-card>
+
+            <br>
 
             <f7-card title="RESULTADOS">
-                <f7-list media-list>
-                    <!-- RESULTS -->
-                    <f7-list-item header="Resultado"
-                                  @click="openInputPopover($event, 'textarea', 'Resultado', 'results', details.results)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ details.results }}</span>
-                    </f7-list-item>
+                <f7-list>
+                    <!-- Results -->
+                    <f7-list-input
+                            type="textarea"
+                            label="Resultados"
+                            :value="details.results"
+                            @input="details.results = $event.target.value"
+                    >
+                    </f7-list-input>
 
                     <!-- Image -->
+                    <f7-list-item title="Imagen"></f7-list-item>
                     <f7-list-item>
-                        <f7-label>Imagen</f7-label>
-                        <span class="zoom-in"
-                              @click="zoomImage">
-                            <f7-icon material="zoom_in"></f7-icon>
-                        </span>
+                        <image-selector @image_selected="setImageURI"></image-selector>
                     </f7-list-item>
-                    <f7-list-item>
-                        <image-selector  :imagepath="imagepath" @image_selected="updateImage"></image-selector>
-                    </f7-list-item>
+
                 </f7-list>
             </f7-card>
 
+            <br>
+
             <f7-card title="CAMPOS PERSONALIZADOS">
-                <f7-list media-list>
+                <f7-list>
                     <!-- SCHEMA -->
-                    <f7-list-item v-for="(field, index) in schema"
-                                  :key="index"
-                                  :header="field.label"
-                                  @click="openEditSchema($event, index, field)">
-                        <f7-icon material="edit"></f7-icon>
-                        <span>{{ field.value }}</span>
-                    </f7-list-item>
+                    <f7-list-input
+                            v-for="(field, index) in schema"
+                            :key="index"
+                            :label="field.label"
+                            :type="field.type"
+                            :value="field.value"
+                            @input="field.value = $event.target.value"
+                    >
+                    </f7-list-input>
 
                 </f7-list>
 
                 <f7-button popup-open=".custom-field">NUEVO CAMPO PERSONALIZADO</f7-button>
             </f7-card>
 
+            <br>
+
+            <!-- Submit -->
+            <f7-button large raised fill class="pink" @click="update">Guardar</f7-button>
+
         </f7-block>
-
-        <!-- Delete -->
-        <f7-toolbar bottom-md>
-            <f7-link></f7-link>
-            <f7-link @click="deleteRecord"><f7-icon material="delete"></f7-icon></f7-link>
-            <f7-link></f7-link>
-        </f7-toolbar>
-
-        <!-- Input popover -->
-        <f7-popover ref="EditInputField" :close="isSchema = false">
-            <text-input :type="field.type"
-                        :label="field.label"
-                        :name="field.name"
-                        :value="field.value"
-                        @input="setInputValue"></text-input>
-            <f7-block>
-                <f7-segmented round raised>
-                    <f7-button round @click="$refs.EditInputField.close()">Cancelar</f7-button>
-                    <f7-button round @click="update">Guardar</f7-button>
-                </f7-segmented>
-            </f7-block>
-        </f7-popover>
-
-        <!-- Select popup -->
-        <f7-popup ref="EditSelectField" :close="isSchema = false">
-            <select-list :type="field.type"
-                         :label="field.label"
-                         :name="field.name"
-                         :value="field.value"
-                         @select="setSelectValue"></select-list>
-        </f7-popup>
 
         <!-- Custom field popup -->
         <f7-popup class="custom-field">
@@ -161,24 +161,23 @@
     import {
         API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
-    import SelectList from '../../form_elements/SelectList';
-    import TextInput from '../../form_elements/TextInput';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import ImageSelector from '../../form_elements/ImageSelector';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'DiagnosticTestsEdit',
         components: {
-            SelectList,
-            TextInput,
             'create-custom-field': CreateCustomField,
-            'image-selector': ImageSelector
+            'image-selector': ImageSelector,
+            'calendar': Calendar
         },
         props: [
             'record_id'
         ],
         data() {
             return {
+                testsList: ['Análisis de sangre', 'Análisis de orina', 'Endoscopia', 'Mamografía', 'Rayos X', 'TAC', 'PET', 'Colonoscopia', 'Densiometría ósea', 'IRM', 'ECG', 'EEF', 'Ultrasonido', 'Espirometría', 'Otros'],
                 id: this.record_id,
                 field: {
                     type: '',
@@ -204,6 +203,13 @@
                     this.details = response.data;
                     this.schema = JSON.parse(response.data.schema);
 
+                    //
+                    this.$$('.dt-name').html(this.details.name);
+
+                    //
+                    this.details.date = this.reverseDate(this.details.date);
+                    this.$$('#diagnostic_test_date').attr('value', this.details.date);
+
                     // Check the image
                     if (this.details.image !== null) {
                         this.imagepath = USER_IMAGES_PATH + this.details.image;
@@ -211,48 +217,6 @@
                 });
         },
         methods: {
-            zoomImage() {
-                if (this.details.image !== null) {
-                    PhotoViewer.show(USER_IMAGES_PATH + this.details.image);
-                }
-            },
-            openInputPopover($event, type, label, name, value) {
-                //console.log('@openInputPopover');
-                this.field.type = type;
-                this.field.label = label;
-                this.field.name = name;
-                this.field.value = value;
-                this.$refs.EditInputField.open();
-            },
-            openSelectPopover($event, type, label, name, value) {
-                //console.log('@openSelectPopover');
-                this.field.type = type;
-                this.field.label = label;
-                this.field.name = name;
-                this.field.value = value;
-                this.$refs.EditSelectField.open();
-            },
-            openEditSchema($event, index, field) {
-
-                this.schema_active_index = index;
-
-                if (field.type === 'select') {
-                    //this.openSelectPopover($event, 'allergiesDegreeList', 'Grado', 'degree', details.degree);
-                } else {
-                    // Using 'schema" word as 'name' to identify schema fields
-                    this.openInputPopover($event, field.type, field.label, 'schema', field.value);
-                }
-            },
-            setInputValue(e) {
-                //console.log('@setInputValue');
-                this.field.value = e;
-            },
-            setSelectValue(e) {
-                //console.log('@setSelectValue');
-                this.field.value = e;
-                this.updateInfo(event, this.field.name);
-                this.$refs.EditSelectField.close();
-            },
             update() {
                 //console.log('@update');
                 if (this.field.name === 'schema') {
@@ -260,68 +224,6 @@
                 } else {
                     this.updateInfo();
                 }
-            },
-            updateInfo() {
-                //console.log('@updateInfo');
-
-                /* We need to create first an object an then to assign the key name as an array key, because assigning
-                 dynamic key names in an object does not work */
-                let data = {};
-                data[this.field.name] = this.field.value;
-
-                axios({
-                    method: 'PUT',
-                    url: API_PATH + 'diagnostic-tests/' + this.id,
-                    params: {
-                        // device_code: sessionStorage.device_code,
-                        // user_id: sessionStorage.user_id
-                    },
-                    data: data
-                })
-                    .then((response) => {
-                        if (response.data.result === 'OK') {
-                            // Update details
-                            this.details[this.field.name] = this.field.value;
-                            // Close popover
-                            this.$refs.EditInputField.close();
-                        } else {
-                            // TODO ??
-                        }
-                    })
-                    .catch(function (error) {
-                        //console.log(error);
-                    });
-            },
-            updateInfoSchema(index) {
-
-                this.schema_active_index = null;
-
-                this.schema[index] = {
-                    "label": this.field.label,
-                    "type": this.field.type,
-                    "value": this.field.value
-                };
-
-                axios.put(API_PATH + 'diagnostic-tests/' + this.id, {
-                    params: {
-                        // device_code: sessionStorage.device_code,
-                        // user_id: sessionStorage.user_id
-                    },
-                    schema: JSON.stringify(this.schema)
-                })
-                    .then((response) => {
-                        if (response.data.result === 'OK') {
-                            // Update schema
-                            this.$forceUpdate();
-                            // Close popover
-                            this.$refs.EditInputField.close();
-                        } else {
-                            // TODO ??
-                        }
-                    })
-                    .catch(function (error) {
-                        //console.log(error);
-                    });
             },
             updateImage(path) {
                 let uri = encodeURI(API_PATH + 'diagnostic-tests/update-image');
@@ -344,106 +246,13 @@
             error(response) {
                 //console.log(response);
             },
-            replicateRecord() {
-                this.$f7.dialog.confirm('Se creará un nuevo registro a partir del que estás viendo y podrás editarlo inmediatamente', '¿Replicar este registro?', () => {
-                    axios
-                        .get(API_PATH + 'diagnostic-tests/replicate/' + this.id, {
-                            params: {
-                                // device_code: sessionStorage.device_code,
-                                // user_id: sessionStorage.user_id
-                            }
-                        })
-                        .then(response => {
-                            this.id = response.data._id; // The ID of the new record
-                            this.details = response.data;
-                            this.schema = JSON.parse(response.data.schema);
-
-                            // Incrementing counting state
-                            this.$store.dispatch('incrementDocumentCounting', 'diagnostic_tests');
-
-                            let notification = this.$f7.toast.create({
-                                position: 'top',
-                                text: '¡Registro replicado! Ya puedes editarlo',
-                                cssClass: "success",
-                                icon: '<i class="icon material-icons">done</i>',
-                                closeTimeout: 2000
-                            });
-                            notification.open();
-                        });
-                });
-            },
-            deleteRecord() {
-                this.$f7.dialog.confirm('Esta acción no puede deshacerse', '¿Borrar este registro?', () => {
-                    axios
-                        .delete(API_PATH + 'diagnostic-tests/' + this.id, {
-                            params: {
-                                // device_code: sessionStorage.device_code,
-                                // user_id: sessionStorage.user_id
-                            }
-                        })
-                        .then(response => {
-                            if (response.data.result === 'OK') {
-                                // Incrementing counting state
-                                this.$store.dispatch('decrementDocumentCounting', 'diagnostic_tests');
-
-                                let notification = this.$f7.toast.create({
-                                    position: 'top',
-                                    text: '¡Registro borrado!',
-                                    cssClass: "success",
-                                    icon: '<i class="icon material-icons">done</i>',
-                                    closeTimeout: 2000
-                                });
-                                notification.open();
-
-                                // Returning to list
-                                setTimeout(() => {
-                                    this.$f7router.navigate('/diagnostic-tests');
-                                }, 2000);
-                            } else {
-                                this.$f7.dialog.alert('No se ha podido borrar el registro', "Error");
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            this.$f7.dialog.alert('Ha ocurrido un error', "Error");
-                        });
-                });
-            }
         }
     }
     ;
 </script>
 
 <style scoped>
-
-    .md .list .item-header {
-        padding-left: 39px !important;
-    }
-
-    li i.icon {
-        /*position: absolute;
-        left: 15px;
-        top: 20px;*/
-        color: #9a9a9a !important;
-        background: #eeeeee;
-        padding: 5px;
-        border-radius: 50%;
-        opacity: .65;
-    }
-
-    li span {
-        position: relative;
-        z-index: 10;
-    }
-
     .navbar, .toolbar {
         background-color: #FF3183;
-    }
-
-    .zoom-in {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 5px
     }
 </style>

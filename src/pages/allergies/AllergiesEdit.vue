@@ -7,7 +7,7 @@
         <f7-block inner>
 
             <f7-card title="REGISTRO DE ALERGIA">
-                <f7-list>
+                <f7-list no-hairlines no-hairlines-between>
 
                     <!-- Name -->
                     <f7-list-input
@@ -40,6 +40,15 @@
                             </option>
                         </select>
                         <div class="degree item-after"></div>
+                    </f7-list-item>
+
+                    <!-- Start date -->
+                    <f7-list-item title="Fecha de inicio"></f7-list-item>
+                    <f7-list-item class="date-picker">
+                        <calendar
+                                id="symptoms_start"
+                                @change="details.symptoms_start = setDate($event)">
+                        </calendar>
                     </f7-list-item>
 
                     <!-- Reaction -->
@@ -101,18 +110,16 @@
     import {
         API_PATH, USER_IMAGES_PATH
     } from '../../config.js';
-    import SelectList from '../../form_elements/SelectList';
-    import TextInput from '../../form_elements/TextInput';
     import CreateCustomField from '../../form_elements/CreateCustomField';
     import ImageSelector from '../../form_elements/ImageSelector';
+    import Calendar from '../../form_elements/Calendar';
 
     export default {
         name: 'AllergiesEdit',
         components: {
-            SelectList,
-            TextInput,
             'image-selector': ImageSelector,
-            'create-custom-field': CreateCustomField
+            'create-custom-field': CreateCustomField,
+            'calendar': Calendar,
         },
         props: [
             'record_id'
@@ -151,17 +158,27 @@
                     this.$$('.type').html(this.details.type);
                     this.$$('.degree').html(this.details.degree);
 
+                    //
+                    this.details.symptoms_start = this.reverseDate(this.details.symptoms_start);
+                    this.$$('#symptoms_start').attr('value', this.details.symptoms_start);
+
                     // Setting the initial image value so we can know later if the image was updated
                     this.initial_image = this.details.image;
 
                     //
-                    if(this.details.image !== '') {
-                        console.log('test')
+                    if(this.details.image !== '' && this.details.image !== null) {
                         this.$$('.image img').attr('src', USER_IMAGES_PATH + this.details.image)
                     }
                 });
         },
         methods: {
+            setDate: (payload) => {
+                let rawDate = payload[0];
+                let dd = String(rawDate.getDate()).padStart(2, '0');
+                let mm = String(rawDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+                let yyyy = rawDate.getFullYear();
+                return dd + '-' + mm + '-' + yyyy;
+            },
             update() {
                 axios.put(API_PATH + 'allergies/' + this.id, {
                 /*params: {
@@ -172,6 +189,7 @@
                 name: this.details.name,
                 type: this.details.type,
                 degree: this.details.degree,
+                symptoms_start: this.reverseDate(this.details.symptoms_start),
                 reaction: this.details.reaction,
                 image: this.details.image,
                 schema: JSON.stringify(this.schema)
@@ -183,12 +201,16 @@
                         this.uploadImage();
                     }
 
-                    // Returning to list
+                    // Returning to details
                     this.$f7router.navigate('/allergies/' + this.id);
                 })
                 .catch(function (error) {
                     //console.log(error);
                 });
+            },
+            reverseDate(payload) {
+                let date = payload.split("-");
+                return date.reverse().join("-");
             },
             setImageURI(e) {
                 //console.log('@setImageURI');
@@ -220,27 +242,6 @@
 </script>
 
 <style scoped>
-
-    .md .list .item-header {
-        padding-left: 39px !important;
-    }
-
-    li i.icon {
-        /*position: absolute;
-        left: 15px;
-        top: 20px;*/
-        color: #9a9a9a !important;
-        background: #eeeeee;
-        padding: 5px;
-        border-radius: 50%;
-        opacity: .65;
-    }
-
-    li span {
-        position: relative;
-        z-index: 10;
-    }
-
     .navbar, .toolbar {
         background-color: #c36eb5;
     }
