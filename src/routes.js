@@ -36,6 +36,7 @@ import DiagnosticTestsDetails from './pages/diagnostic_tests/DiagnosticTestsDeta
 import DiagnosticTestsEdit from './pages/diagnostic_tests/DiagnosticTestsEdit.vue';
 import RegisterAccessGuide from './pages/use_guides/RegisterAccessGuide.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
+import ResetStorePage from './pages/ResetStorePage.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import Router from './Router.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -211,6 +212,10 @@ export default [
         path: '/create-custom-field',
         component: CreateCustomField,
         props: true
+    },
+    {
+        path: '/reset-store',
+        component: ResetStorePage
     },
     {
         path: '/panel-right/',
