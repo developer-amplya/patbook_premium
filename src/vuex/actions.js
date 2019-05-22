@@ -23,7 +23,9 @@ import {
     INCREMENT_DOCUMENT_COUNTING,
     DECREMENT_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR,
-    SET_EMERGENCIES_CONTACT
+    SET_EMERGENCIES_CONTACT,
+    SET_INSURANCE_COMPANY,
+    SET_SOCIAL_SECURITY_NUMBER,
 } from './mutations';
 
 export default {
@@ -100,5 +102,11 @@ export default {
     },
     setEmergenciesContact({commit}, contact) {
         commit(SET_EMERGENCIES_CONTACT, contact);
-    }
+    },
+    setInsuranceCompany({commit}, insurance) {
+        commit(SET_INSURANCE_COMPANY, insurance);
+    },
+    setSocialSecurityNumber({commit}, ssn) {
+        commit(SET_SOCIAL_SECURITY_NUMBER, ssn);
+    },
 };

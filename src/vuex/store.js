@@ -26,7 +26,9 @@ import {
     INCREMENT_DOCUMENT_COUNTING,
     DECREMENT_DOCUMENT_COUNTING,
     SET_CURRENT_MAIN_COLOR,
-    SET_EMERGENCIES_CONTACT
+    SET_EMERGENCIES_CONTACT,
+    SET_INSURANCE_COMPANY,
+    SET_SOCIAL_SECURITY_NUMBER,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -65,8 +67,15 @@ const state = {
         email: '',
         relation: '',
     },
-    currentValues: {}
-}
+    insurance_company: {
+        company: '',
+        policy_number: '',
+        coverage: '',
+        policy_term: '',
+        phone: '',
+    },
+    social_security_number: '',
+};
 
 const mutations = {
     [SET_USER_ID](state, userID) {
@@ -140,8 +149,14 @@ const mutations = {
     },
     [SET_EMERGENCIES_CONTACT] (state, contact) {
         state.emergencies_contact[contact[0]] = contact[1];
-    }
-}
+    },
+    [SET_INSURANCE_COMPANY] (state, insurance) {
+        state.insurance_company[insurance[0]] = insurance[1];
+    },
+    [SET_SOCIAL_SECURITY_NUMBER] (state, ssn) {
+        state.social_security_number = ssn;
+    },
+};
 
 export default new Vuex.Store({
     state,

@@ -64,5 +64,11 @@ export default {
     },
     getEmergenciesContact(state) {
         return (state.emergencies_contact);
-    }
+    },
+    getInsuranceCompany(state) {
+        return (state.insurance_company);
+    },
+    getSocialSecurityNumber(state) {
+        return (state.social_security_number);
+    },
 };
