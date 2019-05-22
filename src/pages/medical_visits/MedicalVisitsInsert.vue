@@ -1,6 +1,6 @@
 <template>
-    <f7-page>
-        <f7-navbar title="VISITA MÉDICA" back-link="Volver"></f7-navbar>
+    <f7-page class="medical-visits-page">
+        <f7-navbar title="VISITA MÉDICA" back-link></f7-navbar>
         <f7-block inner>
 
             <f7-card title="REGISTRO DE VISITA MÉDICA">
@@ -353,8 +353,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar {
+<style>
+    .orange-page .navbar, .orange-page .toolbar {
         background-color: #FF7E3A;
     }
 </style>

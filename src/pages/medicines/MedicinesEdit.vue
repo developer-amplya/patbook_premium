@@ -1,7 +1,7 @@
 <template>
 
-    <f7-page>
-        <f7-navbar title="MEDICACIÓN" back-link="Volver"></f7-navbar>
+    <f7-page class="medicines-page">
+        <f7-navbar title="MEDICACIÓN" back-link></f7-navbar>
         <f7-block inner>
 
 
@@ -314,8 +314,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar, .toolbar {
+<style>
+    .yellow-page .navbar, .yellow-page .toolbar {
         background-color: #F2BE4C;
     }
 </style>

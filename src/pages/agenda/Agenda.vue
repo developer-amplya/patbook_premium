@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page class="agenda-page">
 
         <!-- Navbar -->
         <f7-navbar back-link back-link-force back-link-url="/home">
@@ -61,6 +61,10 @@
             ...mapGetters(['getUserID', 'getDeviceCode'])
         },
         mounted() {
+
+            this.$$('#main-view').removeClass('purple-page yellow-page stone-page orange-page pink-page blue-page');
+            this.$$('#main-view').addClass('blue-page')
+
             // Get agenda entries
             axios
                 .get(API_PATH + 'agenda', {
@@ -90,8 +94,12 @@
     ;
 </script>
 
-<style scoped>
-    .toolbar a {
+<style>
+    .blue-page .navbar, .blue-page .toolbar {
+        background-color: #1ABAD4;
+    }
+
+    .agenda-page .toolbar a {
         font-size: 48px !important;
     }
 </style>

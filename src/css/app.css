@@ -95,6 +95,21 @@
     font-size: 16px;
 }
 
+.copy-msg {
+    text-align: center;
+}
+
+.image-holder img {
+    width: 100%;
+}
+
+.zoom-in {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px
+}
+
 /* COLORS */
 .purple {
     background-color: #c36eb5 !important;

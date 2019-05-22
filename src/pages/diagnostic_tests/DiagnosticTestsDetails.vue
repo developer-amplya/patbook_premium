@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page hide-toolbar-on-scroll class="diagnostic-test-page">
 
         <f7-navbar back-link back-link-force back-link-url="/diagnostic-tests" title="PRUEBAS DIAGNÓSTICAS">
             <f7-nav-right>
@@ -278,23 +278,8 @@
     ;
 </script>
 
-<style scoped>
-    .copy-msg {
-        text-align: center;
-    }
-
-    .navbar, .toolbar {
+<style>
+    .pink-page .navbar, .pink-page .toolbar {
         background-color: #FF3183;
-    }
-
-    .image-holder img {
-        width: 100%;
-    }
-
-    .zoom-in {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 5px
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page class="diagnostic-test-page">
         <f7-navbar title="PRUEBAS DIAGNÓSTICAS" back-link="Volver"></f7-navbar>
         <f7-block inner>
 
@@ -267,8 +267,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar {
+<style>
+    .pink-page .navbar, .pink-page .toolbar {
         background-color: #FF3183;
     }
 </style>

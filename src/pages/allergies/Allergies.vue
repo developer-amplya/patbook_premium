@@ -1,5 +1,5 @@
 <template>
-    <f7-page @page:afterin="retrieveData">
+    <f7-page @page:afterin="retrieveData" class="allergies-page">
 
         <!-- Navbar -->
         <f7-navbar
@@ -106,13 +106,19 @@
         },
         mounted() {
             this.setMainColor('purple');
+            this.$$('#main-view').removeClass('purple-page yellow-page stone-page orange-page pink-page blue-page');
+            this.$$('#main-view').addClass('purple-page')
         }
     }
     ;
 </script>
 
-<style scoped>
-    .toolbar a {
+<style>
+    .purple-page .navbar, .purple-page .toolbar {
+        background-color: #c36eb5;
+    }
+
+    .allergies-page .toolbar a {
         font-size: 48px !important;
     }
 </style>

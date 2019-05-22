@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page hide-toolbar-on-scroll class="allergies-page">
 
         <f7-navbar back-link back-link-force back-link-url="/allergies" title="ALERGIAS">
             <f7-nav-right>
@@ -246,23 +246,8 @@
     };
 </script>
 
-<style scoped>
-    .copy-msg {
-        text-align: center;
-    }
-
-    .navbar, .toolbar {
+<style>
+    .purple-page .navbar, .purple-page .toolbar {
         background-color: #c36eb5;
-    }
-
-    .image-holder img {
-        width: 100%;
-    }
-
-    .zoom-in {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 5px
     }
 </style>

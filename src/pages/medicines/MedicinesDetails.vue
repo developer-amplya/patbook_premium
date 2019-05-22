@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page hide-toolbar-on-scroll class="medicines-page">
 
         <f7-navbar back-link back-link-force back-link-url="/medicines" title="MEDICAMENTO">
             <f7-nav-right>
@@ -292,23 +292,8 @@
     };
 </script>
 
-<style scoped>
-    .copy-msg {
-        text-align: center;
-    }
-
-    .navbar, .toolbar {
+<style>
+    .yellow-page .navbar, .yellow-page .toolbar {
         background-color: #F2BE4C;
-    }
-
-    .image-holder img {
-        width: 100%;
-    }
-
-    .zoom-in {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 5px
     }
 </style>

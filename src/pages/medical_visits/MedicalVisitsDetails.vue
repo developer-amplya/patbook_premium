@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page hide-toolbar-on-scroll class="medical-visits-page">
 
         <f7-navbar back-link back-link-force back-link-url="/medical-visits" title="VISITA MÉDICA">
             <f7-nav-right>
@@ -315,23 +315,8 @@
     ;
 </script>
 
-<style scoped>
-    .copy-msg {
-        text-align: center;
-    }
-
-    .navbar, .toolbar {
+<style>
+    .orange-page .navbar, .orange-page .toolbar {
         background-color: #FF7E3A;
-    }
-
-    .image-holder img {
-        width: 100%;
-    }
-
-    .zoom-in {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 5px
     }
 </style>

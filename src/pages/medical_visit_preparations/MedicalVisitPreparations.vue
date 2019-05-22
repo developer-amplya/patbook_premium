@@ -1,5 +1,5 @@
 <template>
-    <f7-page @page:afterin="retrieveData">
+    <f7-page @page:afterin="retrieveData" class="medical-visit-preparations-page">
 
         <!-- Navbar -->
         <f7-navbar
@@ -102,13 +102,19 @@
         computed: mapGetters(['getUserID', 'getDeviceCode', 'getMainColor']),
         mounted() {
             this.setMainColor('stone');
+            this.$$('#main-view').removeClass('purple-page yellow-page stone-page orange-page pink-page blue-page');
+            this.$$('#main-view').addClass('stone-page')
         }
     }
     ;
 </script>
 
-<style scoped>
-    .toolbar a {
+<style>
+    .stone-page .navbar, .stone-page .toolbar {
+        background-color: #6F715E;
+    }
+
+    .medical-visit-preparations-page .toolbar a {
         font-size: 48px !important;
     }
 </style>

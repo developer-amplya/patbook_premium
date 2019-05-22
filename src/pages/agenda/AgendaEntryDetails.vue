@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page hide-toolbar-on-scroll>
+    <f7-page hide-toolbar-on-scroll class="agenda-page">
 
         <f7-navbar back-link back-link-force back-link-url="/agenda" title="AGENDA">
             <f7-nav-right>
@@ -189,8 +189,8 @@
     };
 </script>
 
-<style scoped>
-    .copy-msg {
-        text-align: center;
+<style>
+    .blue-page .navbar, .blue-page .toolbar {
+        background-color: #1ABAD4;
     }
 </style>

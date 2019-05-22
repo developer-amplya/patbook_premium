@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page id="home">
 
         <div class="header-container">
 
@@ -113,55 +113,55 @@
     };
 </script>
 
-<style scoped>
+<style>
 
-    .list img {
+    #home .list img {
         width: 50px;
         border-radius: 100%;
     }
 
-    .allergies img {
+    #home .allergies img {
         background-color: #c36eb5;
     }
 
-    .medicines img {
+    #home .medicines img {
         background-color: #F2BE4C;
     }
 
-    .medical-visit-preparations img {
+    #home .medical-visit-preparations img {
         background-color: #6F715E;
     }
 
-    .medical-visit img {
+    #home .medical-visit img {
         background-color: #FF7E3A;
     }
 
-    .diagnostic-tests img {
+    #home .diagnostic-tests img {
         background-color: #FF3183;
     }
 
-    .header-container {
+    #home .header-container {
         display: flex;
     }
 
-    .header-container .col {
+    #home .header-container .col {
         flex: 1;
     }
 
-    .edit-user, .more {
+    #home .edit-user, .more {
         padding: 20px;
         color: #8E8E93;
     }
 
-    .edit-user i, .more i {
+    #home .edit-user i, .more i {
         font-size: 35px !important;
     }
 
-    .col:nth-child(3) {
+    #home .col:nth-child(3) {
         text-align: right;
     }
 
-    .user-pic {
+    #home .user-pic {
         width: 100px;
         height: 100px;
         margin: 20px auto 0px;
@@ -170,35 +170,35 @@
         border-radius: 100%;
     }
 
-    .user-pic img {
+    #home .user-pic img {
         width: 100%;
     }
 
-    .user-name {
+    #home .user-name {
         text-align: center;
         color: #1ABAD4;
     }
 
-    .agenda, .emergencia {
+    #home .agenda, .emergencia {
         width: 50%;
     }
 
-    .agenda > span:first-child, .emergencia > span:first-child {
+    #home .agenda > span:first-child, .emergencia > span:first-child {
         display: flex;
         align-items: center;
         width: 35px;
     }
 
-    .agenda > span > img, .emergencia > span > img {
+    #home .agenda > span > img, .emergencia > span > img {
         width: 100%;
     }
 
-    .agenda {
+    #home .agenda {
         background-color: var(--f7-theme-color);
         color: #ffffff;
     }
 
-    .emergencia {
+    #home .emergencia {
         background-color: #ff0000;
         color: #ffffff;
     }

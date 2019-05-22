@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page class="medical-visit-preparations-page">
         <f7-navbar title="PREPARACIÓN VISITA MÉDICA" back-link="Volver"></f7-navbar>
         <f7-block inner>
 
@@ -249,8 +249,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar {
+<style>
+    .stone-page .navbar, .stone-page .toolbar {
         background-color: #6F715E;
     }
 </style>

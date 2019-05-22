@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page class="agenda-page">
         <!-- Navbar -->
         <f7-navbar title="AGENDA" back-link></f7-navbar>
 
@@ -150,3 +150,9 @@
         }
     };
 </script>
+
+<style>
+    .blue-page .navbar, .blue-page .toolbar {
+        background-color: #1ABAD4;
+    }
+</style>

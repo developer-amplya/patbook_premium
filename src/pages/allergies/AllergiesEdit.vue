@@ -1,6 +1,6 @@
 <template>
 
-    <f7-page>
+    <f7-page class="allergies-page">
 
         <f7-navbar back-link title="ALERGIAS"></f7-navbar>
 
@@ -245,8 +245,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar, .toolbar {
+<style>
+    .purple-page .navbar, .purple-page .toolbar {
         background-color: #c36eb5;
     }
 </style>

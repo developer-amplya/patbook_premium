@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page class="allergies-page">
         <f7-navbar title="ALERGIAS" back-link></f7-navbar>
         <f7-block inner>
 
@@ -167,7 +167,7 @@
                     });
             },
             reverseDate(payload) {
-                if(payload === undefined || payload === null) {
+                if (payload === undefined || payload === null) {
                     return;
                 }
                 let date = payload.split("-");
@@ -202,12 +202,8 @@
     };
 </script>
 
-<style scoped>
-    .navbar {
+<style>
+    .purple-page .navbar, .purple-page .toolbar {
         background-color: #c36eb5;
-    }
-
-    #framework7-root > .main-view > .page.smart-select-page > .navbar {
-        background-color: #c36eb5 !important;
     }
 </style>
