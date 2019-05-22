@@ -202,7 +202,7 @@
                     }
 
                     // Check the image
-                    if (this.details.image !== null) {
+                    if (this.details.image !== '' && this.details.image !== null) {
                         this.imagepath = USER_IMAGES_PATH + this.details.image;
                     }
                 });

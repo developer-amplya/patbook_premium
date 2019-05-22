@@ -131,12 +131,12 @@
                     </f7-list-item>
 
                     <!-- Date -->
-                    <f7-list-item header="Fecha">
+                    <f7-list-item header="Fecha próxima visita">
                         <span>{{ transformDate(details.nex_visit_date) }}</span>
                     </f7-list-item>
 
                     <!-- Time -->
-                    <f7-list-item header="Hora">
+                    <f7-list-item header="Hora próxima visita">
                         <span>{{ details.next_visit_time }}</span>
                     </f7-list-item>
 
@@ -249,7 +249,7 @@
                     }
 
                     // Check the image
-                    if (this.details.image !== null) {
+                    if (this.details.image !== '' && this.details.image !== null) {
                         this.imagepath = USER_IMAGES_PATH + this.details.image;
                     }
                 });
