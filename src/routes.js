@@ -34,6 +34,7 @@ import DiagnosticTests from './pages/diagnostic_tests/DiagnosticTests.vue';
 import DiagnosticTestsInsert from './pages/diagnostic_tests/DiagnosticTestsInsert.vue';
 import DiagnosticTestsDetails from './pages/diagnostic_tests/DiagnosticTestsDetails.vue';
 import DiagnosticTestsEdit from './pages/diagnostic_tests/DiagnosticTestsEdit.vue';
+import RegisterAccessGuide from './pages/use_guides/RegisterAccessGuide.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import Router from './Router.vue';
@@ -201,6 +202,10 @@ export default [
         path: '/diagnostic-tests/edit/:record_id',
         component: DiagnosticTestsEdit,
         props: true
+    },
+    {
+        path: '/use-guides/register-access',
+        component: RegisterAccessGuide,
     },
     {
         path: '/create-custom-field',
