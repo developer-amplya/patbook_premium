@@ -13,7 +13,7 @@
                 ><img src="../../assets/ic_content_copy_white_24dp.png"></span>
                 <span
                         class="navbar-icon-right"
-                        @click=""
+                        @click="openShareSheet"
                 ><img src="../../assets/ic_share_white_24dp.png"></span>
             </f7-nav-right>
         </f7-navbar>
@@ -166,6 +166,32 @@
             <f7-link></f7-link>
         </f7-toolbar>
 
+        <!-- Share Sheet -->
+        <f7-sheet class="sheet" ref="share_sheet" @sheet:closed="sheetOpened = false">
+            <f7-toolbar class="orange">
+                <div class="left"></div>
+                <div class="right">
+                    <f7-link sheet-close>Cerrar</f7-link>
+                </div>
+            </f7-toolbar>
+            <!-- Scrollable sheet content -->
+            <f7-page-content>
+                <f7-block>
+                    <h3>Enviar a:</h3>
+                    <f7-input
+                            type="email"
+                            placeholder="Email"
+                            :value="sendToEmail"
+                            @input="sendToEmail = $event.target.value">
+                    </f7-input>
+                    <br>
+                    <f7-button large raised fill class="orange" @click="shareByEmail()"
+                               sheet-close>ENVIAR
+                    </f7-button>
+                </f7-block>
+            </f7-page-content>
+        </f7-sheet>
+
     </f7-page>
 
 </template>
@@ -190,6 +216,7 @@
                 there_is_schema: false,
                 copyMsg: false,
                 imagepath: undefined,
+                sendToEmail: null,
                 months: [
                     "Enero",
                     "Febrero",
@@ -309,10 +336,36 @@
                             this.$f7.dialog.alert('Ha ocurrido un error', "Error");
                         });
                 });
+            },
+            openShareSheet() {
+                this.$refs.share_sheet.open();
+            },
+            shareByEmail() {
+                axios.post(API_PATH + 'medical-visits/share-by-email', {
+                    /*params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    },*/
+                    email: this.sendToEmail,
+                    id: this.record_id,
+                })
+                    .then((response) => {
+                        let notification = this.$f7.toast.create({
+                            position: 'top',
+                            text: '¡Registro enviado!',
+                            cssClass: "success",
+                            icon: '<i class="icon material-icons">done</i>',
+                            closeTimeout: 2000
+                        });
+                        notification.open();
+                    })
+                    .catch(function (error) {
+                        //console.log(error);
+                    });
             }
         }
-    }
-    ;
+    };
 </script>
 
 <style>
