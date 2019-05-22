@@ -128,6 +128,7 @@
                             this.$store.dispatch('setClinicName', response.data.user.clinic);
                             this.$store.dispatch('setClinicAddress', response.data.user.clinic_address);
                             this.$store.dispatch('setClinicPhone', response.data.user.clinic_phone);
+                            this.$store.dispatch('setEmergenciesContact', response.data.user.emergencies_contact);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
                             this.$f7router.navigate('/home');

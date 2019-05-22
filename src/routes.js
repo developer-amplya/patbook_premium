@@ -9,7 +9,7 @@ import ForgotPassword from './pages/access/ForgotPassword.vue';
 import ResetPassword from './pages/access/ResetPassword.vue';
 import Home from './pages/Home.vue';
 import UserInfo from './pages/UserInfo.vue';
-import EmergenciesData from './pages/emergencies';
+import EmergenciesPage from './pages/EemergenciesPage.vue';
 import Agenda from './pages/agenda/Agenda.vue';
 import AgendaEntryInsert from './pages/agenda/AgendaEntryInsert.vue';
 import AgendaEntryDetails from './pages/agenda/AgendaEntryDetails.vue';
@@ -94,7 +94,7 @@ export default [
     },
     {
         path: '/emergencies',
-        component: EmergenciesData
+        component: EmergenciesPage
     },
     {
         path: '/agenda',

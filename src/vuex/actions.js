@@ -22,7 +22,8 @@ import {
     SET_DOCUMENT_COUNTING,
     INCREMENT_DOCUMENT_COUNTING,
     DECREMENT_DOCUMENT_COUNTING,
-    SET_CURRENT_MAIN_COLOR
+    SET_CURRENT_MAIN_COLOR,
+    SET_EMERGENCIES_CONTACT
 } from './mutations';
 
 export default {
@@ -96,5 +97,8 @@ export default {
     },
     setMainColor({commit}, mainColor) {
         commit(SET_CURRENT_MAIN_COLOR, mainColor);
+    },
+    setEmergenciesContact({commit}, contact) {
+        commit(SET_EMERGENCIES_CONTACT, contact);
     }
 };

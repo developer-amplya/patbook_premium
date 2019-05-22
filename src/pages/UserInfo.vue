@@ -110,8 +110,9 @@
 
             </f7-card>
             <br>
-            <f7-card>
 
+            <!-- Emergencies -->
+            <f7-card title="INFORMACIÓN PARA EMERGENCIAS">
                 <f7-list media-list>
 
                     <!-- Blood type -->
@@ -248,7 +249,8 @@
                 'getUserBloodType',
                 'getClinicName',
                 'getClinicAddress',
-                'getClinicPhone'
+                'getClinicPhone',
+                'getEmergenciesContact'
             ])
         },
         methods: {

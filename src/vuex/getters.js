@@ -61,5 +61,8 @@ export default {
     },
     getMainColor(state) {
         return (state.current_main_color);
+    },
+    getEmergenciesContact(state) {
+        return (state.emergencies_contact);
     }
 };

@@ -25,7 +25,8 @@ import {
     SET_DOCUMENT_COUNTING,
     INCREMENT_DOCUMENT_COUNTING,
     DECREMENT_DOCUMENT_COUNTING,
-    SET_CURRENT_MAIN_COLOR
+    SET_CURRENT_MAIN_COLOR,
+    SET_EMERGENCIES_CONTACT
 } from './mutations';
 
 Vue.use(Vuex)
@@ -58,6 +59,7 @@ const state = {
         diagnostic_tests: 0
     },
     current_main_color: '',
+    emergencies_contact: null,
     currentValues: {}
 }
 
@@ -130,6 +132,9 @@ const mutations = {
     },
     [SET_CURRENT_MAIN_COLOR] (state, color) {
         state.current_main_color = color;
+    },
+    [SET_EMERGENCIES_CONTACT] (state, contact) {
+        state.emergencies_contact = contact;
     }
 }
 

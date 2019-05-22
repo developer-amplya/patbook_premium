@@ -81,7 +81,7 @@
                 <span><img src="../assets/icono_agenda.png"></span>
                 <span>AGENDA</span>
             </f7-link>
-            <f7-link class="emergencia no-ripple" href="">
+            <f7-link class="emergencia no-ripple" href="/emergencies">
                 <span><img src="../assets/icono_emergencias.png"></span>
                 <span>EMERGENCIA</span>
             </f7-link>
