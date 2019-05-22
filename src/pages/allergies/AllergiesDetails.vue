@@ -138,7 +138,7 @@
             };
         },
         mounted() {
-
+            // Fetch data
             axios
                 .get(API_PATH + 'allergies/' + this.id, {
                     params: {
