@@ -122,6 +122,28 @@
                         <span>{{ getUserBloodType }}</span>
                     </f7-list-item>
 
+                    <!-- Contact name -->
+                    <f7-list-item header="Nombre"
+                                  @click="openInputPopover($event, 'text', 'Nombre', 'emergencies_contact.name', getEmergenciesContact.name)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getEmergenciesContact.name }}</span>
+                    </f7-list-item>
+
+                    <!-- Contact phone -->
+                    <f7-list-item header="Teléfono"
+                                  @click="openInputPopover($event, 'text', 'Teléfono', 'emergencies_contact.phone', getEmergenciesContact.phone)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getEmergenciesContact.phone }}</span>
+                    </f7-list-item>
+
+                    <!-- Contact email -->
+                    <f7-list-item header="Email"
+                                  @click="openInputPopover($event, 'text', 'Email', 'emergencies_contact.email', getEmergenciesContact.email)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getEmergenciesContact.email }}</span>
+                    </f7-list-item>
+
+
                 </f7-list>
 
             </f7-card>
@@ -227,7 +249,7 @@
                     blood_type: 'setUserBloodType',
                     clinic: 'setClinicName',
                     clinic_address: 'setClinicAddress',
-                    clinic_phone: 'setClinicPhone'
+                    clinic_phone: 'setClinicPhone',
                 }
             };
         },
@@ -295,7 +317,18 @@
                         //console.log(response);
                         if (response.data.result === 'OK') {
 
-                            this.$store.dispatch(this.user_info[param], this.field.value);
+                            if (
+                                param === 'emergencies_contact.name' ||
+                                param === 'emergencies_contact.phone' ||
+                                param === 'emergencies_contact.mail'
+                            ) {
+                                this.$store.dispatch(
+                                    'setEmergenciesContact',
+                                    [param.substring(param.indexOf('.')+1), this.field.value]
+                                );
+                            } else {
+                                this.$store.dispatch(this.user_info[param], this.field.value);
+                            }
 
                             // Close popover
                             this.$refs.EditInputField.close();

@@ -56,10 +56,15 @@ const state = {
         medicines: 0,
         medical_visit_preparations: 0,
         medical_visits: 0,
-        diagnostic_tests: 0
+        diagnostic_tests: 0,
     },
     current_main_color: '',
-    emergencies_contact: null,
+    emergencies_contact: {
+        name: '',
+        phone: '',
+        email: '',
+        relation: '',
+    },
     currentValues: {}
 }
 
@@ -134,7 +139,7 @@ const mutations = {
         state.current_main_color = color;
     },
     [SET_EMERGENCIES_CONTACT] (state, contact) {
-        state.emergencies_contact = contact;
+        state.emergencies_contact[contact[0]] = contact[1];
     }
 }
 

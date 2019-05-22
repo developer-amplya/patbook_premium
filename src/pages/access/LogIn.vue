@@ -66,10 +66,10 @@
         data() {
             return {
                 log_in: {
-                    email: '',
-                    password: '',
-                    //email: 'reezooh@gmail.com',
-                    //password: '123456',
+                    //email: '',
+                    //password: '',
+                    email: 'reezooh@gmail.com',
+                    password: '123456',
                     token: ''
                 }
             };
@@ -110,6 +110,7 @@
                         //console.log(response);
                         // TODO: group all this in one object ?
                         if (response.data.result === 'OK') {
+
                             this.$store.dispatch('setUserID', response.data.user._id);
                             this.$store.dispatch('setUserEmail', response.data.user.email);
                             this.$store.dispatch('setUserName', response.data.user.name);
@@ -128,9 +129,14 @@
                             this.$store.dispatch('setClinicName', response.data.user.clinic);
                             this.$store.dispatch('setClinicAddress', response.data.user.clinic_address);
                             this.$store.dispatch('setClinicPhone', response.data.user.clinic_phone);
-                            this.$store.dispatch('setEmergenciesContact', response.data.user.emergencies_contact);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
+
+                            Object.entries(response.data.user.emergencies_contact).forEach(item => {
+                                //console.log(item)
+                                this.$store.dispatch('setEmergenciesContact', item);
+                            });
+
                             this.$f7router.navigate('/home');
                         } else if (
                             response.data.result === 'KO' &&
