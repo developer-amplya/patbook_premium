@@ -4,10 +4,24 @@
         <!-- Navbar -->
         <f7-navbar back-link back-link-force back-link-url="/home">
             <f7-nav-title title="AGENDA"></f7-nav-title>
+            <f7-subnavbar :inner="false">
+                <f7-searchbar
+                        search-container=".search-list"
+                        search-item="li"
+                        search-in=".item-title"
+                        placeholder="Buscar"
+                ></f7-searchbar>
+            </f7-subnavbar>
         </f7-navbar>
 
         <f7-block inner>
-            <f7-list>
+
+            <!-- Searchbar not found -->
+            <f7-list class="searchbar-not-found">
+                <f7-list-item title="No se encontró nada"></f7-list-item>
+            </f7-list>
+
+            <f7-list class="search-list searchbar-found">
                 <f7-list-item
                         v-for="listItem in list"
                         :key="listItem._id"
