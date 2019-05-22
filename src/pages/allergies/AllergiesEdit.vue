@@ -141,6 +141,7 @@
             };
         },
         mounted() {
+
             // Fetch data
             axios
                 .get(API_PATH + 'allergies/' + this.id, {
@@ -202,7 +203,7 @@
                     }
 
                     // Returning to details
-                    this.$f7router.navigate('/allergies/' + this.id);
+                    this.$f7router.navigate('/router/allergies/' + this.id);
                 })
                 .catch(function (error) {
                     //console.log(error);

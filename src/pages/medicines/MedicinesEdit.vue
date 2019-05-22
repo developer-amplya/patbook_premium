@@ -272,7 +272,7 @@
                         }
 
                         // Returning to details
-                        this.$f7router.navigate('/medicines/' + this.id);
+                        this.$f7router.navigate('/router/medicines/' + this.id);
                     })
                     .catch(function (error) {
                         //console.log(error);

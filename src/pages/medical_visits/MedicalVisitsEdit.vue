@@ -332,7 +332,7 @@
                         }
 
                         // Returning to details
-                        this.$f7router.navigate('/medical-visits/' + this.id);
+                        this.$f7router.navigate('/router/medical-visits/' + this.id);
                     })
                     .catch(function (error) {
                         //console.log(error);

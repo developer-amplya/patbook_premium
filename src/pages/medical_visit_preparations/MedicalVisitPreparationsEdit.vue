@@ -235,7 +235,7 @@
                         }
 
                         // Returning to details
-                        this.$f7router.navigate('/medical-visit-preparations/' + this.id);
+                        this.$f7router.navigate('/router/medical-visit-preparations/' + this.id);
                     })
                     .catch(function (error) {
                         //console.log(error);

@@ -56,6 +56,7 @@
                             :value="details.description"
                             @input="details.description = $event.target.value"
                     ></f7-list-input>
+
                 </f7-list>
             </f7-card>
 
@@ -110,34 +111,6 @@
                     this.details.date = this.reverseDate(this.details.date);
                     this.$$('#agenda_entry_date').attr('value', this.details.date);
                 });
-
-            let calendar = this.$f7.calendar.create({
-                inputEl: '#agenda_calendar',
-                openIn: 'customModal',
-                closeOnSelect: true,
-                dateFormat: 'dd-mm-yyyy',
-                monthNames: [
-                    'Enero',
-                    'Febrero',
-                    'Marzo',
-                    'Abril',
-                    'Mayo',
-                    'Junio',
-                    'Julio',
-                    'Agosto',
-                    'Septiembre',
-                    'Octubre',
-                    'Noviembre',
-                    'Diciembre'
-                ],
-                dayNamesShort: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-                on: {
-                    closed: () => {
-                        this.$emit('change', calendar.getValue());
-                        //calendar.destroy();
-                    }
-                }
-            });
         },
         methods: {
             setDate: (payload) => {
@@ -148,37 +121,27 @@
                 return dd + '-' + mm + '-' + yyyy;
             },
             update() {
-                axios({
-                    method: 'PUT',
-                    url: API_PATH + 'agenda/' + this.id,
-                    params: {
-                        // device_code: sessionStorage.device_code,
-                        // user_id: sessionStorage.user_id
-                    },
-                    data: {
-                        user_id: this.getUserID,
-                        name: this.details.name,
-                        date: this.reverseDate(this.details.date),
-                        time: this.details.time,
-                        type: this.details.type,
-                        description: this.details.description
-                    }
+                axios.put(API_PATH + 'agenda/' + this.id, {
+                    /*params: {
+                        device_code: sessionStorage.device_code,
+                        user_id: sessionStorage.user_id
+                        // TODO: encriptar las credenciales?
+                    },*/
+                    name: this.details.name,
+                    date: this.reverseDate(this.details.date),
+                    time: this.details.time,
+                    type: this.details.type,
+                    description: this.details.description
                 })
                     .then((response) => {
-                        if (response.data.result === 'OK') {
-                            console.log(response.data.result);
-                            // redirect
-                            this.$f7Router.navigate('/agenda/' + this.id);
-                        } else {
-                            // TODO ??
-                        }
+                        this.$f7router.navigate('/router/agenda/' + this.id);
                     })
                     .catch(function (error) {
                         //console.log(error);
                     });
             },
             reverseDate(payload) {
-                if(payload === undefined || payload === null) {
+                if (payload === undefined || payload === null) {
                     return;
                 }
                 let date = payload.split("-");

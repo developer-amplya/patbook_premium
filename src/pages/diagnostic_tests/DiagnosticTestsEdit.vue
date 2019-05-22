@@ -254,7 +254,7 @@
                         }
 
                         // Returning to details
-                        this.$f7router.navigate('/diagnostic-tests/' + this.id);
+                        this.$f7router.navigate('/router/diagnostic-tests/' + this.id);
                     })
                     .catch(function (error) {
                         //console.log(error);
