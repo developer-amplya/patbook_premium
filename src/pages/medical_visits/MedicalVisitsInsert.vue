@@ -238,7 +238,7 @@
         },
         data() {
             return {
-                specialityList: ['Alergología', 'Anestesiología y reanimación', 'Cardiología', 'Endocrinología', 'Gastroenterología', 'Ginecología', 'Hematología y hemoterapia', 'Hidrología médica', 'Infectología', 'Medicina aeroespacial', 'Medicina del deporte', 'Medicina del trabajo', 'Medicina de urgencias', 'Medicina familiar y comunitaria', 'Medicina intensiva', 'Medicina interna', 'Medicina legal y forense', 'Medicina preventiva y salud pública', 'Nefrología', 'Neumología', 'Neurología', 'Nutriología', 'Odontología', 'Oftalmología', 'Oncología médica', 'Oncología radioterápica', 'Otorrinolaringología', 'Pediatría', 'Proctología', 'Psiquiatría', 'Rehabilitación', 'Reumatología', 'Traumatología', 'Toxicología', 'Urología'],
+                specialityList: ['Alergología', 'Anestesiología y reanimación', 'Cardiología', 'Dermatología', 'Endocrinología', 'Gastroenterología', 'Ginecología', 'Hematología y hemoterapia', 'Hidrología médica', 'Infectología', 'Medicina aeroespacial', 'Medicina del deporte', 'Medicina del trabajo', 'Medicina de urgencias', 'Medicina familiar y comunitaria', 'Medicina intensiva', 'Medicina interna', 'Medicina legal y forense', 'Medicina preventiva y salud pública', 'Nefrología', 'Neumología', 'Neurología', 'Nutriología', 'Odontología', 'Oftalmología', 'Oncología médica', 'Oncología radioterápica', 'Otorrinolaringología', 'Pediatría', 'Proctología', 'Psiquiatría', 'Rehabilitación', 'Reumatología', 'Traumatología', 'Toxicología', 'Urología'],
                 description: '',
                 doctor: '',
                 location: '',
