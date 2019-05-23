@@ -47,7 +47,7 @@
         </f7-block>
 
         <div style="position: absolute; bottom: 10px; right: 10px">
-            <small>1.0.115</small>
+            <small>1.0.116</small>
         </div>
 
     </f7-page>
@@ -66,10 +66,10 @@
         data() {
             return {
                 log_in: {
-                    //email: '',
-                    //password: '',
-                    email: 'reezooh@gmail.com',
-                    password: '123456',
+                    email: '',
+                    password: '',
+                    //email: 'reezooh@gmail.com',
+                    //password: '123456',
                     token: ''
                 }
             };

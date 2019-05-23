@@ -27,10 +27,10 @@
 
             <br>
             <hr>
-
+<!--
             <h4>Información técnica que se enviará junto con tus comentarios.</h4>
             <p><strong>Nombre del dispositivo</strong>: {{ device.name }}</p>
-
+-->
         </f7-block>
 
     </f7-page>
