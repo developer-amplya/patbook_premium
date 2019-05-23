@@ -236,7 +236,7 @@
 
                         let notification = this.$f7.toast.create({
                             position: 'top',
-                            text: '¡Registro replicado! Ya puedes editarlo',
+                            text: 'Registro guardado',
                             cssClass: "success",
                             icon: '<i class="icon material-icons">done</i>',
                             closeTimeout: 2000
