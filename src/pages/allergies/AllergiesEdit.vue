@@ -202,8 +202,17 @@
                         this.updateImage();
                     }
 
-                    // Returning to details
-                    this.$f7router.navigate('/router/allergies/' + this.id);
+                    let notification = this.$f7.toast.create({
+                        position: 'top',
+                        text: 'Registro guardado',
+                        cssClass: "success",
+                        icon: '<i class="icon material-icons">done</i>',
+                        closeTimeout: 2000
+                    });
+                    notification.open();
+
+                    // Returning to list
+                    this.$f7router.navigate('/allergies');
                 })
                 .catch(function (error) {
                     //console.log(error);

@@ -134,7 +134,18 @@
                     description: this.details.description
                 })
                     .then((response) => {
-                        this.$f7router.navigate('/router/agenda/' + this.id);
+
+                        let notification = this.$f7.toast.create({
+                            position: 'top',
+                            text: '¡Registro replicado! Ya puedes editarlo',
+                            cssClass: "success",
+                            icon: '<i class="icon material-icons">done</i>',
+                            closeTimeout: 2000
+                        });
+                        notification.open();
+
+                        // Returning to list
+                        this.$f7router.navigate('/agenda');
                     })
                     .catch(function (error) {
                         //console.log(error);

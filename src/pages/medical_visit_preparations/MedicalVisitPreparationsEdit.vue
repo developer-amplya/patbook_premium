@@ -234,8 +234,17 @@
                             this.updateImage();
                         }
 
-                        // Returning to details
-                        this.$f7router.navigate('/router/medical-visit-preparations/' + this.id);
+                        let notification = this.$f7.toast.create({
+                            position: 'top',
+                            text: '¡Registro replicado! Ya puedes editarlo',
+                            cssClass: "success",
+                            icon: '<i class="icon material-icons">done</i>',
+                            closeTimeout: 2000
+                        });
+                        notification.open();
+
+                        // Returning to list
+                        this.$f7router.navigate('/medical-visit-preparations');
                     })
                     .catch(function (error) {
                         //console.log(error);

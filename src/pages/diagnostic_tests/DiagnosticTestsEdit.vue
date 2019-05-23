@@ -253,8 +253,17 @@
                             this.updateImage();
                         }
 
-                        // Returning to details
-                        this.$f7router.navigate('/router/diagnostic-tests/' + this.id);
+                        let notification = this.$f7.toast.create({
+                            position: 'top',
+                            text: '¡Registro replicado! Ya puedes editarlo',
+                            cssClass: "success",
+                            icon: '<i class="icon material-icons">done</i>',
+                            closeTimeout: 2000
+                        });
+                        notification.open();
+
+                        // Returning to list
+                        this.$f7router.navigate('/diagnostic-tests');
                     })
                     .catch(function (error) {
                         //console.log(error);
