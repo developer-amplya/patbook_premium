@@ -8,6 +8,7 @@
 
             <h2 class="color-red">DATOS DEL USUARIO</h2>
             <p><strong>Nombre</strong>: {{ getUserName }} {{ getUserLastname }}</p>
+            <p><strong>Número de la S.S.</strong>: {{ getSocialSecurityNumber }} </p>
             <p><strong>Fecha de nacimiento</strong>: {{ transformDate(getUserBirthdate) }}</p>
             <p><strong>Dirección</strong>: {{ getUserAddress }} {{ getUserCountry }}</p>
             <p><strong>Grupo sanguíneo</strong>: {{ getUserBloodType }}</p>
@@ -41,7 +42,8 @@
                 'getUserCountry',
                 'getUserAddress',
                 'getUserBloodType',
-                'getEmergenciesContact'
+                'getEmergenciesContact',
+                'getSocialSecurityNumber',
             ])
         },
         data() {

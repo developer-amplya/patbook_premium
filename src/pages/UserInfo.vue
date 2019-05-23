@@ -106,6 +106,13 @@
                         <span>{{ getUserCompany }}</span>
                     </f7-list-item>
 
+                    <!-- Social Security Number -->
+                    <f7-list-item header="Nº de la Seguridad Social"
+                                  @click="openInputPopover($event, 'text', 'Nº de la Seguridad Social', 'social_security_number', getSocialSecurityNumber)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getSocialSecurityNumber }}</span>
+                    </f7-list-item>
+
                 </f7-list>
 
             </f7-card>
@@ -147,8 +154,10 @@
                 </f7-list>
 
             </f7-card>
+
             <br>
-            <f7-card>
+
+            <f7-card title="CENTRO DE SALUD">
 
                 <f7-list media-list>
 
@@ -175,6 +184,50 @@
 
                 </f7-list>
 
+            </f7-card>
+
+            <br>
+
+            <!-- Insurance company -->
+            <f7-card title="COMPAÑÍA ASEGURADORA">
+                <f7-list media-list>
+
+                    <!-- Company -->
+                    <f7-list-item header="Compañía"
+                                  @click="openInputPopover($event, 'text', 'Compañía', 'insurance_company.name', getInsuranceCompany.name)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getInsuranceCompany.name }}</span>
+                    </f7-list-item>
+
+                    <!-- Policy number -->
+                    <f7-list-item header="Número de póliza"
+                                  @click="openInputPopover($event, 'text', 'Número de póliza', 'insurance_company.policy_number', getInsuranceCompany.policy_number)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getInsuranceCompany.policy_number }}</span>
+                    </f7-list-item>
+
+                    <!-- Coverage -->
+                    <f7-list-item header="Cobertura"
+                                  @click="openInputPopover($event, 'textarea', 'Cobertura', 'insurance_company.coverage', getInsuranceCompany.coverage)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getInsuranceCompany.coverage }}</span>
+                    </f7-list-item>
+
+                    <!-- Policy term -->
+                    <f7-list-item header="Vigencia"
+                                  @click="openInputPopover($event, 'text', 'Vigencia', 'insurance_company.policy_term', getInsuranceCompany.policy_term)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getInsuranceCompany.policy_term }}</span>
+                    </f7-list-item>
+
+                    <!-- Phone -->
+                    <f7-list-item header="Teléfono"
+                                  @click="openInputPopover($event, 'text', 'Teléfono', 'insurance_company.phone', getInsuranceCompany.phone)">
+                        <f7-icon material="edit"></f7-icon>
+                        <span>{{ getInsuranceCompany.phone }}</span>
+                    </f7-list-item>
+
+                </f7-list>
             </f7-card>
 
         </f7-block>
@@ -250,6 +303,7 @@
                     clinic: 'setClinicName',
                     clinic_address: 'setClinicAddress',
                     clinic_phone: 'setClinicPhone',
+                    social_security_number: 'setSocialSecurityNumber',
                 }
             };
         },
@@ -272,7 +326,9 @@
                 'getClinicName',
                 'getClinicAddress',
                 'getClinicPhone',
-                'getEmergenciesContact'
+                'getEmergenciesContact',
+                'getInsuranceCompany',
+                'getSocialSecurityNumber',
             ])
         },
         methods: {
@@ -324,6 +380,17 @@
                             ) {
                                 this.$store.dispatch(
                                     'setEmergenciesContact',
+                                    [param.substring(param.indexOf('.')+1), this.field.value]
+                                );
+                            } else if (
+                                param === 'insurance_company.name' ||
+                                param === 'insurance_company.policy_number' ||
+                                param === 'insurance_company.coverage' ||
+                                param === 'insurance_company.policy_term' ||
+                                param === 'insurance_company.phone'
+                            ) {
+                                this.$store.dispatch(
+                                    'setInsuranceCompany',
                                     [param.substring(param.indexOf('.')+1), this.field.value]
                                 );
                             } else {

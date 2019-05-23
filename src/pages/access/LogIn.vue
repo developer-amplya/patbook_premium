@@ -129,12 +129,16 @@
                             this.$store.dispatch('setClinicName', response.data.user.clinic);
                             this.$store.dispatch('setClinicAddress', response.data.user.clinic_address);
                             this.$store.dispatch('setClinicPhone', response.data.user.clinic_phone);
+                            this.$store.dispatch('setSocialSecurityNumber', response.data.user.social_security_number);
                             this.$store.dispatch('setDeviceCode', this.log_in.token);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
 
                             Object.entries(response.data.user.emergencies_contact).forEach(item => {
-                                //console.log(item)
                                 this.$store.dispatch('setEmergenciesContact', item);
+                            });
+
+                            Object.entries(response.data.user.insurance_company).forEach(item => {
+                                this.$store.dispatch('setInsuranceCompany', item);
                             });
 
                             this.$f7router.navigate('/home');
