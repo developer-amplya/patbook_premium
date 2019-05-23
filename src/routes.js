@@ -37,6 +37,7 @@ import DiagnosticTestsEdit from './pages/diagnostic_tests/DiagnosticTestsEdit.vu
 import RegisterAccessGuide from './pages/use_guides/RegisterAccessGuide.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
+import SendFeedback from './pages/SendFeedback.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import Router from './Router.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -216,6 +217,10 @@ export default [
     {
         path: '/reset-store',
         component: ResetStorePage
+    },
+    {
+        path: '/send-feedback',
+        component: SendFeedback
     },
     {
         path: '/panel-right/',
