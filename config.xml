@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="es.patbook.app.free" version="1.0.118" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="es.patbook.app.free" version="1.0.119" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Patbook</name>
     <description />
     <author email="contacto@webaliza.net" href="https://webaliza.net">Francisco Bosch</author>
@@ -88,4 +88,8 @@
     <plugin name="cordova-plugin-whitelist" />
     <engine name="android" spec="^8.0.0" />
     <engine name="ios" spec="^4.1.1" />
+
+    <gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription" overwrite="true">
+        <string>Se accede a la Librería de Imágenes con la finalidad de enviar las imágenes  desde el dispositivo al servidor de la aplicación. De ese modo el usuario podrá disponer de sus imágenes en cualquier dispositivo desde el que se conecte a su cuenta.</string>
+    </gap:config-file>
 </widget>
