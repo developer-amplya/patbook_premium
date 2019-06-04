@@ -202,4 +202,8 @@
         background-color: #ff0000;
         color: #ffffff;
     }
+
+    .ios #home .toolbar-inner {
+        padding: 0;
+    }
 </style>

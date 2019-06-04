@@ -94,9 +94,9 @@
 </script>
 
 <style scoped>
-    .guide {
+    .guide, .guide .block {
         background-color: #1ABAD4;
-        color: #ffffff;
+        color: #ffffff !important;
     }
 
     .guide h1 {
