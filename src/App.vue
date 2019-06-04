@@ -50,23 +50,14 @@
                         scrollTopOnClick: true,
                         materialBackgroundColor: "#000000",
                         iosBackgroundColor: "#000000"
-                    },,
-                on: {
-                    init() {
-                        document.addEventListener('backbutton', function (evt) {
-                            if (cordova.platformId !== 'windows') {
-                                alert('?');
-                            }
-
-                            if (window.location.href !== firstPageUrl) {
-                                window.history.back();
-                            } else {
-                                throw new Error('Exit'); // This will suspend the app
-                            }
-                        }, false);
                     },
                 },
             }
+        },
+        mounted() {
+            document.addEventListener('backbutton', () => {
+                this.$f7.views.main.router.back()
+            }, false);
         }
     }
 </script>
