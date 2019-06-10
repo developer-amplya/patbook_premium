@@ -3,7 +3,9 @@
     <f7-app :params="f7params">
 
         <!-- Statusbar -->
+        <!--
         <f7-statusbar></f7-statusbar>
+        -->
 
         <!-- Right Panel -->
         <f7-panel right cover theme-dark>
@@ -44,12 +46,10 @@
                         buttonCancel: 'Cancelar'
                     },
                     statusbar: {
-                        enabled: true,
+                        enabled: false,
                         overlay: false,
                         iosOverlaysWebView: false,
                         scrollTopOnClick: true,
-                        materialBackgroundColor: "#000000",
-                        iosBackgroundColor: "#000000"
                     },
                 },
             }
