@@ -38,6 +38,7 @@
         <allow-intent href="itms-apps:*" />
         <preference name="BackupWebStorage" value="none" />
         <preference name="Orientation" value="all" />
+        <preference name="StatusBarStyle" value="blacktranslucent" />
         <icon height="180" src="res/icon/ios/icon-60@3x.png" width="180" />
         <icon height="60" src="res/icon/ios/icon-60.png" width="60" />
         <icon height="120" src="res/icon/ios/icon-60@2x.png" width="120" />
@@ -67,8 +68,8 @@
     </platform>
 
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="Fullscreen" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="Fullscreen" value="true" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="phonegap-version" value="cli-8.0.0" />
