@@ -65,11 +65,12 @@
             };
         },
         methods: {
-            transformDate: function (payload) {
+            transformDate (payload) {
                 if (payload === undefined || payload === null) {
-                    return;
+                    return '';
                 }
-                let rawDate = new Date(payload);
+
+                let rawDate = new Date(payload); console.log(rawDate)
                 let dd = String(rawDate.getDate()).padStart(2, "0");
                 let mm = this.months[String(rawDate.getMonth())]; // January is 0!
                 //const mm = rawDate.toLocaleString('es-es', { month: 'long' }).toUpperCase();
