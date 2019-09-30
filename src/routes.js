@@ -38,6 +38,8 @@ import RegisterAccessGuide from './pages/use_guides/RegisterAccessGuide.vue';
 import CreateCustomField from './pages/CreateCustomField.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
 import SendFeedback from './pages/SendFeedback.vue';
+import PrivacyPolicy from './pages/legal/PrivacyPolicy.vue';
+import TermsAndConditions from './pages/legal/TermsAndConditions.vue';
 import DynamicRoutePage from './pages/dynamic-route.vue';
 import Router from './Router.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -221,6 +223,14 @@ export default [
     {
         path: '/send-feedback',
         component: SendFeedback
+    },
+    {
+        path: '/privacy-policy',
+        component: PrivacyPolicy
+    },
+    {
+        path: '/terms-and-conditions',
+        component: TermsAndConditions
     },
     {
         path: '/panel-right/',
