@@ -14,9 +14,7 @@
                 adelante, EL ARTESANO DE IDEAS).</p>
             <p>Datos de contacto:</p>
             <p>Teléfono: <f7-link href="tel:646963421" external>646963421</f7-link></p>
-            <p>Correo electrónico del Delegado de Protección de Datos:
-                <f7-link href="mailto:dpo@pat-book.es" external>dpo@pat-book.es</f7-link>
-            </p>
+            <p>Correo electrónico: <a href="mailto:info@pat-book.com">info@pat-book.com</a></p>
 
             <p>Las siguientes definiciones facilitarán la comprensión de estos Términos y Condiciones:</p>
             <ul>
