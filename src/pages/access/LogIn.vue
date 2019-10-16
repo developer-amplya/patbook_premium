@@ -83,6 +83,14 @@
         },
         methods: {
             do_login() {
+
+                // Checking that login fields are not empty
+                if(this.log_in.email === '' || this.log_in.password === '') {
+
+                    this.$f7.dialog.alert('Debe completar los campos email y contraseña', "Error");
+                    return
+                }
+
                 /* Cheking if the user is registered in the device and so he or she is allowed to connect with the
                 device */
                 if (localStorage.allowed_users !== '') {
