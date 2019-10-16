@@ -47,7 +47,7 @@
         </f7-block>
 
         <div style="position: absolute; bottom: 10px; right: 10px">
-            <small>1.0.127</small>
+            <small>1.0.128</small>
         </div>
 
     </f7-page>
