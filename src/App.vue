@@ -50,7 +50,7 @@
                         overlay: false,
                         iosOverlaysWebView: true,
                         scrollTopOnClick: true,
-                        materialBackgroundColor: "#000000",
+                        materialBackgroundColor: "#D5CECF",
                         iosBackgroundColor: "#000000"
                     },
                 },
