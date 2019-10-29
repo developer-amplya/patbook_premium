@@ -93,11 +93,37 @@
                     .then((response) => {
                         //console.log(response);
                         if (response.data.result === 'OK') {
-                            this.$store.dispatch('setUserName', response.data.user.name);
+
                             this.$store.dispatch('setUserID', response.data.user._id);
                             this.$store.dispatch('setUserEmail', response.data.user.email);
+                            this.$store.dispatch('setUserName', response.data.user.name);
+                            this.$store.dispatch('setUserLastname', response.data.user.lastname);
+                            this.$store.dispatch('setUserProfileImg', response.data.user.pic);
+                            this.$store.dispatch('setUserBirthdate', response.data.user.birthdate);
+                            this.$store.dispatch('setUserSex', response.data.user.sex);
+                            this.$store.dispatch('setUserWeight', response.data.user.weight);
+                            this.$store.dispatch('setUserHeight', response.data.user.height);
+                            this.$store.dispatch('setUserCountry', response.data.user.country);
+                            this.$store.dispatch('setUserAddress', response.data.user.address);
+                            this.$store.dispatch('setUserPhone', response.data.user.phone);
+                            this.$store.dispatch('setUserProfession', response.data.user.profession);
+                            this.$store.dispatch('setUserCompany', response.data.user.company);
+                            this.$store.dispatch('setUserBloodType', response.data.user.blood_type);
+                            this.$store.dispatch('setClinicName', response.data.user.clinic);
+                            this.$store.dispatch('setClinicAddress', response.data.user.clinic_address);
+                            this.$store.dispatch('setClinicPhone', response.data.user.clinic_phone);
+                            this.$store.dispatch('setSocialSecurityNumber', response.data.user.social_security_number);
                             this.$store.dispatch('setDeviceCode', this.device_code);
                             this.$store.dispatch('setDocumentCounting', response.data.documents);
+
+                            Object.entries(response.data.user.emergencies_contact).forEach(item => {
+                                this.$store.dispatch('setEmergenciesContact', item);
+                            });
+
+                            Object.entries(response.data.user.insurance_company).forEach(item => {
+                                this.$store.dispatch('setInsuranceCompany', item);
+                            });
+
                             this.$f7router.navigate('/home');
                         } else {
                             this.$f7.dialog.alert(response.data.message, "Error");
