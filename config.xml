@@ -88,6 +88,10 @@
     <plugin name="cordova-plugin-device" />
 
     <edit-config file="*-Info.plist" mode="overwrite" target="NSPhotoLibraryUsageDescription">
-        <string>Se accede a la Librería de Imágenes con la finalidad de enviar las imágenes  desde el dispositivo al servidor de la aplicación. De ese modo el usuario podrá disponer de sus imágenes en cualquier dispositivo desde el que se conecte a su cuenta.</string>
+        <string>Se accede a la Librería de Imágenes con la finalidad de enviar imágenes  desde el dispositivo al servidor de la aplicación. De ese modo el usuario podrá disponer de sus imágenes en cualquier dispositivo desde el que se conecte a su cuenta.</string>
+    </edit-config>
+
+    <edit-config file="*-Info.plist" mode="overwrite" target="NSCameraUsageDescription">
+        <string>Se accede a la Cámara con la finalidad de capturar y enviar imágenes  desde el dispositivo al servidor de la aplicación. De ese modo el usuario podrá disponer de sus imágenes en cualquier dispositivo desde el que se conecte a su cuenta.</string>
     </edit-config>
 </widget>
