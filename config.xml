@@ -2,7 +2,7 @@
 <widget id="es.patbook.app.free" version="1.0.130" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Patbook</name>
     <description />
-    <author email="contacto@webaliza.net" href="https://webaliza.net">Francisco Bosch</author>
+    <author email="info@pat-book.com" href="http://www.pat-book.com">El Artesano de Ideas</author>
     <content src="index.html" />
     <access origin="*" />
 
