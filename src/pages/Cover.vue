@@ -22,7 +22,7 @@
             waitSomeSeconds() {
                 setTimeout(() => {
                     if (localStorage.patbookDontShowTheGuide === 'true') {
-                        //this.$f7router.navigate('/login');
+                        this.$f7router.navigate('/login');
                     } else {
                         this.$f7router.navigate('/use-guide');
                     }
@@ -52,7 +52,6 @@
     }
     .toolbar {
         background-color: transparent !important;
-        text-align: center;
     }
 
     .toolbar p {
